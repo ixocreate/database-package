@@ -1,0 +1,72 @@
+<?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
+namespace KiwiSuite\Database\Bootstrap;
+
+use KiwiSuite\Application\Bootstrap\BootstrapInterface;
+use KiwiSuite\Application\ConfiguratorItem\ConfiguratorRegistry;
+use KiwiSuite\Application\Service\ServiceRegistry;
+use KiwiSuite\Database\Connection\ConnectionConfig;
+use KiwiSuite\Database\Connection\ConnectionSubManager;
+use KiwiSuite\Database\Connection\Factory\ConnectionConfigFactory;
+use KiwiSuite\Database\Connection\Factory\ConnectionSubManagerFactory;
+use KiwiSuite\Database\Repository\EntityRepositoryMapping;
+use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
+use KiwiSuite\Database\Repository\Factory\RepositorySubManagerFactory;
+use KiwiSuite\Database\Repository\RepositoryServiceManagerConfig;
+use KiwiSuite\ServiceManager\ServiceManager;
+
+class DatabaseBootstrap implements BootstrapInterface
+{
+
+    /**
+     * @param ConfiguratorRegistry $configuratorRegistry
+     */
+    public function configure(ConfiguratorRegistry $configuratorRegistry): void
+    {
+        $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addFactory(ConnectionConfig::class, ConnectionConfigFactory::class);
+        $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addSubManager(ConnectionSubManager::class, ConnectionSubManagerFactory::class);
+        $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addSubManager(RepositorySubManager::class, RepositorySubManagerFactory::class);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getDefaultConfig(): ?array
+    {
+        return [
+            'database' => [],
+        ];
+    }
+
+    /**
+     * @param ServiceManager $serviceManager
+     */
+    public function boot(ServiceManager $serviceManager): void
+    {
+    }
+
+    /**
+     * @param ServiceRegistry $serviceRegistry
+     */
+    public function addServices(ServiceRegistry $serviceRegistry): void
+    {
+        $serviceRegistry->addService(EntityRepositoryMapping::class, EntityRepositoryMapping::create($serviceRegistry->getService(RepositoryServiceManagerConfig::class)));
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getConfiguratorItems(): ?array
+    {
+        return null;
+    }
+}

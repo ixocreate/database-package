@@ -1,0 +1,36 @@
+{
+    "name": "kiwi-suite/database",
+    "description": "kiwi-suite/database",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Thomas Payer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1",
+        "doctrine/dbal": "^2.6",
+        "kiwi-suite/entity": "dev-develop",
+        "doctrine/orm": "^2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0.6",
+        "friendsofphp/php-cs-fixer": "^2.5",
+        "kiwi-suite/servicemanager": "dev-develop",
+        "kiwi-suite/application": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "KiwiSuite\\Database\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KiwiSuiteMisc\\Database\\": "tests/misc/",
+            "KiwiSuiteTest\\Database\\": "tests/src/"
+        }
+    }
+}

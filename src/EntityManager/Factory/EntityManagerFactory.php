@@ -51,14 +51,10 @@ final class EntityManagerFactory implements FactoryInterface
         //TODO change for production
         $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
 
-        try {
-           return EntityManager::create(
-                $container->get(ConnectionSubManager::class)->get($requestedName),
-                $configuration
-            );
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
-        }
+        return EntityManager::create(
+            $container->get(ConnectionSubManager::class)->get($requestedName),
+            $configuration
+        );
     }
 
     private function getMetaCacheImpl(ServiceManagerInterface $container) : Cache

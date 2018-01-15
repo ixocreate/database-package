@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\EntityManager\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
+use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfig;
 use KiwiSuite\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;

@@ -14,10 +14,13 @@ namespace KiwiSuite\Database\Bootstrap;
 use KiwiSuite\Application\Bootstrap\BootstrapInterface;
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorRegistry;
 use KiwiSuite\Application\Service\ServiceRegistry;
+use KiwiSuite\Database\ConfiguratorItem\RepositoryManagerConfiguratorItem;
 use KiwiSuite\Database\Connection\ConnectionConfig;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
 use KiwiSuite\Database\Connection\Factory\ConnectionConfigFactory;
+use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
 use KiwiSuite\Database\Connection\Factory\ConnectionSubManagerFactory;
+use KiwiSuite\Database\EntityManager\Factory\EntityManagerSubManager;
+use KiwiSuite\Database\EntityManager\Factory\EntityManagerSubManagerFactory;
 use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManagerFactory;
@@ -35,6 +38,7 @@ class DatabaseBootstrap implements BootstrapInterface
         $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addFactory(ConnectionConfig::class, ConnectionConfigFactory::class);
         $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addSubManager(ConnectionSubManager::class, ConnectionSubManagerFactory::class);
         $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addSubManager(RepositorySubManager::class, RepositorySubManagerFactory::class);
+        $configuratorRegistry->getConfigurator('serviceManagerConfigurator')->addSubManager(EntityManagerSubManager::class, EntityManagerSubManagerFactory::class);
     }
 
     /**
@@ -43,7 +47,15 @@ class DatabaseBootstrap implements BootstrapInterface
     public function getDefaultConfig(): ?array
     {
         return [
-            'database' => [],
+            'database' => [
+                'master' => [
+                    'dbname' => 'test',
+                    'user' => 'root',
+                    'password' => '',
+                    'host' => '127.0.0.1',
+                    'driver' => 'pdo_mysql',
+                ]
+            ],
         ];
     }
 
@@ -67,6 +79,8 @@ class DatabaseBootstrap implements BootstrapInterface
      */
     public function getConfiguratorItems(): ?array
     {
-        return null;
+        return [
+            RepositoryManagerConfiguratorItem::class
+        ];
     }
 }

@@ -16,8 +16,10 @@ use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Proxy\ProxyFactory;
 use Doctrine\ORM\Repository\RepositoryFactory;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
+use KiwiSuite\Application\ApplicationConfig;
+use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
 use KiwiSuite\Database\ORM\Mapping\EntityMapper;
 use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 use KiwiSuite\Database\Repository\Factory\DoctrineRepositoryFactory;
@@ -38,15 +40,25 @@ final class EntityManagerFactory implements FactoryInterface
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
+
         $configuration = new Configuration();
         $configuration->setMetadataDriverImpl($this->getMetaDriverImpl($container));
         $configuration->setMetadataCacheImpl($this->getMetaCacheImpl($container));
         $configuration->setRepositoryFactory($this->getRepositoryFactory($container));
+        $configuration->setProxyDir($container->get(ApplicationConfig::class)->getPersistCacheDirectory() . 'doctrine_proxy/');
+        $configuration->setProxyNamespace('DoctrineProxies');
 
-        return EntityManager::create(
-            $container->get(ConnectionSubManager::class)->get($requestedName),
-            $configuration
-        );
+        //TODO change for production
+        $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
+
+        try {
+           return EntityManager::create(
+                $container->get(ConnectionSubManager::class)->get($requestedName),
+                $configuration
+            );
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
     }
 
     private function getMetaCacheImpl(ServiceManagerInterface $container) : Cache

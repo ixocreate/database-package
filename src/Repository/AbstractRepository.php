@@ -31,11 +31,11 @@ abstract class AbstractRepository implements RepositoryInterface
 
     /**
      * AbstractRepository constructor.
-     * @param EntityManagerInterface $manager
+     * @param EntityManagerInterface $master
      */
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $master)
     {
-        $this->entityManager = $manager;
+        $this->entityManager = $master;
     }
 
     /**
@@ -188,6 +188,4 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         return $this->getRepository()->createQueryBuilder($alias, $indexBy);
     }
-
-    abstract public function loadMetadata() : void;
 }

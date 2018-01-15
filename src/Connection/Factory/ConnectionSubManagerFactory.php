@@ -13,7 +13,6 @@ namespace KiwiSuite\Database\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
 use KiwiSuite\Database\Connection\ConnectionConfig;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
 use KiwiSuite\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;
@@ -40,7 +39,6 @@ final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
             $serviceManagerConfigurator->addFactory($connection, ConnectionFactory::class);
             $serviceManagerConfigurator->addLazyService($connection, Connection::class);
         }
-
 
         return new ConnectionSubManager(
             $container,

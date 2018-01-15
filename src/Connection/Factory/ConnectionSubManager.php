@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection;
+namespace KiwiSuite\Database\Connection\Factory;
 
 use KiwiSuite\ServiceManager\SubManager\SubManager;
 

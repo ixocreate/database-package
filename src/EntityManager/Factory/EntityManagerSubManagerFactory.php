@@ -44,7 +44,7 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
 
         return new EntityManagerSubManager(
             $container,
-            new ServiceManagerConfig($config),
+            new ServiceManagerConfig($config['factories']),
             EntityManagerInterface::class
         );
     }

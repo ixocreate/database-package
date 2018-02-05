@@ -15,6 +15,7 @@ use KiwiSuite\Application\Bootstrap\BootstrapInterface;
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorRegistry;
 use KiwiSuite\Application\Service\ServiceRegistry;
 use KiwiSuite\Database\ConfiguratorItem\RepositoryManagerConfiguratorItem;
+use KiwiSuite\Database\ConfiguratorItem\TypeConfiguratorItem;
 use KiwiSuite\Database\Connection\ConnectionConfig;
 use KiwiSuite\Database\Connection\Factory\ConnectionConfigFactory;
 use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
@@ -25,6 +26,8 @@ use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManagerFactory;
 use KiwiSuite\Database\Repository\RepositoryServiceManagerConfig;
+use KiwiSuite\Database\Type\Strategy\RuntimeStrategy;
+use KiwiSuite\Database\Type\TypeConfig;
 use KiwiSuite\ServiceManager\ServiceManager;
 
 class DatabaseBootstrap implements BootstrapInterface
@@ -64,6 +67,8 @@ class DatabaseBootstrap implements BootstrapInterface
      */
     public function boot(ServiceManager $serviceManager): void
     {
+        $runtimeStrategy = new RuntimeStrategy();
+        $runtimeStrategy->generate($serviceManager->get(TypeConfig::class));
     }
 
     /**
@@ -80,7 +85,8 @@ class DatabaseBootstrap implements BootstrapInterface
     public function getConfiguratorItems(): ?array
     {
         return [
-            RepositoryManagerConfiguratorItem::class
+            RepositoryManagerConfiguratorItem::class,
+            TypeConfiguratorItem::class,
         ];
     }
 }

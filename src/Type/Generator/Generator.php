@@ -28,6 +28,10 @@ final class %s extends BaseType
     {
         $value = parent::convertToPHPValue($value, $platform);
         
+        if ($value === null) {
+            return $value;
+        }
+        
         return Type::create($value, $this->getName());
     }
     

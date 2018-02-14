@@ -40,7 +40,6 @@ final class EntityManagerFactory implements FactoryInterface
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
-
         $configuration = new Configuration();
         $configuration->setMetadataDriverImpl($this->getMetaDriverImpl($container));
         $configuration->setMetadataCacheImpl($this->getMetaCacheImpl($container));

@@ -11,6 +11,8 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Connection;
 
+use KiwiSuite\Database\Exception\InvalidArgumentException;
+
 final class ConnectionConfig
 {
     /**
@@ -43,7 +45,7 @@ final class ConnectionConfig
     public function getConnectionParams(string $name) : array
     {
         if (!\array_key_exists($name, $this->config)) {
-            //TODO Exception
+            throw new InvalidArgumentException(\sprintf('unable to find connection config for %s', $name));
         }
 
         return $this->config[$name];

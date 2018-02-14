@@ -21,7 +21,7 @@ final class RepositoryManagerConfiguratorItem implements ConfiguratorItemInterfa
     /**
      * @return string
      */
-    public function getConfiguratorName(): string
+    public function getVariableName(): string
     {
         return 'repositoryConfigurator';
     }
@@ -29,7 +29,7 @@ final class RepositoryManagerConfiguratorItem implements ConfiguratorItemInterfa
     /**
      * @return string
      */
-    public function getConfiguratorFileName(): string
+    public function getFileName(): string
     {
         return 'repository.php';
     }

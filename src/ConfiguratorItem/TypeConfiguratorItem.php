@@ -19,7 +19,7 @@ final class TypeConfiguratorItem implements ConfiguratorItemInterface
     /**
      * @return string
      */
-    public function getConfiguratorName(): string
+    public function getVariableName(): string
     {
         return 'databaseTypeConfigurator';
     }
@@ -27,7 +27,7 @@ final class TypeConfiguratorItem implements ConfiguratorItemInterface
     /**
      * @return string
      */
-    public function getConfiguratorFileName(): string
+    public function getFileName(): string
     {
         return 'type_database.php';
     }

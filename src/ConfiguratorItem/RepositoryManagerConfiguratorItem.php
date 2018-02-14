@@ -1,4 +1,14 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
 namespace KiwiSuite\Database\ConfiguratorItem;
 
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorItemInterface;
@@ -21,7 +31,7 @@ final class RepositoryManagerConfiguratorItem implements ConfiguratorItemInterfa
     /**
      * @return string
      */
-    public function getConfiguratorName(): string
+    public function getVariableName(): string
     {
         return 'repositoryConfigurator';
     }
@@ -29,7 +39,7 @@ final class RepositoryManagerConfiguratorItem implements ConfiguratorItemInterfa
     /**
      * @return string
      */
-    public function getConfiguratorFileName(): string
+    public function getFileName(): string
     {
         return 'repository.php';
     }

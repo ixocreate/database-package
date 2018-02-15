@@ -21,6 +21,7 @@ use KiwiSuite\Database\Command\GenerateCommand;
 use KiwiSuite\Database\Command\MigrateCommand;
 use KiwiSuite\Database\Command\StatusCommand;
 use KiwiSuite\Database\Command\VersionCommand;
+use KiwiSuite\Database\ConfiguratorItem\MigrationConfiguratorItem;
 use KiwiSuite\Database\ConfiguratorItem\RepositoryManagerConfiguratorItem;
 use KiwiSuite\Database\ConfiguratorItem\TypeConfiguratorItem;
 use KiwiSuite\Database\Connection\ConnectionConfig;
@@ -80,7 +81,7 @@ class DatabaseBootstrap implements BootstrapInterface
                     'password' => '',
                     'host' => '127.0.0.1',
                     'driver' => 'pdo_mysql',
-                ]
+                ],
             ],
         ];
     }
@@ -110,6 +111,7 @@ class DatabaseBootstrap implements BootstrapInterface
         return [
             RepositoryManagerConfiguratorItem::class,
             TypeConfiguratorItem::class,
+            MigrationConfiguratorItem::class
         ];
     }
 }

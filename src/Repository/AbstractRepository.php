@@ -73,7 +73,7 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findOneBy(array $criteria)
     {
-        return $this->getRepository()-$this->findOneBy($criteria);
+        return $this->getRepository()->findOneBy($criteria);
     }
 
     /**

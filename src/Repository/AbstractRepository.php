@@ -124,6 +124,11 @@ abstract class AbstractRepository implements RepositoryInterface
         return $this->entityManager->merge($entity);
     }
 
+    public function flush(EntityInterface $entity): void
+    {
+        $this->entityManager->flush($entity);
+    }
+
     /**
      * @param $name
      * @param $arguments

@@ -117,16 +117,38 @@ abstract class AbstractRepository implements RepositoryInterface
         return $this->entityManager;
     }
 
+    /**
+     * @param EntityInterface $entity
+     * @return EntityInterface
+     */
+    public function persist(EntityInterface $entity): EntityInterface
+    {
+        return $this->entityManager->merge($entity);
+    }
+
+    /**
+     * @param EntityInterface $entity
+     * @return EntityInterface
+     */
     public function save(EntityInterface $entity) : EntityInterface
     {
-        //TODO Check $entity
+        $entity = $this->persist($entity);
+        $this->entityManager->flush($entity);
 
-        return $this->entityManager->merge($entity);
+        return $entity;
     }
 
     public function flush(EntityInterface $entity): void
     {
         $this->entityManager->flush($entity);
+    }
+
+    /**
+     * @param EntityInterface $entity
+     */
+    public function remove(EntityInterface $entity): void
+    {
+        $this->entityManager->remove($entity);
     }
 
     /**

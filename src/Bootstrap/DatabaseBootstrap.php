@@ -17,7 +17,12 @@ use KiwiSuite\Application\ConfiguratorItem\ConfiguratorRegistry;
 use KiwiSuite\Application\ConfiguratorItem\ServiceManagerConfiguratorItem;
 use KiwiSuite\Application\Service\ServiceRegistry;
 use KiwiSuite\ApplicationConsole\ConfiguratorItem\ConsoleConfiguratorItem;
+use KiwiSuite\Database\Command\GenerateClassesCommand;
 use KiwiSuite\Database\Command\GenerateCommand;
+use KiwiSuite\Database\Command\GenerateEntitiesCommand;
+use KiwiSuite\Database\Command\GenerateMetadataCommand;
+use KiwiSuite\Database\Command\GenerateRepositoriesCommand;
+use KiwiSuite\Database\Command\GenerateResourcesCommand;
 use KiwiSuite\Database\Command\MigrateCommand;
 use KiwiSuite\Database\Command\StatusCommand;
 use KiwiSuite\Database\Command\VersionCommand;
@@ -64,6 +69,11 @@ class DatabaseBootstrap implements BootstrapInterface
             $consoleConfigurator->addFactory(MigrateCommand::class);
             $consoleConfigurator->addFactory(StatusCommand::class);
             $consoleConfigurator->addFactory(VersionCommand::class);
+            $consoleConfigurator->addFactory(GenerateEntitiesCommand::class);
+            $consoleConfigurator->addFactory(GenerateRepositoriesCommand::class);
+            $consoleConfigurator->addFactory(GenerateResourcesCommand::class);
+            $consoleConfigurator->addFactory(GenerateMetadataCommand::class);
+            $consoleConfigurator->addFactory(GenerateClassesCommand::class);
         }
     }
 

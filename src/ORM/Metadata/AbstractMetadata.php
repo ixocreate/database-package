@@ -1,5 +1,14 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
 
+declare(strict_types=1);
 namespace KiwiSuite\Database\ORM\Metadata;
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
@@ -47,7 +56,8 @@ abstract class AbstractMetadata
      * @param string $field
      * @return FieldBuilder
      */
-    protected function getField($field) {
+    protected function getField($field)
+    {
         if (\array_key_exists($field, $this->fields)) {
             throw new InvalidArgumentException("Unable to retrieve FieldBuilder instance by field name '$field'");
         }
@@ -59,11 +69,9 @@ abstract class AbstractMetadata
      * @param FieldBuilder $builder
      * @return FieldBuilder
      */
-    protected function setFieldBuilder($field, FieldBuilder $builder) {
+    protected function setFieldBuilder($field, FieldBuilder $builder)
+    {
         $this->fields[$field] = $builder;
         return $builder;
     }
-
-
-
 }

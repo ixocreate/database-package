@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
 use KiwiSuite\Database\Generator\EntityGenerator;
-use KiwiSuite\Database\Generator\GeneratorInterface;
 
 /**
  * Class GenerateRepositoriesCommand
@@ -20,8 +19,7 @@ use KiwiSuite\Database\Generator\GeneratorInterface;
  */
 class GenerateEntitiesCommand extends AbstractGenerateCommand
 {
-
-    static protected function getType(): string
+    protected static function getType(): string
     {
         return 'entity';
     }

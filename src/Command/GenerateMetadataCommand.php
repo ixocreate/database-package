@@ -11,7 +11,6 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
-use KiwiSuite\Database\Generator\GeneratorInterface;
 use KiwiSuite\Database\Generator\MetadataGenerator;
 
 /**
@@ -20,7 +19,7 @@ use KiwiSuite\Database\Generator\MetadataGenerator;
  */
 class GenerateMetadataCommand extends AbstractGenerateCommand
 {
-    static protected function getType(): string
+    protected static function getType(): string
     {
         return 'metadata';
     }
@@ -29,5 +28,4 @@ class GenerateMetadataCommand extends AbstractGenerateCommand
     {
         return [new MetadataGenerator()];
     }
-
 }

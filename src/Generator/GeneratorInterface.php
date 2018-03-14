@@ -1,5 +1,14 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
 
+declare(strict_types=1);
 namespace KiwiSuite\Database\Generator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
@@ -16,7 +25,7 @@ interface GeneratorInterface
      * @param bool $overwrite
      * @return string|null the generated absolute file path or null when not written
      */
-    function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite = false) : ?string;
+    public function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite = false) : ?string;
 
     /**
      * @param string $fileHeader
@@ -40,5 +49,4 @@ interface GeneratorInterface
      * @return string
      */
     public function getNamespacePostfix() : string;
-
 }

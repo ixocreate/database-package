@@ -1,20 +1,24 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
 
+declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use KiwiSuite\ApplicationConsole\Command\CommandInterface;
 use KiwiSuite\Database\Generator\GeneratorInterface;
-use KiwiSuite\Database\Type\TypeConfig;
-use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use Doctrine\ORM\Tools\DisconnectedClassMetadataFactory;
-use KiwiSuite\Database\Generator\EntityGenerator;
-use KiwiSuite\Database\Generator\RepositoryGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -27,7 +31,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {
-
     protected static $fileHeader = <<<FH
 /**
  * kiwi-suite/admin (https://github.com/kiwi-suite/admin)
@@ -50,7 +53,7 @@ FH;
         $this->entityManager = $master;
     }
 
-    abstract static protected function getType() : string;
+    abstract protected static function getType() : string;
 
     /**
      * @return GeneratorInterface[]
@@ -62,26 +65,25 @@ FH;
         return 'db:generate-' . static::getType();
     }
 
-    protected function getDefaultDestinationPath() : ?string {
-
-        if (basename(dirname(__DIR__, 3 )) === 'kiwi-suite' && basename(dirname(__DIR__, 4 )) === 'vendor') {
-             $srcDir = dirname(__DIR__, 5 ) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
-             if (is_dir($srcDir)) {
+    protected function getDefaultDestinationPath() : ?string
+    {
+        if (\basename(\dirname(__DIR__, 3)) === 'kiwi-suite' && \basename(\dirname(__DIR__, 4)) === 'vendor') {
+            $srcDir = \dirname(__DIR__, 5) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
+            if (\is_dir($srcDir)) {
                 return $srcDir;
-             }
+            }
         }
         return null;
     }
 
     protected function configure()
     {
-
         $destPath = $this->getDefaultDestinationPath();
 
-         $this->setDescription('Generate '.static::getType().' classes and method stubs from your mapping information')
+        $this->setDescription('Generate ' . static::getType() . ' classes and method stubs from your mapping information')
          ->addArgument('dest-path', $destPath ? InputArgument::OPTIONAL : InputArgument::REQUIRED, 'The path to generate your ' . static::getType() . ' classes.', $destPath)
-         ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'Defines a namespace for the generated '.static::getType().' classes', 'App\\')
-         ->addOption('filter', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'A string pattern used to match '.static::getType().' classes that should be processed.', ['\\\App']);
+         ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'Defines a namespace for the generated ' . static::getType() . ' classes', 'App\\')
+         ->addOption('filter', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'A string pattern used to match ' . static::getType() . ' classes that should be processed.', ['\\\App']);
     }
 
     /**
@@ -95,7 +97,8 @@ FH;
     /**
      * @return string
      */
-    public static function getFileHeader() {
+    public static function getFileHeader()
+    {
         return static::$fileHeader;
     }
 
@@ -118,22 +121,21 @@ FH;
         $namespace = $input->getOption('namespace');
 
         // Process destination directory
-        $destPath = realpath($input->getArgument('dest-path'));
+        $destPath = \realpath($input->getArgument('dest-path'));
 
-        if ( ! file_exists($destPath)) {
+        if (! \file_exists($destPath)) {
             throw new \InvalidArgumentException(
-                sprintf(static::getType() . " destination directory '<info>%s</info>' does not exist.", $input->getArgument('dest-path'))
+                \sprintf(static::getType() . " destination directory '<info>%s</info>' does not exist.", $input->getArgument('dest-path'))
             );
         }
 
-        if ( ! is_writable($destPath)) {
+        if (! \is_writable($destPath)) {
             throw new \InvalidArgumentException(
-                sprintf(static::getType() . " destination directory '<info>%s</info>' does not have write permissions.", $destPath)
+                \sprintf(static::getType() . " destination directory '<info>%s</info>' does not have write permissions.", $destPath)
             );
         }
 
-        foreach($this->getGenerators() as $generator) {
-
+        foreach ($this->getGenerators() as $generator) {
             $databaseDriver->setNamespace($namespace . $generator->getNamespacePostfix());
 
             $cmf = new DisconnectedClassMetadataFactory();
@@ -151,14 +153,11 @@ FH;
                 /** @var $metadata ClassMetadataInfo */
                 $generatedFile = $generator->generate($metadata, $destPath, true);
                 if ($generatedFile) {
-                    $ui->text(sprintf('Generated %s "<info>%s</info>"', static::getType(), $generatedFile));
+                    $ui->text(\sprintf('Generated %s "<info>%s</info>"', static::getType(), $generatedFile));
                 } else {
-                    $ui->text(sprintf('Couln\'d generate %s "<info>%s</info>"', static::getType(), $generatedFile));
+                    $ui->text(\sprintf('Couln\'d generate %s "<info>%s</info>"', static::getType(), $generatedFile));
                 }
-
             }
         }
-
     }
-
 }

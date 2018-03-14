@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
 use KiwiSuite\Database\Generator\EntityGenerator;
-use KiwiSuite\Database\Generator\GeneratorInterface;
 use KiwiSuite\Database\Generator\MetadataGenerator;
 use KiwiSuite\Database\Generator\RepositoryGenerator;
 use KiwiSuite\Database\Generator\ResourceGenerator;
@@ -23,8 +22,7 @@ use KiwiSuite\Database\Generator\ResourceGenerator;
  */
 class GenerateClassesCommand extends AbstractGenerateCommand
 {
-
-    static protected function getType(): string
+    protected static function getType(): string
     {
         return 'from-db';
     }
@@ -35,7 +33,7 @@ class GenerateClassesCommand extends AbstractGenerateCommand
             new EntityGenerator(),
             new MetadataGenerator(),
             new RepositoryGenerator(),
-            new ResourceGenerator()
+            new ResourceGenerator(),
         ];
     }
 }

@@ -11,11 +11,11 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Repository\Factory;
 
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
 use KiwiSuite\Database\Repository\RepositoryInterface;
 use KiwiSuite\Database\Repository\RepositoryServiceManagerConfig;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
 
 final class RepositorySubManagerFactory implements SubManagerFactoryInterface
 {

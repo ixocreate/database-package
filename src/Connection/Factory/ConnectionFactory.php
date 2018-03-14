@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Connection\Factory;
 
 use Doctrine\DBAL\DriverManager;
+use KiwiSuite\Contract\ServiceManager\FactoryInterface;
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\Database\Connection\ConnectionConfig;
-use KiwiSuite\ServiceManager\FactoryInterface;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
 
 final class ConnectionFactory implements FactoryInterface
 {

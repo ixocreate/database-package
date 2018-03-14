@@ -15,6 +15,7 @@
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.6",
         "doctrine/orm": "^2.6",
+        "kiwi-suite/contract": "dev-develop",
         "kiwi-suite/entity": "dev-develop"
     },
     "require-dev": {

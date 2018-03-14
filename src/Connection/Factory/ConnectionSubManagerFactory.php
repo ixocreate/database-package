@@ -12,11 +12,11 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
 use KiwiSuite\Database\Connection\ConnectionConfig;
 use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
 
 final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
 {

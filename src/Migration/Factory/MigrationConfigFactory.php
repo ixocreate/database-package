@@ -13,9 +13,9 @@ namespace KiwiSuite\Database\Migration\Factory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use KiwiSuite\Contract\ServiceManager\FactoryInterface;
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
-use KiwiSuite\ServiceManager\FactoryInterface;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
 
 class MigrationConfigFactory implements FactoryInterface
 {

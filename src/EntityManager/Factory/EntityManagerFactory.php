@@ -19,13 +19,13 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
 use Doctrine\ORM\Repository\RepositoryFactory;
 use KiwiSuite\Application\ApplicationConfig;
+use KiwiSuite\Contract\ServiceManager\FactoryInterface;
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
 use KiwiSuite\Database\ORM\Mapping\EntityMapper;
 use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 use KiwiSuite\Database\Repository\Factory\DoctrineRepositoryFactory;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\ServiceManager\FactoryInterface;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
 
 final class EntityManagerFactory implements FactoryInterface
 {

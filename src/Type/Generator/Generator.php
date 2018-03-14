@@ -1,4 +1,14 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
 namespace KiwiSuite\Database\Type\Generator;
 
 final class Generator
@@ -54,7 +64,7 @@ EOD;
      */
     public function generate(string $type, string $databaseType) : string
     {
-        return sprintf(
+        return \sprintf(
             $this->template,
             $databaseType,
             $this->generateName($type),

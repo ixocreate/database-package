@@ -32,18 +32,15 @@ class CopyCommand extends Command
 
         if (\file_exists($path)) {
             if (!\is_dir($path)) {
-                throw new RuntimeException(sprintf("Migration directory '%s' is not a directory"));
+                throw new RuntimeException(\sprintf("Migration directory '%s' is not a directory"));
             }
             if (\is_writable($path)) {
-                throw new RuntimeException(sprintf("Migration directory '%s' is not a writable"));
+                throw new RuntimeException(\sprintf("Migration directory '%s' is not a writable"));
             }
         } else {
             if (!\mkdir($path, 0777, true)) {
-                throw new RuntimeException(sprintf("Unable to generate migration directory '%s'"));
+                throw new RuntimeException(\sprintf("Unable to generate migration directory '%s'"));
             }
         }
-
-
-
     }
 }

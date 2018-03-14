@@ -1,4 +1,14 @@
 <?php
+/**
+ * kiwi-suite/database (https://github.com/kiwi-suite/database)
+ *
+ * @package kiwi-suite/database
+ * @see https://github.com/kiwi-suite/database
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
 namespace KiwiSuite\Database\Type;
 
 final class TypeConfig implements \Serializable
@@ -30,7 +40,7 @@ final class TypeConfig implements \Serializable
      */
     public function serialize()
     {
-        return serialize($this->types);
+        return \serialize($this->types);
     }
 
     /**
@@ -38,6 +48,6 @@ final class TypeConfig implements \Serializable
      */
     public function unserialize($serialized)
     {
-        $this->types = unserialize($serialized);
+        $this->types = \unserialize($serialized);
     }
 }

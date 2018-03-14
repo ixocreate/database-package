@@ -109,7 +109,7 @@ class DatabaseBootstrap implements BootstrapInterface
     {
         return [
             RepositoryManagerConfiguratorItem::class,
-            TypeConfiguratorItem::class
+            TypeConfiguratorItem::class,
         ];
     }
 }

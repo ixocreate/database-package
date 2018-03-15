@@ -11,7 +11,10 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Type;
 
-final class TypeConfigurator
+use KiwiSuite\Contract\Application\ConfiguratorInterface;
+use KiwiSuite\Contract\Application\ServiceRegistryInterface;
+
+final class TypeConfigurator implements ConfiguratorInterface
 {
     /**
      * @var array
@@ -39,5 +42,10 @@ final class TypeConfigurator
     public function getTypes(): array
     {
         return $this->types;
+    }
+
+    public function registerService(ServiceRegistryInterface $serviceRegistry): void
+    {
+        $serviceRegistry->add(TypeConfig::class, new TypeConfig($this));
     }
 }

@@ -11,9 +11,9 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Repository;
 
-use Doctrine\Instantiator\Instantiator;
+use KiwiSuite\Contract\Application\SerializableServiceInterface;
 
-class EntityRepositoryMapping implements \Serializable
+class EntityRepositoryMapping implements SerializableServiceInterface
 {
     private $mapping = [];
 
@@ -24,21 +24,6 @@ class EntityRepositoryMapping implements \Serializable
     public function __construct(array $mapping)
     {
         $this->mapping = $mapping;
-    }
-
-    public static function create(RepositoryServiceManagerConfig $repositoryServiceManagerConfig) : EntityRepositoryMapping
-    {
-        $mapping = [];
-        $instantiator = new Instantiator();
-
-        $repositories = \array_keys($repositoryServiceManagerConfig->getFactories());
-        foreach ($repositories as $repository) {
-            /** @var RepositoryInterface $repositoryClass */
-            $repositoryClass = $instantiator->instantiate($repository);
-            $mapping[$repositoryClass->getEntityName()] = $repository;
-        }
-
-        return new EntityRepositoryMapping($mapping);
     }
 
     public function getEntities() : array

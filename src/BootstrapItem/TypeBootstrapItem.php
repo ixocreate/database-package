@@ -9,19 +9,18 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\ConfiguratorItem;
+namespace KiwiSuite\Database\BootstrapItem;
 
-use KiwiSuite\Application\ConfiguratorItem\ConfiguratorItemInterface;
-use KiwiSuite\Database\Type\TypeConfig;
+use KiwiSuite\Contract\Application\BootstrapItemInterface;
+use KiwiSuite\Contract\Application\ConfiguratorInterface;
 use KiwiSuite\Database\Type\TypeConfigurator;
 
-final class TypeConfiguratorItem implements ConfiguratorItemInterface
+final class TypeBootstrapItem implements BootstrapItemInterface
 {
-
     /**
-     * @return mixed
+     * @return ConfiguratorInterface
      */
-    public function getConfigurator()
+    public function getConfigurator(): ConfiguratorInterface
     {
         return new TypeConfigurator();
     }
@@ -31,7 +30,7 @@ final class TypeConfiguratorItem implements ConfiguratorItemInterface
      */
     public function getVariableName(): string
     {
-        return 'databaseTypeConfigurator';
+        return 'type';
     }
 
     /**
@@ -40,14 +39,5 @@ final class TypeConfiguratorItem implements ConfiguratorItemInterface
     public function getFileName(): string
     {
         return 'type_database.php';
-    }
-
-    /**
-     * @param $configurator
-     * @return \Serializable
-     */
-    public function getService($configurator): \Serializable
-    {
-        return new TypeConfig($configurator);
     }
 }

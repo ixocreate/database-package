@@ -16,7 +16,7 @@ use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
 use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
 use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
-use KiwiSuite\ServiceManager\ServiceManagerConfig;
+use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
 
 final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
 {
@@ -35,16 +35,15 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
             $container->get(ConnectionSubManager::class)->getServiceManagerConfig()->getFactories()
         );
 
-        $config = [
-            'factories' => \array_combine(
-                $connections,
-                \array_fill(0, \count($connections), EntityManagerFactory::class)
-            ),
-        ];
+        $serviceManagerConfigurator = new ServiceManagerConfigurator();
+
+        foreach ($connections as $connectionName) {
+            $serviceManagerConfigurator->addFactory($connectionName, EntityManagerFactory::class);
+        }
 
         return new EntityManagerSubManager(
             $container,
-            new ServiceManagerConfig($config['factories']),
+            $serviceManagerConfigurator->getServiceManagerConfig(),
             EntityManagerInterface::class
         );
     }

@@ -11,7 +11,9 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Type;
 
-final class TypeConfig implements \Serializable
+use KiwiSuite\Contract\Application\SerializableServiceInterface;
+
+final class TypeConfig implements SerializableServiceInterface
 {
     /**
      * @var array

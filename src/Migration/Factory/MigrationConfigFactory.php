@@ -25,7 +25,7 @@ class MigrationConfigFactory implements FactoryInterface
         $connection = $container->get(ConnectionSubManager::class)->get('master');
 
         $migrationConfig = new Configuration($connection);
-        $migrationConfig->setMigrationsDirectory('migrations');
+        $migrationConfig->setMigrationsDirectory('resources/migrations');
         $migrationConfig->setMigrationsNamespace('KiwiMigration');
         $migrationConfig->setMigrationsTableName('database_migrations');
 

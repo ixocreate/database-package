@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KiwiSuite\ApplicationConsole\Command\CommandInterface;
+use KiwiSuite\Contract\Command\CommandInterface;
 use KiwiSuite\Database\Generator\GeneratorInterface;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;

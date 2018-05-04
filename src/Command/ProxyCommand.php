@@ -11,7 +11,7 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
-use KiwiSuite\ApplicationConsole\Command\CommandInterface;
+use KiwiSuite\Contract\Command\CommandInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

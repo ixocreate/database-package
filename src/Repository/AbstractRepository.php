@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use KiwiSuite\Entity\Entity\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
@@ -166,7 +167,7 @@ abstract class AbstractRepository implements RepositoryInterface
      * @param array $criteria
      * @return int
      */
-    public function count(array $criteria)
+    public function count(array $criteria): int
     {
         return $this->getRepository()->count($criteria);
     }
@@ -211,8 +212,16 @@ abstract class AbstractRepository implements RepositoryInterface
      * @param null $indexBy
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function createQueryBuilder($alias, $indexBy = null)
+    public function createSelectQueryBuilder($alias, $indexBy = null): QueryBuilder
     {
         return $this->getRepository()->createQueryBuilder($alias, $indexBy);
+    }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function createQueryBuilder(): QueryBuilder
+    {
+        return $this->entityManager->createQueryBuilder();
     }
 }

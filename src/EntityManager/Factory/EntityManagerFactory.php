@@ -80,6 +80,9 @@ final class EntityManagerFactory implements FactoryInterface
      */
     private function getRepositoryFactory(ServiceManagerInterface $container) : RepositoryFactory
     {
-        return new DoctrineRepositoryFactory($container->get(RepositorySubManager::class));
+        return new DoctrineRepositoryFactory(
+            $container->get(RepositorySubManager::class),
+            $container->get(EntityRepositoryMapping::class)
+        );
     }
 }

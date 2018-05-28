@@ -13,6 +13,7 @@ namespace KiwiSuite\Database\Repository\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Repository\RepositoryFactory;
+use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 
 final class DoctrineRepositoryFactory implements RepositoryFactory
 {
@@ -22,12 +23,19 @@ final class DoctrineRepositoryFactory implements RepositoryFactory
     private $repositorySubManager;
 
     /**
+     * @var EntityRepositoryMapping
+     */
+    private $entityRepositoryMapping;
+
+    /**
      * DoctrineRepositoryFactory constructor.
      * @param RepositorySubManager $repositorySubManager
+     * @param EntityRepositoryMapping $entityRepositoryMapping
      */
-    public function __construct(RepositorySubManager $repositorySubManager)
+    public function __construct(RepositorySubManager $repositorySubManager, EntityRepositoryMapping $entityRepositoryMapping)
     {
         $this->repositorySubManager = $repositorySubManager;
+        $this->entityRepositoryMapping = $entityRepositoryMapping;
     }
 
 
@@ -41,6 +49,6 @@ final class DoctrineRepositoryFactory implements RepositoryFactory
      */
     public function getRepository(EntityManagerInterface $entityManager, $entityName)
     {
-        // TODO: Implement getRepository() method.
+        return $this->repositorySubManager->get($this->entityRepositoryMapping->getRepositoryByEntity($entityName));
     }
 }

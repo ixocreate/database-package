@@ -91,7 +91,7 @@ abstract class TreeRepository extends AbstractRepository
      */
     public function moveAsPreviousSibling(NodeInterface $node, NodeInterface $sibling)
     {
-        $this->updateNode($node, $sibling->left());
+        $this->updateNode($node, $sibling->left(), $sibling->parentId());
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class TreeRepository extends AbstractRepository
      */
     public function moveAsNextSibling(NodeInterface $node, NodeInterface $sibling)
     {
-        $this->updateNode($node, $sibling->right() + 1);
+        $this->updateNode($node, $sibling->right() + 1, $sibling->parentId());
     }
 
     /**
@@ -109,7 +109,7 @@ abstract class TreeRepository extends AbstractRepository
      */
     public function moveAsFirstChild(NodeInterface $node, NodeInterface $parent)
     {
-        $this->updateNode($node, $parent->left() + 1);
+        $this->updateNode($node, $parent->left() + 1, $parent->id());
     }
 
     /**
@@ -118,7 +118,7 @@ abstract class TreeRepository extends AbstractRepository
      */
     public function moveAsLastChild(NodeInterface $node, NodeInterface $parent)
     {
-        $this->updateNode($node, $parent->right());
+        $this->updateNode($node, $parent->right(), $parent->id());
     }
 
     /**
@@ -167,9 +167,13 @@ abstract class TreeRepository extends AbstractRepository
     /**
      * @param NodeInterface $node
      * @param int $destinationLeft
+     * @return NodeInterface|EntityInterface
      */
-    private function updateNode(NodeInterface $node, int $destinationLeft)
+    private function updateNode(NodeInterface $node, int $destinationLeft, $parent): NodeInterface
     {
+        $node = $node->with($node->parentIdParameterName(), $parent);
+        $node = $this->save($node);
+
         $left = $node->left();
         $right = $node->right();
         $size = $right - $left + 1;
@@ -183,6 +187,8 @@ abstract class TreeRepository extends AbstractRepository
 
         $this->shiftNestedRange($node, $left, $right, $destinationLeft - $left);
         $this->shiftNestedRange($node, $right + 1, 0, $size * -1);
+
+        return $node;
     }
 
     /**

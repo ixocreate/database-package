@@ -15,6 +15,8 @@ interface NodeInterface extends EntityInterface
 
     public function parentId();
 
+    public function idName(): string;
+
     public function leftParameterName(): string;
 
     public function rightParameterName(): string;

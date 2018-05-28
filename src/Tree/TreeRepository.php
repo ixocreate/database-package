@@ -32,53 +32,57 @@ abstract class TreeRepository extends AbstractRepository
     /**
      * @param NodeInterface $node
      * @param NodeInterface $sibling
+     * @return NodeInterface
      */
-    public function insertAsPreviousSibling(NodeInterface $node, NodeInterface $sibling)
+    public function insertAsPreviousSibling(NodeInterface $node, NodeInterface $sibling): NodeInterface
     {
         $left = $sibling->left();
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $this->insertNode($node, $left, $right, $sibling->parentId());
+        return $this->insertNode($node, $left, $right, $sibling->parentId());
     }
 
     /**
      * @param NodeInterface $node
      * @param NodeInterface $sibling
+     * @return NodeInterface
      */
-    public function insertAsNextSibling(NodeInterface $node, NodeInterface $sibling)
+    public function insertAsNextSibling(NodeInterface $node, NodeInterface $sibling): NodeInterface
     {
         $left = $sibling->right() + 1;
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $this->insertNode($node, $left, $right, $sibling->parentId());
+        return $this->insertNode($node, $left, $right, $sibling->parentId());
     }
 
     /**
      * @param NodeInterface $node
      * @param NodeInterface $parent
+     * @return NodeInterface
      */
-    public function insertAsLastChild(NodeInterface $node, NodeInterface $parent)
+    public function insertAsLastChild(NodeInterface $node, NodeInterface $parent): NodeInterface
     {
         $left = $parent->right();
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $this->insertNode($node, $left, $right, $parent->id());
+        return $this->insertNode($node, $left, $right, $parent->id());
     }
 
     /**
      * @param NodeInterface $node
      * @param NodeInterface $parent
+     * @return NodeInterface
      */
-    public function insertAsFirstChild(NodeInterface $node, NodeInterface $parent)
+    public function insertAsFirstChild(NodeInterface $node, NodeInterface $parent): NodeInterface
     {
         $left = $parent->left() + 1;
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $this->insertNode($node, $left, $right, $parent->id());
+        return $this->insertNode($node, $left, $right, $parent->id());
     }
 
     /**

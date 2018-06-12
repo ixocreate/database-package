@@ -17,7 +17,6 @@ use KiwiSuite\Contract\Application\PackageInterface;
 use KiwiSuite\Contract\Application\ServiceRegistryInterface;
 use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
 use KiwiSuite\Database\BootstrapItem\RepositoryBootstrapItem;
-use KiwiSuite\Database\BootstrapItem\TypeBootstrapItem;
 use KiwiSuite\Database\Type\Strategy\RuntimeStrategy;
 use KiwiSuite\Database\Type\TypeConfig;
 
@@ -44,7 +43,6 @@ final class Package implements PackageInterface
     public function getBootstrapItems(): ?array
     {
         return [
-            TypeBootstrapItem::class,
             RepositoryBootstrapItem::class,
         ];
     }

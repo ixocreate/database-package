@@ -19,7 +19,8 @@ namespace KiwiSuite\GeneratedDatabaseType;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\Entity\Type\TypeInterface;
+use KiwiSuite\Contract\Type\TypeInterface;
+use KiwiSuite\Contract\Type\DatabaseTypeInterface;
 use %s as BaseType;
 
 final class %s extends BaseType
@@ -47,11 +48,13 @@ final class %s extends BaseType
     
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if ($value instanceof TypeInterface) {
-            $value = $value->getValue();
+        if ($value instanceof DatabaseTypeInterface) {
+            $value = $value->convertToDatabaseValue();
+        } elseif ($value instanceof TypeInterface) {
+            $value = (string) $value;
         }
         
-        return  parent::convertToDatabaseValue($value, $platform);
+        return parent::convertToDatabaseValue($value, $platform);
     }
 }
 

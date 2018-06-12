@@ -22,10 +22,6 @@ final class RuntimeStrategy
         $generator = new Generator();
 
         foreach ($typeConfig->getTypes() as $type => $config) {
-            if ($config['extend'] === false) {
-                continue;
-            }
-
             $className = $generator->generateFullQualifiedName($type);
             if (\class_exists($className)) {
                 continue;

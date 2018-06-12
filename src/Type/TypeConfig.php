@@ -11,9 +11,7 @@
 declare(strict_types=1);
 namespace KiwiSuite\Database\Type;
 
-use KiwiSuite\Contract\Application\SerializableServiceInterface;
-
-final class TypeConfig implements SerializableServiceInterface
+final class TypeConfig
 {
     /**
      * @var array
@@ -22,11 +20,11 @@ final class TypeConfig implements SerializableServiceInterface
 
     /**
      * TypeConfig constructor.
-     * @param TypeConfigurator $typeConfigurator
+     * @param array $types
      */
-    public function __construct(TypeConfigurator $typeConfigurator)
+    public function __construct(array $types)
     {
-        $this->types = $typeConfigurator->getTypes();
+        $this->types = $types;
     }
 
     /**
@@ -35,21 +33,5 @@ final class TypeConfig implements SerializableServiceInterface
     public function getTypes() : array
     {
         return $this->types;
-    }
-
-    /**
-     * @return string
-     */
-    public function serialize()
-    {
-        return \serialize($this->types);
-    }
-
-    /**
-     * @param string $serialized
-     */
-    public function unserialize($serialized)
-    {
-        $this->types = \unserialize($serialized);
     }
 }

@@ -26,6 +26,6 @@ class StatusCommand extends ProxyCommand
 
     public static function getCommandName()
     {
-        return 'db:status';
+        return 'migration:status';
     }
 }

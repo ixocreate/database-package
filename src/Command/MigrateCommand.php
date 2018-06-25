@@ -26,6 +26,6 @@ class MigrateCommand extends ProxyCommand
 
     public static function getCommandName()
     {
-        return 'db:migrate';
+        return 'migration:migrate';
     }
 }

@@ -26,6 +26,6 @@ class GenerateCommand extends ProxyCommand
 
     public static function getCommandName()
     {
-        return 'db:generate';
+        return 'migration:generate';
     }
 }

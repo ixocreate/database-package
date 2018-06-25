@@ -26,6 +26,6 @@ class VersionCommand extends ProxyCommand
 
     public static function getCommandName()
     {
-        return 'db:version';
+        return 'migration:version';
     }
 }

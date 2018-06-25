@@ -356,11 +356,6 @@ abstract class AbstractGenerator implements GeneratorInterface
         $fields = [];
         foreach ($metadata->fieldMappings as $mapping) {
             $fields[$mapping['columnName']] = $mapping;
-            if (\mb_strpos($mapping['type'], '\\') !== false) {
-                $fields[$mapping['columnName']]['type'] = $mapping['type'];
-            } else {
-                $fields[$mapping['columnName']]['type'] = \get_class(Type::getType($mapping['type']));
-            }
         }
         return $fields;
     }

@@ -89,13 +89,7 @@ final class <className> extends AbstractMetadata
      */
     private function generateUses(array $fields)
     {
-        $lines = [];
-
-        foreach ($fields as $column => $details) {
-            $lines[$details['type']] = 'use ' . $details['type'] . ';';
-        }
-
-        return \implode("\n", $lines);
+        return '';
     }
 
     /**
@@ -141,9 +135,7 @@ final class <className> extends AbstractMetadata
             $lines[] = '<indent><indent>$this->setFieldBuilder(\'' . $column . '\',';
 
             $fieldLines = [];
-            $fieldLines[] = '<indent><indent><indent>$builder->createField(\'' .
-                            $column . "', " .
-                            $this->getClassName($details['type']) . '::class)';
+            $fieldLines[] = '<indent><indent><indent>$builder->createField(\'' . $column . '\', \'' . $details['type'] . '\')';
 
             if (!empty($details['id']) && $details['id'] === true) {
                 $fieldLines[] = '<indent><indent><indent><indent>->makePrimaryKey()';

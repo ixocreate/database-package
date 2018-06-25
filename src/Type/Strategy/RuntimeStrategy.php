@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
+use KiwiSuite\Contract\ServiceManager\NamedServiceInterface;
 use KiwiSuite\Database\Type\Generator\Generator;
 use KiwiSuite\Database\Type\TypeConfig;
 
@@ -22,7 +23,13 @@ final class RuntimeStrategy
         $generator = new Generator();
 
         foreach ($typeConfig->getTypes() as $type => $config) {
-            $className = $generator->generateFullQualifiedName($type);
+            if (\is_subclass_of($type, NamedServiceInterface::class, true)) {
+                $typeName = \call_user_func($type .'::serviceName');
+            } else {
+                $typeName = $type;
+            }
+
+            $className = $generator->generateFullQualifiedName($typeName);
             if (\class_exists($className)) {
                 continue;
             }
@@ -32,7 +39,7 @@ final class RuntimeStrategy
             \file_put_contents(
                 $fileName,
                 $generator->generate(
-                    $type,
+                    $typeName,
                     $config['baseType']
                 )
             );
@@ -43,7 +50,20 @@ final class RuntimeStrategy
         }
 
         foreach ($typeConfig->getTypes() as $type => $config) {
-            Type::addType($type, $generator->generateFullQualifiedName($type));
+            if (\is_subclass_of($type, NamedServiceInterface::class, true)) {
+                $typeName = \call_user_func($type .'::serviceName');
+            } else {
+                $typeName = $type;
+            }
+
+            if (Type::hasType($typeName)) {
+                Type::overrideType($typeName, $generator->generateFullQualifiedName($typeName));
+            } else {
+                Type::addType($typeName, $generator->generateFullQualifiedName($typeName));
+            }
+
+            //TODO: DEPRECATED
+            Type::addType($type, $generator->generateFullQualifiedName($typeName));
         }
     }
 }

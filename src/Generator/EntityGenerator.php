@@ -57,7 +57,7 @@ final class <className> implements EntityInterface
      * @var string
      */
     protected static $getGetterTemplate =
-'<indent>public function <methodName>(): <optional><fieldType>
+'<indent>public <static>function <methodName>(): <optional><fieldType>
 <indent>{
 <indent><methodBody>
 <indent>}';
@@ -136,10 +136,11 @@ final class <className> implements EntityInterface
         return \implode("\n", $lines);
     }
 
-    private function generateGetter($name, $type, $optional, $body)
+    private function generateGetter($name, $type, $optional, $body, $static = false)
     {
         $variables = [
             '<methodName>'          => $name,
+            '<static>'              => ($static) ? 'static ' : '',
             '<fieldType>'           => \mb_substr($type, (\mb_strrpos($type, '\\') ?: -1) + 1),
             '<optional>'            => $optional ? '?' : '',
             '<methodBody>'          => $body,
@@ -159,14 +160,14 @@ final class <className> implements EntityInterface
         $lines[] = '<indent>return new DefinitionCollection([';
         foreach ($fields as $column => $details) {
             $lines[] = "<indent><indent><indent>new Definition('" .
-                            $column . "', " .
-                            $this->getClassName($details['type']) .
-                            '::class, true, true),';
+                            $column . "', '" .
+                            $details['type'] .
+                            '\', true, true),';
         }
 
         $lines[] = '<indent><indent>]);';
 
-        return $this->generateGetter('createDefinitions', 'DefinitionCollection', false, \implode("\n", $lines));
+        return $this->generateGetter('createDefinitions', 'DefinitionCollection', false, \implode("\n", $lines), true);
     }
 
     /**

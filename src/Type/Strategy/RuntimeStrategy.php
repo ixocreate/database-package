@@ -63,7 +63,9 @@ final class RuntimeStrategy
             }
 
             //TODO: DEPRECATED
-            Type::addType($type, $generator->generateFullQualifiedName($typeName));
+            if (!Type::hasType($type)) {
+                Type::addType($type, $generator->generateFullQualifiedName($typeName));
+            }
         }
     }
 }

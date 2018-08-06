@@ -12,8 +12,9 @@ declare(strict_types=1);
 namespace KiwiSuite\Database;
 
 use KiwiSuite\Contract\Application\ConfigProviderInterface;
+use KiwiSuite\Contract\Application\ConfigExampleInterface;
 
-final class ConfigProvider implements ConfigProviderInterface
+final class ConfigProvider implements ConfigProviderInterface, ConfigExampleInterface
 {
 
     /**
@@ -32,5 +33,21 @@ final class ConfigProvider implements ConfigProviderInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function configName(): string
+    {
+        return "database";
+    }
+
+    /**
+     * @return string
+     */
+    public function configContent(): string
+    {
+        return file_get_contents(__DIR__ . '/../resources/database.config.example.php');
     }
 }

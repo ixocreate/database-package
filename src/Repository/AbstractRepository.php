@@ -150,6 +150,7 @@ abstract class AbstractRepository implements RepositoryInterface
     public function remove(EntityInterface $entity): void
     {
         $this->entityManager->remove($entity);
+        $this->flush($entity);
     }
 
     /**

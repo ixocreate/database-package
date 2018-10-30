@@ -14,6 +14,7 @@ namespace KiwiSuite\Database\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use KiwiSuite\Contract\Command\CommandInterface;
 use KiwiSuite\Database\Generator\GeneratorInterface;
+use KiwiSuite\Entity\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
@@ -32,25 +33,22 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {
     protected static $fileHeader = <<<FH
-/**
- * kiwi-suite/admin (https://github.com/kiwi-suite/admin)
- *
- * @package kiwi-suite/admin
- * @see https://github.com/kiwi-suite/admin
- * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
- * @license MIT License
- */
 FH;
 
     /**
      * @var EntityManagerInterface
      */
     protected $entityManager;
+    /**
+     * @var TypeSubManager
+     */
+    protected $typeSubManager;
 
-    public function __construct(EntityManagerInterface $master)
+    public function __construct(EntityManagerInterface $master, TypeSubManager $typeSubManager)
     {
         parent::__construct(static::getCommandName());
         $this->entityManager = $master;
+        $this->typeSubManager = $typeSubManager;
     }
 
     abstract protected static function getType() : string;
@@ -82,8 +80,10 @@ FH;
 
         $this->setDescription('Generate ' . static::getType() . ' classes and method stubs from your mapping information')
          ->addArgument('dest-path', $destPath ? InputArgument::OPTIONAL : InputArgument::REQUIRED, 'The path to generate your ' . static::getType() . ' classes.', $destPath)
-         ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'Defines a namespace for the generated ' . static::getType() . ' classes', 'App\\')
-         ->addOption('filter', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'A string pattern used to match ' . static::getType() . ' classes that should be processed.', ['\\\App']);
+         ->addOption('tableprefix', 'p', InputOption::VALUE_OPTIONAL, 'Defines the table prefix', 'App')
+         ->addOption('namespace', 's', InputOption::VALUE_OPTIONAL, 'Defines a namespace for the generated ' . static::getType() . ' classes', 'App\\')
+         ->addOption('table', 't', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'The table name ' . static::getType() . ' classes should be generated.')
+         ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'A string pattern used to match ' . static::getType() . ' classes that should be processed.', ['^App']);
     }
 
     /**
@@ -135,27 +135,44 @@ FH;
             );
         }
 
-        foreach ($this->getGenerators() as $generator) {
-            $databaseDriver->setNamespace($namespace . $generator->getNamespacePostfix());
+        $cmf = new DisconnectedClassMetadataFactory();
+        $cmf->setEntityManager($em);
+        $metadatas = $cmf->getAllMetadata();
 
-            $cmf = new DisconnectedClassMetadataFactory();
-            $cmf->setEntityManager($em);
-            $metadatas = $cmf->getAllMetadata();
-            $metadatas = MetadataFilter::filter($metadatas, $filter = $input->getOption('filter'));
-
-            if (empty($metadatas)) {
-                $ui->success('No Metadata Classes to process.');
-                return;
+        $tableFilter = $input->getOption('table');
+        if (!empty($tableFilter)) {
+            $filteredMetadata = [];
+            $filterNames = [];
+            foreach ($tableFilter as $table) {
+                $filterNames[] = \str_replace('_', '', ucwords($table, '_'));
             }
-
-            $generator->setFileHeader(self::getFileHeader());
             foreach ($metadatas as $metadata) {
-                /** @var $metadata ClassMetadataInfo */
+                if (\in_array($metadata->getName(), $filterNames)) {
+                    $filteredMetadata[] = $metadata;
+                }
+            }
+        } else {
+            $filteredMetadata = MetadataFilter::filter($metadatas, $filter = $input->getOption('filter'));
+        }
+
+        if (empty($metadatas)) {
+            $ui->success('No Metadata Classes to process.');
+            return;
+        }
+
+        foreach ($this->getGenerators() as $generator) {
+            $generator->setFullMetadata($metadatas);
+            $generator->setFileHeader(self::getFileHeader());
+            $generator->setNamespace($namespace);
+            $generator->setTablePrefix($input->getOption('tableprefix'));
+            foreach ($filteredMetadata as $metadata) {
+                /** @var $metadata ClassMetadataInfo Couldn't */
+
                 $generatedFile = $generator->generate($metadata, $destPath, true);
                 if ($generatedFile) {
                     $ui->text(\sprintf('Generated %s "<info>%s</info>"', static::getType(), $generatedFile));
                 } else {
-                    $ui->text(\sprintf('Couln\'d generate %s "<info>%s</info>"', static::getType(), $generatedFile));
+                    $ui->text(\sprintf('Couldn\'t generate %s "<info>%s</info>"', static::getType(), $generatedFile));
                 }
             }
         }

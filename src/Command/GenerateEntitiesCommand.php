@@ -26,6 +26,6 @@ class GenerateEntitiesCommand extends AbstractGenerateCommand
 
     protected function getGenerators(): array
     {
-        return [new EntityGenerator()];
+        return [new EntityGenerator($this->typeSubManager)];
     }
 }

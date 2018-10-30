@@ -28,25 +28,30 @@ interface GeneratorInterface
     public function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite = false) : ?string;
 
     /**
+     * @param ClassMetadataInfo[] $metadata
+     * @return mixed
+     */
+    public function setFullMetadata(array $metadata);
+
+    /**
      * @param string $fileHeader
      * @return $this
      */
     public function setFileHeader($fileHeader);
 
     /**
-     * @param int $indentChar
+     * @param string $namespace
      * @return $this
      */
-    public function setIndentChar($indentChar);
+    public function setNamespace(string $namespace);
 
     /**
-     * @param int $intents
+     * @param string $tablePrefix
      * @return $this
      */
-    public function setIntents($intents);
+    public function setTablePrefix(string $tablePrefix);
 
-    /**
-     * @return string
-     */
     public function getNamespacePostfix() : string;
+
+    public function getFilenamePostfix(): string;
 }

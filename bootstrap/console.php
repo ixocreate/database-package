@@ -18,5 +18,4 @@ $console->addCommand(StatusCommand::class);
 $console->addCommand(VersionCommand::class);
 $console->addCommand(GenerateEntitiesCommand::class);
 $console->addCommand(GenerateRepositoriesCommand::class);
-$console->addCommand(GenerateMetadataCommand::class);
 $console->addCommand(GenerateClassesCommand::class);

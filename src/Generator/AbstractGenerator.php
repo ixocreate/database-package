@@ -20,6 +20,15 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
  */
 abstract class AbstractGenerator implements GeneratorInterface
 {
+    /**
+     * @var string
+     */
+    protected $namespace;
+
+    /**
+     * @var string
+     */
+    protected $tablePrefix;
 
     /**
      * @var string
@@ -27,14 +36,42 @@ abstract class AbstractGenerator implements GeneratorInterface
     protected $fileHeader = "";
 
     /**
-     * @var int
+     * @var ClassMetadataInfo[]
      */
-    protected $indentChar = " ";
+    protected $fullMetadata = [];
+
+    abstract protected function generateCode(string $name, ClassMetadataInfo $metadata);
 
     /**
-     * @var int
+     * @param ClassMetadataInfo $metadata
+     * @param string $destinationPath
+     * @param bool $overwrite
+     * @return string|null
      */
-    protected $intents = 4;
+    public function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite = false) : ?string
+    {
+        $name = $this->getGeneratedClassName($metadata);
+
+        $content = $this->generateCode($name, $metadata);
+
+        $path = $destinationPath . DIRECTORY_SEPARATOR . \str_replace('\\', '/', $this->namespace)
+            . \str_replace('\\', '/', $this->getNamespacePostfix()) . $name . $this->getFilenamePostfix() . '.php';
+
+        if ($this->writeFile($content, $path, $overwrite)) {
+            return $path;
+        }
+
+        return null;
+    }
+
+    protected function getGeneratedClassName(ClassMetadataInfo $metadata): string
+    {
+        $name = $metadata->name;
+        if (\mb_strpos($metadata->name, $this->tablePrefix) === 0) {
+            $name = \mb_substr($metadata->name, \mb_strlen($this->tablePrefix));
+        }
+        return $name;
+    }
 
     /**
      * @param string $content
@@ -42,7 +79,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      * @param bool $overwrite
      * @return bool
      */
-    public function writeFile($content, $path, $overwrite=false)
+    public function writeFile(string $content, string $path, $overwrite = false)
     {
         $dir = \dirname($path);
 
@@ -69,6 +106,9 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     protected function getClassNamespace($fullClassName)
     {
+        if (\mb_strpos($fullClassName, '\\') === false) {
+            return '';
+        }
         $namespace = \mb_substr($fullClassName, 0, \mb_strrpos($fullClassName, '\\'));
         return $namespace;
     }
@@ -100,15 +140,6 @@ abstract class AbstractGenerator implements GeneratorInterface
         return $this->replaceClassNamespaceType($fullClassName, 'Entity');
     }
 
-    /**
-     * @param $fullClassName
-     * @return mixed
-     */
-    protected function getMetadataClassNamespace($fullClassName)
-    {
-        return $this->replaceClassNamespaceType($fullClassName, 'Metadata');
-    }
-
     protected function replaceClassNamespaceType($fullClassName, $type)
     {
         $namespace = $this->getClassNamespace($fullClassName);
@@ -116,21 +147,12 @@ abstract class AbstractGenerator implements GeneratorInterface
     }
 
     /**
-     * @param string $fullClassName
      * @return string
      */
-    protected function generateNamespace($fullClassName)
+    protected function generateNamespace()
     {
-        return 'namespace ' . $this->getClassNamespace($fullClassName) . ';';
+        return 'namespace ' . $this->namespace . trim($this->getNamespacePostfix(), '\\') . ';';
     }
-
-    /**
-     * @param ClassMetadataInfo $metadata
-     * @param $destinationPath
-     * @param bool $overwrite
-     * @return string|null the generated absolute file path
-     */
-    abstract public function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite=false) : ?string;
 
     /**
      * Generates the class name
@@ -141,6 +163,9 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     protected function getClassName($fullClassName)
     {
+        if (\mb_strrpos($fullClassName, '\\') === false) {
+            return $fullClassName;
+        }
         return \mb_substr($fullClassName, \mb_strrpos($fullClassName, '\\') + 1, \mb_strlen($fullClassName));
     }
 
@@ -182,7 +207,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     protected function getEntityFQCN($fullClassName)
     {
-        return $this->getEntityClassNamespace($fullClassName) . "\\" . $this->getEntityClassName($fullClassName);
+        return $this->namespace . "Entity\\" . $this->getEntityClassName($fullClassName);
     }
 
     /**
@@ -225,27 +250,6 @@ abstract class AbstractGenerator implements GeneratorInterface
     protected function getResourceFQCN($fullClassName)
     {
         return $this->getResourceClassNamespace($fullClassName) . "\\" . $this->getResourceClassName($fullClassName);
-    }
-
-    /**
-     * Generates the namespace statement, if class do not have namespace, return empty string instead.
-     *
-     * @param string $fullClassName the full repository class name
-     *
-     * @return string $namespace
-     */
-    protected function getMetadataClassName($fullClassName)
-    {
-        return $this->getClassNameKiwi($fullClassName) . 'Metadata';
-    }
-
-    /**
-     * @param string $fullClassName
-     * @return string
-     */
-    protected function getMetadataFQCN($fullClassName)
-    {
-        return $this->getMetadataClassNamespace($fullClassName) . "\\" . $this->getMetadataClassName($fullClassName);
     }
 
     /**
@@ -301,6 +305,21 @@ abstract class AbstractGenerator implements GeneratorInterface
     }
 
     /**
+     * @param ClassMetadataInfo[] $fullMetadata
+     * @return $this
+     */
+    public function setFullMetadata(array $fullMetadata)
+    {
+        $metadata = [];
+        foreach ($fullMetadata as $tmpMetadata) {
+            $metadata[$tmpMetadata->name] = $tmpMetadata;
+        }
+
+        $this->fullMetadata = $metadata;
+        return $this;
+    }
+
+    /**
      * @param string $fileHeader
      * @return $this
      */
@@ -308,35 +327,6 @@ abstract class AbstractGenerator implements GeneratorInterface
     {
         $this->fileHeader = $fileHeader;
         return $this;
-    }
-
-
-    /**
-     * @param int $indentChar
-     * @return $this
-     */
-    public function setIndentChar($indentChar)
-    {
-        $this->indentChar = $indentChar;
-        return $this;
-    }
-
-    /**
-     * @param int $intents
-     * @return $this
-     */
-    public function setIntents($intents)
-    {
-        $this->intents = $intents;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getIntention()
-    {
-        return \str_repeat($this->indentChar, $this->intents);
     }
 
     /**
@@ -348,15 +338,30 @@ abstract class AbstractGenerator implements GeneratorInterface
     }
 
     /**
-     * @param ClassMetadataInfo $metadata
-     * @return array
+     * @param string $namespace
+     * @return $this
      */
-    protected function generateFields(ClassMetadataInfo $metadata)
+    public function setNamespace(string $namespace)
     {
-        $fields = [];
-        foreach ($metadata->fieldMappings as $mapping) {
-            $fields[$mapping['columnName']] = $mapping;
-        }
-        return $fields;
+        $this->namespace = $namespace;
+        return $this;
+    }
+
+    /**
+     * @param string $tablePrefix
+     * @return $this
+     */
+    public function setTablePrefix(string $tablePrefix)
+    {
+        $this->tablePrefix = $tablePrefix;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilenamePostfix(): string
+    {
+        return '';
     }
 }

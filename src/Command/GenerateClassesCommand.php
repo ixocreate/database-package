@@ -12,9 +12,7 @@ declare(strict_types=1);
 namespace KiwiSuite\Database\Command;
 
 use KiwiSuite\Database\Generator\EntityGenerator;
-use KiwiSuite\Database\Generator\MetadataGenerator;
 use KiwiSuite\Database\Generator\RepositoryGenerator;
-use KiwiSuite\Database\Generator\ResourceGenerator;
 
 /**
  * Class GenerateRepositoriesCommand
@@ -30,10 +28,8 @@ class GenerateClassesCommand extends AbstractGenerateCommand
     protected function getGenerators(): array
     {
         return [
-            new EntityGenerator(),
-            new MetadataGenerator(),
+            new EntityGenerator($this->typeSubManager),
             new RepositoryGenerator(),
-            new ResourceGenerator(),
         ];
     }
 }

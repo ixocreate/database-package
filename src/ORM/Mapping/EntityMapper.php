@@ -15,6 +15,7 @@ use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use KiwiSuite\Contract\Entity\DatabaseEntityInterface;
 use KiwiSuite\Database\Repository\EntityRepositoryMapping;
 use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
 use KiwiSuite\Database\Repository\RepositoryInterface;
@@ -52,13 +53,20 @@ final class EntityMapper implements MappingDriver
      */
     public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
-        $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($className);
-        $instantiator = new Instantiator();
+        if (!\in_array(DatabaseEntityInterface::class, \class_implements($className))) {
+            $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($className);
+            $instantiator = new Instantiator();
 
-        /** @var RepositoryInterface $repository */
-        $repository = $instantiator->instantiate($repositoryName);
+            /** @var RepositoryInterface $repository */
+            $repository = $instantiator->instantiate($repositoryName);
+            $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
+            $repository->loadMetadata($classMetaDataBuilder);
+
+            return;
+        }
+
         $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
-        $repository->loadMetadata($classMetaDataBuilder);
+        $className::loadMetadata($classMetaDataBuilder);
     }
 
     /**
@@ -93,6 +101,9 @@ final class EntityMapper implements MappingDriver
         if (!\in_array(EntityInterface::class, $instances)) {
             return false;
         }
+//        if (!\in_array(DatabaseEntityInterface::class, $instances)) {
+//            return false;
+//        }
 
         return true;
     }

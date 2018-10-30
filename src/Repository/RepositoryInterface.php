@@ -23,8 +23,6 @@ interface RepositoryInterface extends ObjectRepository, Selectable
 
     public function save(EntityInterface $entity) : EntityInterface;
 
-    public function loadMetadata(ClassMetadataBuilder $metadata) : void;
-
     public function persist(EntityInterface $entity): EntityInterface;
 
     public function flush(EntityInterface $entity): void;

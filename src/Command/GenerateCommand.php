@@ -21,6 +21,15 @@ class GenerateCommand extends ProxyCommand
         $this->command->setMigrationConfiguration($migrationConfig);
         $this->command->setName(self::getCommandName());
 
+        $class = new \ReflectionClass($this->command);
+        $property = $class->getProperty('_template');
+        $property->setAccessible(true);
+        $property->setValue( str_replace(
+            "/**\n * Auto-generated Migration: Please modify to your needs!\n */\n",
+            '',
+            $property->getValue())
+        );
+
         parent::__construct(null);
     }
 

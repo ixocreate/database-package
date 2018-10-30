@@ -20,16 +20,15 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 class RepositoryGenerator extends AbstractGenerator
 {
     protected static $template = '<?php
+<fileHeader>
+declare(strict_types=1);
 
-namespace <namespace>;
-
+<namespace>
 
 use KiwiSuite\Database\Repository\AbstractRepository;
-use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use <entityFQCN>;
-use <metadataFQCN>;
 
-final class <repositoryClassName> extends AbstractRepository
+final class <className> extends AbstractRepository
 {
     
     /**
@@ -38,13 +37,7 @@ final class <repositoryClassName> extends AbstractRepository
     public function getEntityName(): string
     {
         return <entityClassName>::class;
-    }
-    
-    public function loadMetadata(ClassMetadataBuilder $builder): void
-    {
-        $metadata = (new <metadataClassName>($builder));
-    }
-    
+    }   
 }
 
 ';
@@ -53,39 +46,17 @@ final class <repositoryClassName> extends AbstractRepository
      * @param ClassMetadataInfo $metadata
      * @return string
      */
-    public function generateCode(ClassMetadataInfo $metadata)
+    public function generateCode(string $name, ClassMetadataInfo $metadata)
     {
         $variables = [
-            '<namespace>'           => $this->getRepositoryClassNamespace($metadata->name),
-            '<repositoryClassName>' => $this->getRepositoryClassName($metadata->name),
-            '<entityClassName>'     => $this->getEntityClassName($metadata->name),
-            '<entityFQCN>'          => $this->getEntityFQCN($metadata->name),
-            '<metadataFQCN>'        => $this->getMetadataFQCN($metadata->name),
-            '<metadataClassName>'   => $this->getMetadataClassName($metadata->name),
+            '<fileHeader>'          => $this->getFileHeader(),
+            '<namespace>'           => $this->generateNamespace(),
+            '<className>'           => $this->getRepositoryClassName($name),
+            '<entityClassName>'     => $this->getEntityClassName($name),
+            '<entityFQCN>'          => $this->getEntityFQCN($name),
         ];
 
         return \str_replace(\array_keys($variables), \array_values($variables), static::$template);
-    }
-
-    /**
-     * @param ClassMetadataInfo $metadata
-     * @param string $destinationPath
-     * @param bool $overwrite
-     * @return string|null
-     */
-    public function generate(ClassMetadataInfo $metadata, $destinationPath, $overwrite = false) : ?string
-    {
-        $content = $this->generateCode($metadata);
-        $content = \str_replace('<indent>', $this->getIntention(), $content);
-
-        $path = $destinationPath . DIRECTORY_SEPARATOR
-              . \str_replace('\\', \DIRECTORY_SEPARATOR, $this->getRepositoryFQCN($metadata->name)) . '.php';
-
-        if ($this->writeFile($content, $path, $overwrite)) {
-            return $path;
-        }
-
-        return null;
     }
 
     /**
@@ -94,5 +65,13 @@ final class <repositoryClassName> extends AbstractRepository
     public function getNamespacePostfix(): string
     {
         return 'Repository\\';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilenamePostfix(): string
+    {
+        return 'Repository';
     }
 }

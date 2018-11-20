@@ -165,12 +165,12 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param array $criteria
+     * @param Criteria|array $criteria
      * @return int
      */
-    public function count(array $criteria): int
+    public function count($criteria = []): int
     {
-        return $this->getRepository()->count($criteria);
+        return $this->entityManager->getUnitOfWork()->getEntityPersister($this->getEntityName())->count($criteria);
     }
 
     /**

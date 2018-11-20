@@ -9,11 +9,11 @@
  */
 
 declare(strict_types=1);
+
 namespace KiwiSuite\Database\Repository;
 
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\QueryBuilder;
 use KiwiSuite\Entity\Entity\EntityInterface;
 
@@ -29,7 +29,7 @@ interface RepositoryInterface extends ObjectRepository, Selectable
 
     public function remove(EntityInterface $entity): void;
 
-    public function count(array $criteria): int;
+    public function count($criteria): int;
 
     public function createSelectQueryBuilder($alias, $indexBy = null): QueryBuilder;
 

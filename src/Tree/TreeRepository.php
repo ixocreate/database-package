@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
+ * @license MIT License
+ */
+
 declare(strict_types=1);
 
 namespace Ixocreate\Database\Tree;
@@ -10,7 +16,9 @@ use Ixocreate\Entity\Entity\EntityInterface;
 abstract class TreeRepository extends AbstractRepository
 {
     private $leftParameterName;
+
     private $rightParameterName;
+
     private $parentIdParameterName;
 
     public function leftParameterName()
@@ -60,7 +68,7 @@ abstract class TreeRepository extends AbstractRepository
         $result = $this->findBy([], [$node->rightParameterName() => 'DESC'], 1);
         if (!empty($result)) {
             /** @var NodeInterface $last */
-            $last = current($result);
+            $last = \current($result);
             $left = $last->right() + 1;
         }
 
@@ -182,7 +190,7 @@ abstract class TreeRepository extends AbstractRepository
         $queryBuilder->delete($this->getEntityName(), 'node')
             ->where("node." . $entity->leftParameterName() . ">= :left")
             ->setParameter("left", $left)
-            ->andWhere("node." . $entity->rightParameterName() ." <= :right")
+            ->andWhere("node." . $entity->rightParameterName() . " <= :right")
             ->setParameter("right", $right);
 
         $queryBuilder->getQuery()->execute();
@@ -214,6 +222,7 @@ abstract class TreeRepository extends AbstractRepository
     /**
      * @param NodeInterface $node
      * @param int $destinationLeft
+     * @param mixed $parent
      * @return NodeInterface|EntityInterface
      */
     private function updateNode(NodeInterface $node, int $destinationLeft, $parent): NodeInterface
@@ -257,11 +266,11 @@ abstract class TreeRepository extends AbstractRepository
             $queryBuilder->update($this->getEntityName(), "node")
                 ->set("node." . $field, "node." . $field . " + :delta")
                 ->setParameter("delta", $delta)
-                ->where("node." . $field ." >= :first")
+                ->where("node." . $field . " >= :first")
                 ->setParameter("first", $first);
 
             if ($last > 0) {
-                $queryBuilder->andWhere("node." . $field ." <= :last")
+                $queryBuilder->andWhere("node." . $field . " <= :last")
                     ->setParameter("last", $last);
             }
 
@@ -343,7 +352,7 @@ abstract class TreeRepository extends AbstractRepository
 
         $sub = $this->createQueryBuilder();
         $sub->select("t.id");
-        $sub->from($this->getEntityName(),"t");
+        $sub->from($this->getEntityName(), "t");
 
         $queryBuilder = $this->createQueryBuilder();
         $queryBuilder
@@ -371,6 +380,6 @@ abstract class TreeRepository extends AbstractRepository
 
     public function validateTree(): bool
     {
-        return array_sum($this->healthStatus()) == 0;
+        return \array_sum($this->healthStatus()) == 0;
     }
 }

@@ -1,4 +1,12 @@
 <?php
+/**
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
+
 namespace Ixocreate\Database\Type\Factory;
 
 use Ixocreate\Contract\ServiceManager\FactoryInterface;
@@ -9,7 +17,6 @@ use Ixocreate\Entity\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {
-
     /**
      * @param ServiceManagerInterface $container
      * @param $requestedName
@@ -28,7 +35,7 @@ final class TypeConfigFactory implements FactoryInterface
             }
 
             $types[$service] = [
-                'baseType' => $service::baseDatabaseType()
+                'baseType' => $service::baseDatabaseType(),
             ];
         }
 

@@ -19,8 +19,8 @@
         "ixocreate/entity": "dev-develop"
     },
     "require-dev": {
+        "ixocreate/coding-standard": "^1.0.1",
         "phpunit/phpunit": "^6.0.6",
-        "friendsofphp/php-cs-fixer": "^2.5",
         "ixocreate/servicemanager": "dev-develop",
         "ixocreate/application": "dev-develop"
     },
@@ -34,5 +34,8 @@
             "IxocreateMisc\\Database\\": "tests/misc/",
             "IxocreateTest\\Database\\": "tests/src/"
         }
+    },
+    "scripts": {
+        "fix-cs": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config vendor/ixocreate/coding-standard/.php_cs"
     }
 }

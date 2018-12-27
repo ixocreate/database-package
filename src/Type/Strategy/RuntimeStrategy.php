@@ -1,14 +1,12 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
@@ -24,7 +22,7 @@ final class RuntimeStrategy
 
         foreach ($typeConfig->getTypes() as $type => $config) {
             if (\is_subclass_of($type, NamedServiceInterface::class, true)) {
-                $typeName = \call_user_func($type .'::serviceName');
+                $typeName = \call_user_func($type . '::serviceName');
             } else {
                 $typeName = $type;
             }
@@ -51,7 +49,7 @@ final class RuntimeStrategy
 
         foreach ($typeConfig->getTypes() as $type => $config) {
             if (\is_subclass_of($type, NamedServiceInterface::class, true)) {
-                $typeName = \call_user_func($type .'::serviceName');
+                $typeName = \call_user_func($type . '::serviceName');
             } else {
                 $typeName = $type;
             }

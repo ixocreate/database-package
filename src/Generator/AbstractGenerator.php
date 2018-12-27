@@ -1,17 +1,14 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Database\Generator;
 
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
@@ -151,7 +148,7 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     protected function generateNamespace()
     {
-        return 'namespace ' . $this->namespace . trim($this->getNamespacePostfix(), '\\') . ';';
+        return 'namespace ' . $this->namespace . \trim($this->getNamespacePostfix(), '\\') . ';';
     }
 
     /**

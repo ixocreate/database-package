@@ -1,20 +1,16 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Database\Generator;
 
 use Doctrine\DBAL\Types\Type as DbalType;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Ixocreate\Contract\Type\TypeInterface;
-use Ixocreate\Entity\Type\Type;
 use Ixocreate\Entity\Type\TypeSubManager;
 
 /**
@@ -80,6 +76,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
     {
         $this->typeSubManager = $typeSubManager;
     }
+
     /**
      * @param $metadata ClassMetadataInfo
      * @return string
@@ -111,12 +108,12 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
         $typesMap = DbalType::getTypesMap();
         $namedServiceMap = $this->typeSubManager->getServiceManagerConfig()->getNamedServices();
 
-        $typeMapping = function(array &$mapping) use ($typesMap, $namedServiceMap) {
+        $typeMapping = function (array &$mapping) use ($typesMap, $namedServiceMap) {
             $typeClass = $typesMap[$mapping['type']];
             $mapping['isBaseType'] = true;
             $mapping['isRelation'] = false;
 
-            if (\strpos($typeClass, '\Ixocreate\GeneratedDatabaseType\\') === 0) {
+            if (\mb_strpos($typeClass, '\Ixocreate\GeneratedDatabaseType\\') === 0) {
                 $typeClass = $namedServiceMap[$mapping['type']];
                 $mapping['className'] = $this->getClassName($typeClass);
                 $mapping['isBaseType'] = false;
@@ -202,7 +199,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
         }
 
         if (!empty($lines)) {
-            sort($lines);
+            \sort($lines);
         }
 
         return \implode("\n", $lines);
@@ -279,7 +276,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
         foreach ($fields as $column => $details) {
             $type = ($details['isBaseType']) ? $details['entityType'] : $details['className'] . '::class';
 
-            $line = "            new Definition('". $column . "', ";
+            $line = "            new Definition('" . $column . "', ";
             $line .= $type . ', ';
             $line .= (($details['nullable']) ? 'true' : 'false') . ', ';
             $line .= 'true';

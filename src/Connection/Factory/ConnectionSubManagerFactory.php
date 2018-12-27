@@ -1,14 +1,12 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Database\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
@@ -20,7 +18,6 @@ use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
 {
-
     /**
      * @param ServiceManagerInterface $container
      * @param $requestedName

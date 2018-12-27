@@ -9,15 +9,15 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\ORM\Metadata;
+namespace Ixocreate\Database\ORM\Metadata;
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\Builder\FieldBuilder;
-use KiwiSuite\Application\Exception\InvalidArgumentException;
+use Ixocreate\Application\Exception\InvalidArgumentException;
 
 /**
  * Class AbstractMetadata
- * @package KiwiSuite\Database\ORM\Metadata
+ * @package Ixocreate\Database\ORM\Metadata
  */
 abstract class AbstractMetadata
 {

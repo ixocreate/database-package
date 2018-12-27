@@ -9,17 +9,17 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\DBAL\Types\Type as DbalType;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use KiwiSuite\Contract\Type\TypeInterface;
-use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\Entity\Type\TypeSubManager;
+use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\Entity\Type\Type;
+use Ixocreate\Entity\Type\TypeSubManager;
 
 /**
  * Class EntityGenerator
- * @package KiwiSuite\Database\Repository
+ * @package Ixocreate\Database\Repository
  */
 final class EntityGenerator extends AbstractGenerator
 {
@@ -30,12 +30,12 @@ declare(strict_types=1);
 <namespace>
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use KiwiSuite\Contract\Entity\DatabaseEntityInterface;
-use KiwiSuite\Contract\Type\TypeInterface;
-use KiwiSuite\Entity\Entity\Definition;
-use KiwiSuite\Entity\Entity\DefinitionCollection;
-use KiwiSuite\Entity\Entity\EntityInterface;
-use KiwiSuite\Entity\Entity\EntityTrait;
+use Ixocreate\Contract\Entity\DatabaseEntityInterface;
+use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\Entity\Entity\Definition;
+use Ixocreate\Entity\Entity\DefinitionCollection;
+use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\Entity\EntityTrait;
 <uses>
 
 final class <className> implements EntityInterface, DatabaseEntityInterface
@@ -116,7 +116,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
             $mapping['isBaseType'] = true;
             $mapping['isRelation'] = false;
 
-            if (\strpos($typeClass, '\KiwiSuite\GeneratedDatabaseType\\') === 0) {
+            if (\strpos($typeClass, '\Ixocreate\GeneratedDatabaseType\\') === 0) {
                 $typeClass = $namedServiceMap[$mapping['type']];
                 $mapping['className'] = $this->getClassName($typeClass);
                 $mapping['isBaseType'] = false;

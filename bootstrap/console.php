@@ -1,16 +1,16 @@
 <?php
-namespace KiwiSuite\Database;
+namespace Ixocreate\Database;
 
 /** @var ConsoleConfigurator $console */
-use KiwiSuite\ApplicationConsole\ConsoleConfigurator;
-use KiwiSuite\Database\Command\GenerateClassesCommand;
-use KiwiSuite\Database\Command\GenerateCommand;
-use KiwiSuite\Database\Command\GenerateEntitiesCommand;
-use KiwiSuite\Database\Command\GenerateMetadataCommand;
-use KiwiSuite\Database\Command\GenerateRepositoriesCommand;
-use KiwiSuite\Database\Command\MigrateCommand;
-use KiwiSuite\Database\Command\StatusCommand;
-use KiwiSuite\Database\Command\VersionCommand;
+use Ixocreate\ApplicationConsole\ConsoleConfigurator;
+use Ixocreate\Database\Command\GenerateClassesCommand;
+use Ixocreate\Database\Command\GenerateCommand;
+use Ixocreate\Database\Command\GenerateEntitiesCommand;
+use Ixocreate\Database\Command\GenerateMetadataCommand;
+use Ixocreate\Database\Command\GenerateRepositoriesCommand;
+use Ixocreate\Database\Command\MigrateCommand;
+use Ixocreate\Database\Command\StatusCommand;
+use Ixocreate\Database\Command\VersionCommand;
 
 $console->addCommand(GenerateCommand::class);
 $console->addCommand(MigrateCommand::class);

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace KiwiSuite\Database\Tree;
+namespace Ixocreate\Database\Tree;
 
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 interface NodeInterface extends EntityInterface
 {

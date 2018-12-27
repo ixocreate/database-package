@@ -9,13 +9,13 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Class AbstractGenerator
- * @package KiwiSuite\Database\Generator
+ * @package Ixocreate\Database\Generator
  */
 interface GeneratorInterface
 {

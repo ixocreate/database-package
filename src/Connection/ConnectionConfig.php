@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection;
+namespace Ixocreate\Database\Connection;
 
-use KiwiSuite\Database\Exception\InvalidArgumentException;
+use Ixocreate\Database\Exception\InvalidArgumentException;
 
 final class ConnectionConfig
 {

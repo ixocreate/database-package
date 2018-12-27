@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository;
+namespace Ixocreate\Database\Repository;
 
 use Doctrine\Instantiator\Instantiator;
-use KiwiSuite\Contract\Application\ConfiguratorInterface;
-use KiwiSuite\Contract\Application\ServiceRegistryInterface;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\ServiceManager\Factory\AutowireFactory;
-use KiwiSuite\ServiceManager\SubManager\SubManagerConfigurator;
+use Ixocreate\Contract\Application\ConfiguratorInterface;
+use Ixocreate\Contract\Application\ServiceRegistryInterface;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\ServiceManager\Factory\AutowireFactory;
+use Ixocreate\ServiceManager\SubManager\SubManagerConfigurator;
 
 final class RepositoryConfigurator implements ConfiguratorInterface
 {

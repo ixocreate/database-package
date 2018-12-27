@@ -10,15 +10,15 @@
 
 declare(strict_types=1);
 
-namespace KiwiSuite\Database;
+namespace Ixocreate\Database;
 
-use KiwiSuite\Contract\Application\ConfiguratorRegistryInterface;
-use KiwiSuite\Contract\Application\PackageInterface;
-use KiwiSuite\Contract\Application\ServiceRegistryInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Database\BootstrapItem\RepositoryBootstrapItem;
-use KiwiSuite\Database\Type\Strategy\RuntimeStrategy;
-use KiwiSuite\Database\Type\TypeConfig;
+use Ixocreate\Contract\Application\ConfiguratorRegistryInterface;
+use Ixocreate\Contract\Application\PackageInterface;
+use Ixocreate\Contract\Application\ServiceRegistryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Database\BootstrapItem\RepositoryBootstrapItem;
+use Ixocreate\Database\Type\Strategy\RuntimeStrategy;
+use Ixocreate\Database\Type\TypeConfig;
 
 final class Package implements PackageInterface
 {

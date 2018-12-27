@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository\Factory;
+namespace Ixocreate\Database\Repository\Factory;
 
-use KiwiSuite\ServiceManager\SubManager\SubManager;
+use Ixocreate\ServiceManager\SubManager\SubManager;
 
 final class RepositorySubManager extends SubManager
 {

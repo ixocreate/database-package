@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection\Factory;
+namespace Ixocreate\Database\Connection\Factory;
 
-use KiwiSuite\ServiceManager\SubManager\SubManager;
+use Ixocreate\ServiceManager\SubManager\SubManager;
 
 final class ConnectionSubManager extends SubManager
 {

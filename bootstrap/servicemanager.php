@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
-namespace KiwiSuite\Database;
+namespace Ixocreate\Database;
 
-use KiwiSuite\Database\Connection\ConnectionConfig;
-use KiwiSuite\Database\Connection\Factory\ConnectionConfigFactory;
-use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
-use KiwiSuite\Database\Connection\Factory\ConnectionSubManagerFactory;
-use KiwiSuite\Database\EntityManager\Factory\EntityManagerSubManager;
-use KiwiSuite\Database\EntityManager\Factory\EntityManagerSubManagerFactory;
-use KiwiSuite\Database\Migration\Factory\MigrationConfigFactory;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\Database\Type\Factory\TypeConfigFactory;
-use KiwiSuite\Database\Type\TypeConfig;
-use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Database\Connection\ConnectionConfig;
+use Ixocreate\Database\Connection\Factory\ConnectionConfigFactory;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManagerFactory;
+use Ixocreate\Database\EntityManager\Factory\EntityManagerSubManager;
+use Ixocreate\Database\EntityManager\Factory\EntityManagerSubManagerFactory;
+use Ixocreate\Database\Migration\Factory\MigrationConfigFactory;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Type\Factory\TypeConfigFactory;
+use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
 
 /** @var ServiceManagerConfigurator $serviceManager */

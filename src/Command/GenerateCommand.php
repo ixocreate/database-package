@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Command;
+namespace Ixocreate\Database\Command;
 
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 

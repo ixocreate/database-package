@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection\Factory;
+namespace Ixocreate\Database\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
-use KiwiSuite\Database\Connection\ConnectionConfig;
-use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Database\Connection\ConnectionConfig;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
 {

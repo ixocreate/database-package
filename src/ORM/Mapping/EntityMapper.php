@@ -9,17 +9,17 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\ORM\Mapping;
+namespace Ixocreate\Database\ORM\Mapping;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use KiwiSuite\Contract\Entity\DatabaseEntityInterface;
-use KiwiSuite\Database\Repository\EntityRepositoryMapping;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\Database\Repository\RepositoryInterface;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Contract\Entity\DatabaseEntityInterface;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Repository\RepositoryInterface;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 final class EntityMapper implements MappingDriver
 {

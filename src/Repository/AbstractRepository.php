@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository;
+namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {

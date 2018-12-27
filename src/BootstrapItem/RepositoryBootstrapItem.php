@@ -9,11 +9,11 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\BootstrapItem;
+namespace Ixocreate\Database\BootstrapItem;
 
-use KiwiSuite\Contract\Application\BootstrapItemInterface;
-use KiwiSuite\Contract\Application\ConfiguratorInterface;
-use KiwiSuite\Database\Repository\RepositoryConfigurator;
+use Ixocreate\Contract\Application\BootstrapItemInterface;
+use Ixocreate\Contract\Application\ConfiguratorInterface;
+use Ixocreate\Database\Repository\RepositoryConfigurator;
 
 final class RepositoryBootstrapItem implements BootstrapItemInterface
 {

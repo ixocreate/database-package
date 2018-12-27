@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Type\Strategy;
+namespace Ixocreate\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
-use KiwiSuite\Contract\ServiceManager\NamedServiceInterface;
-use KiwiSuite\Database\Type\Generator\Generator;
-use KiwiSuite\Database\Type\TypeConfig;
+use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
+use Ixocreate\Database\Type\Generator\Generator;
+use Ixocreate\Database\Type\TypeConfig;
 
 final class RuntimeStrategy
 {

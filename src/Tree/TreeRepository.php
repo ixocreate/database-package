@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace KiwiSuite\Database\Tree;
+namespace Ixocreate\Database\Tree;
 
-use KiwiSuite\Database\Exception\InvalidArgumentException;
-use KiwiSuite\Database\Repository\AbstractRepository;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Database\Exception\InvalidArgumentException;
+use Ixocreate\Database\Repository\AbstractRepository;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 abstract class TreeRepository extends AbstractRepository
 {

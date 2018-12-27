@@ -10,12 +10,12 @@
 
 declare(strict_types=1);
 
-namespace KiwiSuite\Database\Repository;
+namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\QueryBuilder;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 interface RepositoryInterface extends ObjectRepository, Selectable
 {

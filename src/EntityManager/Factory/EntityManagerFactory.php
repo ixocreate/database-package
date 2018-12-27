@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\EntityManager\Factory;
+namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
@@ -18,14 +18,14 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
 use Doctrine\ORM\Repository\RepositoryFactory;
-use KiwiSuite\Application\ApplicationConfig;
-use KiwiSuite\Contract\ServiceManager\FactoryInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
-use KiwiSuite\Database\ORM\Mapping\EntityMapper;
-use KiwiSuite\Database\Repository\EntityRepositoryMapping;
-use KiwiSuite\Database\Repository\Factory\DoctrineRepositoryFactory;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\Application\ApplicationConfig;
+use Ixocreate\Contract\ServiceManager\FactoryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\ORM\Mapping\EntityMapper;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 
 final class EntityManagerFactory implements FactoryInterface
 {

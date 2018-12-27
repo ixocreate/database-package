@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Class AbstractGenerator
- * @package KiwiSuite\Database\Generator
+ * @package Ixocreate\Database\Generator
  */
 abstract class AbstractGenerator implements GeneratorInterface
 {

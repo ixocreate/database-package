@@ -9,13 +9,13 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Class RepositoryGenerator
- * @package KiwiSuite\Database\Generator
+ * @package Ixocreate\Database\Generator
  */
 class RepositoryGenerator extends AbstractGenerator
 {
@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 <namespace>
 
-use KiwiSuite\Database\Repository\AbstractRepository;
+use Ixocreate\Database\Repository\AbstractRepository;
 use <entityFQCN>;
 
 final class <className> extends AbstractRepository

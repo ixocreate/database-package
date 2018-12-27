@@ -1,11 +1,11 @@
 <?php
-namespace KiwiSuite\Database\Type\Factory;
+namespace Ixocreate\Database\Type\Factory;
 
-use KiwiSuite\Contract\ServiceManager\FactoryInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Contract\Type\DatabaseTypeInterface;
-use KiwiSuite\Database\Type\TypeConfig;
-use KiwiSuite\Entity\Type\TypeSubManager;
+use Ixocreate\Contract\ServiceManager\FactoryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Contract\Type\DatabaseTypeInterface;
+use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\Entity\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {

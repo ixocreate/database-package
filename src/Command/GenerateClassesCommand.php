@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Command;
+namespace Ixocreate\Database\Command;
 
-use KiwiSuite\Database\Generator\EntityGenerator;
-use KiwiSuite\Database\Generator\RepositoryGenerator;
+use Ixocreate\Database\Generator\EntityGenerator;
+use Ixocreate\Database\Generator\RepositoryGenerator;
 
 /**
  * Class GenerateRepositoriesCommand
- * @package KiwiSuite\Database\Command
+ * @package Ixocreate\Database\Command
  */
 class GenerateClassesCommand extends AbstractGenerateCommand
 {

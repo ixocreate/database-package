@@ -9,14 +9,14 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\EntityManager\Factory;
+namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
-use KiwiSuite\Database\Connection\Factory\ConnectionSubManager;
-use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
 {

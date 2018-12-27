@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Command;
+namespace Ixocreate\Database\Command;
 
-use KiwiSuite\Contract\Command\CommandInterface;
+use Ixocreate\Contract\Command\CommandInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

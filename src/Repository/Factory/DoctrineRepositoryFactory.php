@@ -9,11 +9,11 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository\Factory;
+namespace Ixocreate\Database\Repository\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Repository\RepositoryFactory;
-use KiwiSuite\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
 
 final class DoctrineRepositoryFactory implements RepositoryFactory
 {

@@ -9,10 +9,10 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database;
+namespace Ixocreate\Database;
 
-use KiwiSuite\Contract\Application\ConfigProviderInterface;
-use KiwiSuite\Contract\Application\ConfigExampleInterface;
+use Ixocreate\Contract\Application\ConfigProviderInterface;
+use Ixocreate\Contract\Application\ConfigExampleInterface;
 
 final class ConfigProvider implements ConfigProviderInterface, ConfigExampleInterface
 {

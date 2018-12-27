@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection\Factory;
+namespace Ixocreate\Database\Connection\Factory;
 
 use Doctrine\DBAL\DriverManager;
-use KiwiSuite\Contract\ServiceManager\FactoryInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Database\Connection\ConnectionConfig;
+use Ixocreate\Contract\ServiceManager\FactoryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Database\Connection\ConnectionConfig;
 
 final class ConnectionFactory implements FactoryInterface
 {

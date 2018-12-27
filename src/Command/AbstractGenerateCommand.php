@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Command;
+namespace Ixocreate\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KiwiSuite\Contract\Command\CommandInterface;
-use KiwiSuite\Database\Generator\GeneratorInterface;
-use KiwiSuite\Entity\Type\TypeSubManager;
+use Ixocreate\Contract\Command\CommandInterface;
+use Ixocreate\Database\Generator\GeneratorInterface;
+use Ixocreate\Entity\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
@@ -28,7 +28,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class AbstractGenerateCommand
- * @package KiwiSuite\Database\Command
+ * @package Ixocreate\Database\Command
  */
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {

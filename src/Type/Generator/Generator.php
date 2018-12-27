@@ -9,18 +9,18 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Type\Generator;
+namespace Ixocreate\Database\Type\Generator;
 
 final class Generator
 {
     private $template = <<<'EOD'
 <?php
-namespace KiwiSuite\GeneratedDatabaseType;
+namespace Ixocreate\GeneratedDatabaseType;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\Contract\Type\TypeInterface;
-use KiwiSuite\Contract\Type\DatabaseTypeInterface;
+use Ixocreate\Entity\Type\Type;
+use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\Contract\Type\DatabaseTypeInterface;
 use %s as BaseType;
 
 final class %s extends BaseType
@@ -90,6 +90,6 @@ EOD;
      */
     public function generateFullQualifiedName(string $type) : string
     {
-        return '\KiwiSuite\GeneratedDatabaseType\\' . $this->generateName($type);
+        return '\Ixocreate\GeneratedDatabaseType\\' . $this->generateName($type);
     }
 }

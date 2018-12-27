@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\EntityManager\Factory;
+namespace Ixocreate\Database\EntityManager\Factory;
 
-use KiwiSuite\ServiceManager\SubManager\SubManager;
+use Ixocreate\ServiceManager\SubManager\SubManager;
 
 final class EntityManagerSubManager extends SubManager
 {

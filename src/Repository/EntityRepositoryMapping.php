@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository;
+namespace Ixocreate\Database\Repository;
 
-use KiwiSuite\Contract\Application\SerializableServiceInterface;
+use Ixocreate\Contract\Application\SerializableServiceInterface;
 
 class EntityRepositoryMapping implements SerializableServiceInterface
 {

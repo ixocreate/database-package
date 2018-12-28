@@ -1,19 +1,17 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository;
 
-use Doctrine\Instantiator\Instantiator;
+namespace Ixocreate\Database\Repository;
 
-class EntityRepositoryMapping implements \Serializable
+use Ixocreate\Contract\Application\SerializableServiceInterface;
+
+class EntityRepositoryMapping implements SerializableServiceInterface
 {
     private $mapping = [];
 
@@ -24,21 +22,6 @@ class EntityRepositoryMapping implements \Serializable
     public function __construct(array $mapping)
     {
         $this->mapping = $mapping;
-    }
-
-    public static function create(RepositoryServiceManagerConfig $repositoryServiceManagerConfig) : EntityRepositoryMapping
-    {
-        $mapping = [];
-        $instantiator = new Instantiator();
-
-        $repositories = \array_keys($repositoryServiceManagerConfig->getFactories());
-        foreach ($repositories as $repository) {
-            /** @var RepositoryInterface $repositoryClass */
-            $repositoryClass = $instantiator->instantiate($repository);
-            $mapping[$repositoryClass->getEntityName()] = $repository;
-        }
-
-        return new EntityRepositoryMapping($mapping);
     }
 
     public function getEntities() : array

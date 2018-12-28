@@ -1,21 +1,20 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Repository;
+
+namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Doctrine\ORM\QueryBuilder;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {
@@ -31,11 +30,11 @@ abstract class AbstractRepository implements RepositoryInterface
 
     /**
      * AbstractRepository constructor.
-     * @param EntityManagerInterface $manager
+     * @param EntityManagerInterface $master
      */
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $master)
     {
-        $this->entityManager = $manager;
+        $this->entityManager = $master;
     }
 
     /**
@@ -73,7 +72,7 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findOneBy(array $criteria)
     {
-        return $this->getRepository()-$this->findOneBy($criteria);
+        return $this->getRepository()->findOneBy($criteria);
     }
 
     /**
@@ -117,11 +116,39 @@ abstract class AbstractRepository implements RepositoryInterface
         return $this->entityManager;
     }
 
+    /**
+     * @param EntityInterface $entity
+     * @return EntityInterface
+     */
+    public function persist(EntityInterface $entity): EntityInterface
+    {
+        return $this->entityManager->merge($entity);
+    }
+
+    /**
+     * @param EntityInterface $entity
+     * @return EntityInterface
+     */
     public function save(EntityInterface $entity) : EntityInterface
     {
-        //TODO Check $entity
+        $entity = $this->persist($entity);
+        $this->entityManager->flush($entity);
 
-        return $this->entityManager->merge($entity);
+        return $entity;
+    }
+
+    public function flush(EntityInterface $entity): void
+    {
+        $this->entityManager->flush($entity);
+    }
+
+    /**
+     * @param EntityInterface $entity
+     */
+    public function remove(EntityInterface $entity): void
+    {
+        $this->entityManager->remove($entity);
+        $this->flush($entity);
     }
 
     /**
@@ -136,12 +163,12 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param array $criteria
+     * @param Criteria|array $criteria
      * @return int
      */
-    public function count(array $criteria)
+    public function count($criteria = []): int
     {
-        return $this->getRepository()->count($criteria);
+        return $this->entityManager->getUnitOfWork()->getEntityPersister($this->getEntityName())->count($criteria);
     }
 
     /**
@@ -184,10 +211,16 @@ abstract class AbstractRepository implements RepositoryInterface
      * @param null $indexBy
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function createQueryBuilder($alias, $indexBy = null)
+    public function createSelectQueryBuilder($alias, $indexBy = null): QueryBuilder
     {
         return $this->getRepository()->createQueryBuilder($alias, $indexBy);
     }
 
-    abstract public function loadMetadata() : void;
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function createQueryBuilder(): QueryBuilder
+    {
+        return $this->entityManager->createQueryBuilder();
+    }
 }

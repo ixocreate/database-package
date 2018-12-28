@@ -1,11 +1,11 @@
 {
-    "name": "kiwi-suite/database",
-    "description": "kiwi-suite/database",
+    "name": "ixocreate/database",
+    "description": "Database and Doctrine integration for IXOCREATE",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": "Thomas Payer"
+            "name": "IXOCREATE"
         }
     ],
     "minimum-stability": "dev",
@@ -13,24 +13,29 @@
     "require": {
         "php": "^7.1",
         "doctrine/dbal": "^2.6",
-        "kiwi-suite/entity": "dev-develop",
-        "doctrine/orm": "^2.6"
+        "doctrine/migrations": "^1.6",
+        "doctrine/orm": "^2.6",
+        "ixocreate/contract": "dev-develop",
+        "ixocreate/entity": "dev-develop"
     },
     "require-dev": {
+        "ixocreate/coding-standard": "^1.0.1",
         "phpunit/phpunit": "^6.0.6",
-        "friendsofphp/php-cs-fixer": "^2.5",
-        "kiwi-suite/servicemanager": "dev-develop",
-        "kiwi-suite/application": "dev-develop"
+        "ixocreate/servicemanager": "dev-develop",
+        "ixocreate/application": "dev-develop"
     },
     "autoload": {
         "psr-4": {
-            "KiwiSuite\\Database\\": "src/"
+            "Ixocreate\\Database\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KiwiSuiteMisc\\Database\\": "tests/misc/",
-            "KiwiSuiteTest\\Database\\": "tests/src/"
+            "IxocreateMisc\\Database\\": "tests/misc/",
+            "IxocreateTest\\Database\\": "tests/src/"
         }
+    },
+    "scripts": {
+        "fix-cs": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config vendor/ixocreate/coding-standard/.php_cs"
     }
 }

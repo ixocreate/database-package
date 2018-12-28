@@ -1,15 +1,15 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\Connection;
+
+namespace Ixocreate\Database\Connection;
+
+use Ixocreate\Database\Exception\InvalidArgumentException;
 
 final class ConnectionConfig
 {
@@ -43,7 +43,7 @@ final class ConnectionConfig
     public function getConnectionParams(string $name) : array
     {
         if (!\array_key_exists($name, $this->config)) {
-            //TODO Exception
+            throw new InvalidArgumentException(\sprintf('unable to find connection config for %s', $name));
         }
 
         return $this->config[$name];

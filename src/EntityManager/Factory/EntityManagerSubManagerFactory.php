@@ -1,26 +1,23 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\EntityManager\Factory;
+
+namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
-use KiwiSuite\ServiceManager\ServiceManagerConfig;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
 {
-
     /**
      * @param ServiceManagerInterface $container
      * @param $requestedName
@@ -35,16 +32,15 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
             $container->get(ConnectionSubManager::class)->getServiceManagerConfig()->getFactories()
         );
 
-        $config = [
-            'factories' => \array_combine(
-                $connections,
-                \array_fill(0, \count($connections), EntityManagerFactory::class)
-            ),
-        ];
+        $serviceManagerConfigurator = new ServiceManagerConfigurator();
+
+        foreach ($connections as $connectionName) {
+            $serviceManagerConfigurator->addFactory($connectionName, EntityManagerFactory::class);
+        }
 
         return new EntityManagerSubManager(
             $container,
-            new ServiceManagerConfig($config),
+            $serviceManagerConfigurator->getServiceManagerConfig(),
             EntityManagerInterface::class
         );
     }

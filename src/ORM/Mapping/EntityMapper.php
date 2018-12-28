@@ -1,24 +1,23 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\ORM\Mapping;
+
+namespace Ixocreate\Database\ORM\Mapping;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use KiwiSuite\Database\Repository\EntityRepositoryMapping;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\Database\Repository\RepositoryInterface;
-use KiwiSuite\Entity\Entity\EntityInterface;
+use Ixocreate\Contract\Entity\DatabaseEntityInterface;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Repository\RepositoryInterface;
+use Ixocreate\Entity\Entity\EntityInterface;
 
 final class EntityMapper implements MappingDriver
 {
@@ -26,6 +25,7 @@ final class EntityMapper implements MappingDriver
      * @var RepositorySubManager
      */
     private $repositorySubManager;
+
     /**
      * @var EntityRepositoryMapping
      */
@@ -52,13 +52,20 @@ final class EntityMapper implements MappingDriver
      */
     public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
-        $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($className);
-        $instantiator = new Instantiator();
+        if (!\in_array(DatabaseEntityInterface::class, \class_implements($className))) {
+            $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($className);
+            $instantiator = new Instantiator();
 
-        /** @var RepositoryInterface $repository */
-        $repository = $instantiator->instantiate($repositoryName);
+            /** @var RepositoryInterface $repository */
+            $repository = $instantiator->instantiate($repositoryName);
+            $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
+            $repository->loadMetadata($classMetaDataBuilder);
+
+            return;
+        }
+
         $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
-        $repository->loadMetadata($classMetaDataBuilder);
+        $className::loadMetadata($classMetaDataBuilder);
     }
 
     /**
@@ -93,6 +100,9 @@ final class EntityMapper implements MappingDriver
         if (!\in_array(EntityInterface::class, $instances)) {
             return false;
         }
+//        if (!\in_array(DatabaseEntityInterface::class, $instances)) {
+//            return false;
+//        }
 
         return true;
     }

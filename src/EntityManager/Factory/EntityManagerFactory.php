@@ -1,29 +1,29 @@
 <?php
 /**
- * kiwi-suite/database (https://github.com/kiwi-suite/database)
- *
- * @package kiwi-suite/database
- * @see https://github.com/kiwi-suite/database
- * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Database\EntityManager\Factory;
+
+namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Proxy\ProxyFactory;
 use Doctrine\ORM\Repository\RepositoryFactory;
-use KiwiSuite\Database\Connection\ConnectionSubManager;
-use KiwiSuite\Database\ORM\Mapping\EntityMapper;
-use KiwiSuite\Database\Repository\EntityRepositoryMapping;
-use KiwiSuite\Database\Repository\Factory\DoctrineRepositoryFactory;
-use KiwiSuite\Database\Repository\Factory\RepositorySubManager;
-use KiwiSuite\ServiceManager\FactoryInterface;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Application\ApplicationConfig;
+use Ixocreate\Contract\ServiceManager\FactoryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\ORM\Mapping\EntityMapper;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 
 final class EntityManagerFactory implements FactoryInterface
 {
@@ -42,6 +42,11 @@ final class EntityManagerFactory implements FactoryInterface
         $configuration->setMetadataDriverImpl($this->getMetaDriverImpl($container));
         $configuration->setMetadataCacheImpl($this->getMetaCacheImpl($container));
         $configuration->setRepositoryFactory($this->getRepositoryFactory($container));
+        $configuration->setProxyDir($container->get(ApplicationConfig::class)->getPersistCacheDirectory() . 'doctrine_proxy/');
+        $configuration->setProxyNamespace('DoctrineProxies');
+
+        //TODO change for production
+        $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
 
         return EntityManager::create(
             $container->get(ConnectionSubManager::class)->get($requestedName),
@@ -73,6 +78,9 @@ final class EntityManagerFactory implements FactoryInterface
      */
     private function getRepositoryFactory(ServiceManagerInterface $container) : RepositoryFactory
     {
-        return new DoctrineRepositoryFactory($container->get(RepositorySubManager::class));
+        return new DoctrineRepositoryFactory(
+            $container->get(RepositorySubManager::class),
+            $container->get(EntityRepositoryMapping::class)
+        );
     }
 }

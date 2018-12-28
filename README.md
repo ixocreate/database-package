@@ -1,6 +1,6 @@
 # IXOCREATE database
 
-[![Build Status](https://travis-ci.org/ixocreate/database.svg?branch=master)](https://travis-ci.org/ixocreate/database)
+[![Build Status](https://travis-ci.com/ixocreate/database.svg?branch=master)](https://travis-ci.com/ixocreate/database)
 [![Coverage Status](https://coveralls.io/repos/github/ixocreate/database/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/database?branch=develop)
 [![Packagist](https://img.shields.io/packagist/v/ixocreate/database.svg)](https://packagist.org/packages/ixocreate/database)
 [![Packagist Pre Release](https://img.shields.io/packagist/vpre/ixocreate/database.svg)](https://packagist.org/packages/ixocreate/database)

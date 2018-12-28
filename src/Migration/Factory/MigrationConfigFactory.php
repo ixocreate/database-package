@@ -24,10 +24,10 @@ class MigrationConfigFactory implements FactoryInterface
 
         $migrationConfig = new Configuration($connection);
         $migrationConfig->setMigrationsDirectory('resources/migrations');
-        $migrationConfig->setMigrationsNamespace('KiwiMigration');
+        $migrationConfig->setMigrationsNamespace('IxocreateMigration');
         $migrationConfig->setMigrationsTableName('database_migrations');
 
-        $migrationConfig->setName('Kiwi Database Migrations');
+        $migrationConfig->setName('Ixocreate Database Migrations');
 
         return $migrationConfig;
     }

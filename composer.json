@@ -15,10 +15,10 @@
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.6",
         "doctrine/orm": "^2.6",
-        "ixocreate/contract": "=1.0.0-alpha1",
-        "ixocreate/entity": "=1.0.0-alpha1",
-        "ixocreate/servicemanager": "=1.0.0-alpha1",
-        "ixocreate/application": "=1.0.0-alpha1"
+        "ixocreate/contract": "dev-develop",
+        "ixocreate/entity": "dev-develop",
+        "ixocreate/servicemanager": "dev-develop",
+        "ixocreate/application": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^1.0.1",

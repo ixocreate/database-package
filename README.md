@@ -6,7 +6,6 @@
 [![Packagist Pre Release](https://img.shields.io/packagist/vpre/ixocreate/database.svg)](https://packagist.org/packages/ixocreate/database)
 [![Packagist](https://img.shields.io/packagist/l/ixocreate/database.svg)](https://packagist.org/packages/ixocreate/database)
 
-
 ## Installation
 
 Install the package via composer:

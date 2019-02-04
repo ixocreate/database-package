@@ -10,9 +10,8 @@ declare(strict_types=1);
 namespace Ixocreate\Database;
 
 use Ixocreate\Contract\Application\ConfigProviderInterface;
-use Ixocreate\Contract\Application\ConfigExampleInterface;
 
-final class ConfigProvider implements ConfigProviderInterface, ConfigExampleInterface
+final class ConfigProvider implements ConfigProviderInterface
 {
     /**
      * @return array

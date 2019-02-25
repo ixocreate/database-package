@@ -21,6 +21,7 @@ final class ConfigProvider implements ConfigProviderInterface
         return [
             'database' => [
                 'master' => [
+                    'driver' => 'pdo_mysql'
                 ],
             ],
         ];

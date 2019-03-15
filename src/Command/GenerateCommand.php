@@ -18,6 +18,7 @@ class GenerateCommand extends ProxyCommand
         $this->command = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
         $this->command->setMigrationConfiguration($migrationConfig);
         $this->command->setName(self::getCommandName());
+        $this->command->setAliases(['make:migration']);
 
         $class = new \ReflectionClass($this->command);
         $property = $class->getProperty('_template');

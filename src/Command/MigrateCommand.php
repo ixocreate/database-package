@@ -18,6 +18,7 @@ class MigrateCommand extends ProxyCommand
         $this->command = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
         $this->command->setMigrationConfiguration($migrationConfig);
         $this->command->setName(self::getCommandName());
+        $this->command->setAliases(['migrate']);
 
         parent::__construct(null);
     }

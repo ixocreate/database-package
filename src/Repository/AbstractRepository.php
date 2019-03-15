@@ -51,6 +51,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findAll()
     {
+        /**
+         * TODO: return collection
+         */
         return $this->getRepository()->findAll();
     }
 
@@ -63,6 +66,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
+        /**
+         * TODO: return collection
+         */
         return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
@@ -94,6 +100,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function matching(Criteria $criteria)
     {
+        /**
+         * TODO: return collection (not doctrine collection?)
+         */
         return $this->getRepository()->matching($criteria);
     }
 

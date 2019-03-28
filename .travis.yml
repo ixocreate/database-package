@@ -1,21 +1,28 @@
 language: php
 sudo: false
+
 php:
-- '7.1'
-- '7.2'
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4snapshot
+
 cache:
   directories:
-  - "$HOME/.composer/cache"
-before_script:
-- composer install --prefer-dist --no-interaction
-- composer require --dev php-coveralls/php-coveralls
+    - $HOME/.composer/cache
+
+install:
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then composer require --dev php-coveralls/php-coveralls; fi
+  - composer install --prefer-dist --no-interaction
+
 script:
-- mkdir -p build/logs
-- vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-- vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --dry-run --using-cache=no --path-mode=intersection
-  `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; else vendor/bin/phpunit; fi
+  - vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --dry-run --using-cache=no --path-mode=intersection
+    `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
+
 after_success:
-- travis_retry php vendor/bin/php-coveralls -v
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/php-coveralls -v; fi
+
 notifications:
   email: false
   slack:

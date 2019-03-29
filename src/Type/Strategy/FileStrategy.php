@@ -16,9 +16,9 @@ final class FileStrategy
 {
     public function load(string $baseDir) : void
     {
-        $baseDir = rtrim($baseDir, '/') . '/database/types/';
+        $baseDir = \rtrim($baseDir, '/') . '/database/types/';
 
-        if (!file_exists($baseDir . 'types.php')) {
+        if (!\file_exists($baseDir . 'types.php')) {
             throw new \Exception("No Type data is generated");
         }
 

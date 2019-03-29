@@ -10,13 +10,10 @@ declare(strict_types=1);
 namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\PhpFileCache;
-use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
-use Doctrine\ORM\Repository\RepositoryFactory;
 use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\Contract\ServiceManager\FactoryInterface;
 use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
@@ -52,7 +49,7 @@ final class EntityManagerFactory implements FactoryInterface
 
         $configuration = new Configuration();
         $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_NEVER);
-        $configuration->setProxyDir(sys_get_temp_dir());
+        $configuration->setProxyDir(\sys_get_temp_dir());
         $configuration->setProxyNamespace('Ixocreate\DoctrineProxy');
 
         $configuration->setMetadataDriverImpl(

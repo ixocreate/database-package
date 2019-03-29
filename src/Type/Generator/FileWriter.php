@@ -16,9 +16,9 @@ final class FileWriter
 {
     public function write(string $baseDir, TypeConfig $typeConfig): void
     {
-        $baseDir = rtrim($baseDir, '/') . '/database/types/';
+        $baseDir = \rtrim($baseDir, '/') . '/database/types/';
 
-        if (!is_dir($baseDir)) {
+        if (!\is_dir($baseDir)) {
             \mkdir($baseDir, 0777, true);
         }
 
@@ -51,7 +51,7 @@ final class FileWriter
 
         \file_put_contents(
             $baseDir . "types.php",
-            "<?php return " . var_export($typeCollector, true) . ";"
+            "<?php return " . \var_export($typeCollector, true) . ";"
         );
     }
 }

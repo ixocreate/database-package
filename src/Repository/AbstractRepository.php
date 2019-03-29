@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Ixocreate\Entity\Entity\EntityInterface;
 
@@ -231,5 +232,14 @@ abstract class AbstractRepository implements RepositoryInterface
     public function createQueryBuilder(): QueryBuilder
     {
         return $this->entityManager->createQueryBuilder();
+    }
+
+    /**
+     * @param string $dql
+     * @return Query
+     */
+    public function createQuery(string $dql): Query
+    {
+        return $this->entityManager->createQuery($dql);
     }
 }

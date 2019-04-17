@@ -1,5 +1,5 @@
 {
-    "name": "ixocreate/database",
+    "name": "ixocreate/database-package",
     "description": "Database and Doctrine integration for IXOCREATE",
     "license": "MIT",
     "type": "library",

@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Command;
+namespace Ixocreate\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Ixocreate\Application\Console\CommandInterface;
-use Ixocreate\Database\Package\Generator\GeneratorInterface;
-use Ixocreate\Entity\Package\Type\TypeSubManager;
+use Ixocreate\Database\Generator\GeneratorInterface;
+use Ixocreate\Entity\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
@@ -26,7 +26,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class AbstractGenerateCommand
- * @package Ixocreate\Database\Package\Command
+ * @package Ixocreate\Database\Command
  */
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {

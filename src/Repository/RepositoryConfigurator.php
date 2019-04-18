@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Repository;
+namespace Ixocreate\Database\Repository;
 
 use Doctrine\Instantiator\Instantiator;
 use Ixocreate\Application\Service\Configurator\ConfiguratorInterface;
 use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
-use Ixocreate\Database\Package\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 use Ixocreate\Application\Service\SubManagerConfigurator;
 

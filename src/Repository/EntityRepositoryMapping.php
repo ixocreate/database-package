@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Repository;
+namespace Ixocreate\Database\Repository;
 
 use Ixocreate\Application\Service\SerializableServiceInterface;
 

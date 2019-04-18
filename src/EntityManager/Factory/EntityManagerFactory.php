@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\EntityManager\Factory;
+namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\PhpFileCache;
@@ -17,11 +17,11 @@ use Doctrine\ORM\Proxy\ProxyFactory;
 use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\Package\Connection\Factory\ConnectionSubManager;
-use Ixocreate\Database\Package\ORM\Mapping\EntityMapper;
-use Ixocreate\Database\Package\Repository\EntityRepositoryMapping;
-use Ixocreate\Database\Package\Repository\Factory\DoctrineRepositoryFactory;
-use Ixocreate\Database\Package\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\ORM\Mapping\EntityMapper;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
+use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 
 final class EntityManagerFactory implements FactoryInterface
 {

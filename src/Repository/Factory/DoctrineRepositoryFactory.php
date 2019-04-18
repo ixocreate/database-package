@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Repository\Factory;
+namespace Ixocreate\Database\Repository\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Repository\RepositoryFactory;
-use Ixocreate\Database\Package\Repository\EntityRepositoryMapping;
+use Ixocreate\Database\Repository\EntityRepositoryMapping;
 
 final class DoctrineRepositoryFactory implements RepositoryFactory
 {

@@ -1,16 +1,16 @@
 <?php
-namespace Ixocreate\Database\Package;
+namespace Ixocreate\Database;
 
 /** @var ConsoleConfigurator $console */
 use Ixocreate\Application\Console\ConsoleConfigurator;
-use Ixocreate\Database\Package\Command\GenerateClassesCommand;
-use Ixocreate\Database\Package\Command\GenerateCommand;
-use Ixocreate\Database\Package\Command\GenerateEntitiesCommand;
-use Ixocreate\Database\Package\Command\GenerateMetadataCommand;
-use Ixocreate\Database\Package\Command\GenerateRepositoriesCommand;
-use Ixocreate\Database\Package\Command\MigrateCommand;
-use Ixocreate\Database\Package\Command\StatusCommand;
-use Ixocreate\Database\Package\Command\VersionCommand;
+use Ixocreate\Database\Command\GenerateClassesCommand;
+use Ixocreate\Database\Command\GenerateCommand;
+use Ixocreate\Database\Command\GenerateEntitiesCommand;
+use Ixocreate\Database\Command\GenerateMetadataCommand;
+use Ixocreate\Database\Command\GenerateRepositoriesCommand;
+use Ixocreate\Database\Command\MigrateCommand;
+use Ixocreate\Database\Command\StatusCommand;
+use Ixocreate\Database\Command\VersionCommand;
 
 $console->addCommand(GenerateCommand::class);
 $console->addCommand(MigrateCommand::class);

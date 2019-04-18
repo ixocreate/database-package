@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Type\Generator;
+namespace Ixocreate\Database\Type\Generator;
 
 final class Generator
 {
@@ -16,9 +16,9 @@ final class Generator
 namespace Ixocreate\GeneratedDatabaseType;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Ixocreate\Entity\Package\Type\Type;
-use Ixocreate\Type\Package\TypeInterface;
-use Ixocreate\Type\Package\DatabaseTypeInterface;
+use Ixocreate\Entity\Type\Type;
+use Ixocreate\Type\TypeInterface;
+use Ixocreate\Type\DatabaseTypeInterface;
 use %s as BaseType;
 
 final class %s extends BaseType

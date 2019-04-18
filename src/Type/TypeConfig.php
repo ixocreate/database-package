@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Type;
+namespace Ixocreate\Database\Type;
 
 final class TypeConfig
 {

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity;
+namespace Ixocreate\Database;
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 

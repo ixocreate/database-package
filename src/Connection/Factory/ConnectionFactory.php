@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Connection\Factory;
+namespace Ixocreate\Database\Connection\Factory;
 
 use Doctrine\DBAL\DriverManager;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\Package\Connection\ConnectionConfig;
+use Ixocreate\Database\Connection\ConnectionConfig;
 
 final class ConnectionFactory implements FactoryInterface
 {

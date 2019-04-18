@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Class AbstractGenerator
- * @package Ixocreate\Database\Package\Generator
+ * @package Ixocreate\Database\Generator
  */
 abstract class AbstractGenerator implements GeneratorInterface
 {

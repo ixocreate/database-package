@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Command;
+namespace Ixocreate\Database\Command;
 
-use Ixocreate\Database\Package\Generator\ResourceGenerator;
+use Ixocreate\Database\Generator\ResourceGenerator;
 
 /**
  * Class GenerateResourcesCommand
- * @package Ixocreate\Database\Package\Command
+ * @package Ixocreate\Database\Command
  */
 class GenerateResourcesCommand extends AbstractGenerateCommand
 {

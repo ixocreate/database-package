@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package;
+namespace Ixocreate\Database;
 
 use Ixocreate\Application\ConfigProviderInterface;
 

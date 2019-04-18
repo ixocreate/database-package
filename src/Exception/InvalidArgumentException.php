@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Exception;
+namespace Ixocreate\Database\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException
 {

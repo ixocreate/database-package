@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\DBAL\Types\Type as DbalType;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Ixocreate\Entity\Package\Type\TypeSubManager;
+use Ixocreate\Entity\Type\TypeSubManager;
 
 /**
  * Class EntityGenerator
- * @package Ixocreate\Database\Package\Repository
+ * @package Ixocreate\Database\Repository
  */
 final class EntityGenerator extends AbstractGenerator
 {
@@ -27,11 +27,11 @@ declare(strict_types=1);
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Ixocreate\Entity\DatabaseEntityInterface;
-use Ixocreate\Type\Package\TypeInterface;
-use Ixocreate\Entity\Package\Definition;
-use Ixocreate\Entity\Package\DefinitionCollection;
-use Ixocreate\Entity\Package\EntityInterface;
-use Ixocreate\Entity\Package\EntityTrait;
+use Ixocreate\Type\TypeInterface;
+use Ixocreate\Entity\Definition;
+use Ixocreate\Entity\DefinitionCollection;
+use Ixocreate\Entity\EntityInterface;
+use Ixocreate\Entity\EntityTrait;
 <uses>
 
 final class <className> implements EntityInterface, DatabaseEntityInterface

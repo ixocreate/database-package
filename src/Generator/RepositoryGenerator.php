@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Generator;
+namespace Ixocreate\Database\Generator;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * Class RepositoryGenerator
- * @package Ixocreate\Database\Package\Generator
+ * @package Ixocreate\Database\Generator
  */
 class RepositoryGenerator extends AbstractGenerator
 {
@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 <namespace>
 
-use Ixocreate\Database\Package\Repository\AbstractRepository;
+use Ixocreate\Database\Repository\AbstractRepository;
 use <entityFQCN>;
 
 final class <className> extends AbstractRepository

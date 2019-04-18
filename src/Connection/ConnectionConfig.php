@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Package\Connection;
+namespace Ixocreate\Database\Connection;
 
-use Ixocreate\Database\Package\Exception\InvalidArgumentException;
+use Ixocreate\Database\Exception\InvalidArgumentException;
 
 final class ConnectionConfig
 {

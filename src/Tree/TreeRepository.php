@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Tree;
+namespace Ixocreate\Package\Database\Tree;
 
-use Ixocreate\Database\Exception\InvalidArgumentException;
-use Ixocreate\Database\Repository\AbstractRepository;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Package\Database\Exception\InvalidArgumentException;
+use Ixocreate\Package\Database\Repository\AbstractRepository;
+use Ixocreate\Package\Entity\EntityInterface;
 
 abstract class TreeRepository extends AbstractRepository
 {

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\ORM\Metadata;
+namespace Ixocreate\Package\Database\ORM\Metadata;
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\Builder\FieldBuilder;
@@ -15,7 +15,7 @@ use Ixocreate\Application\Exception\InvalidArgumentException;
 
 /**
  * Class AbstractMetadata
- * @package Ixocreate\Database\ORM\Metadata
+ * @package Ixocreate\Package\Database\ORM\Metadata
  */
 abstract class AbstractMetadata
 {

@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Type\Strategy;
+namespace Ixocreate\Package\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
-use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
-use Ixocreate\Database\Type\Generator\Generator;
-use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\ServiceManager\NamedServiceInterface;
+use Ixocreate\Package\Database\Type\Generator\Generator;
+use Ixocreate\Package\Database\Type\TypeConfig;
 
 final class RuntimeStrategy
 {

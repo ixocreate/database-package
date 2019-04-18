@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Command;
+namespace Ixocreate\Package\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Contract\Command\CommandInterface;
-use Ixocreate\Database\Generator\GeneratorInterface;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\Application\Console\CommandInterface;;
+use Ixocreate\Package\Database\Generator\GeneratorInterface;
+use Ixocreate\Package\Entity\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
@@ -26,7 +26,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class AbstractGenerateCommand
- * @package Ixocreate\Database\Command
+ * @package Ixocreate\Package\Database\Command
  */
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {
@@ -64,6 +64,9 @@ FH;
 
     protected function getDefaultDestinationPath() : ?string
     {
+        /**
+         * TODO: describe why this is still kiwi-suite or cleanup
+         */
         if (\basename(\dirname(__DIR__, 3)) === 'kiwi-suite' && \basename(\dirname(__DIR__, 4)) === 'vendor') {
             $srcDir = \dirname(__DIR__, 5) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
             if (\is_dir($srcDir)) {

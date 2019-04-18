@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Type\Factory;
+namespace Ixocreate\Package\Database\Type\Factory;
 
-use Ixocreate\Contract\ServiceManager\FactoryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Contract\Type\DatabaseTypeInterface;
-use Ixocreate\Database\Type\TypeConfig;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Package\Type\DatabaseTypeInterface;
+use Ixocreate\Package\Database\Type\TypeConfig;
+use Ixocreate\Package\Entity\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {

@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Connection\Factory;
+namespace Ixocreate\Package\Database\Connection\Factory;
 
 use Ixocreate\Config\Config;
-use Ixocreate\Contract\ServiceManager\FactoryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\Connection\ConnectionConfig;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Package\Database\Connection\ConnectionConfig;
 
 final class ConnectionConfigFactory implements FactoryInterface
 {

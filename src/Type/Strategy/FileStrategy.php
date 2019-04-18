@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Type\Strategy;
+namespace Ixocreate\Package\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
-use Ixocreate\Database\Type\Generator\Generator;
+use Ixocreate\Package\Database\Type\Generator\Generator;
 
 final class FileStrategy
 {

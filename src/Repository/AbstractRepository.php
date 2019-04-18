@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Repository;
+namespace Ixocreate\Package\Database\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Package\Entity\Entity\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\BootstrapItem;
+namespace Ixocreate\Package\Database\BootstrapItem;
 
-use Ixocreate\Contract\Application\BootstrapItemInterface;
-use Ixocreate\Contract\Application\ConfiguratorInterface;
-use Ixocreate\Database\Repository\RepositoryConfigurator;
+use Ixocreate\Application\BootstrapItemInterface;
+use Ixocreate\Application\ConfiguratorInterface;
+use Ixocreate\Package\Database\Repository\RepositoryConfigurator;
 
 final class RepositoryBootstrapItem implements BootstrapItemInterface
 {

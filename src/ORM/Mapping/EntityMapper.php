@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\ORM\Mapping;
+namespace Ixocreate\Package\Database\ORM\Mapping;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Ixocreate\Contract\Entity\DatabaseEntityInterface;
-use Ixocreate\Database\Repository\EntityRepositoryMapping;
-use Ixocreate\Database\Repository\Factory\RepositorySubManager;
-use Ixocreate\Database\Repository\RepositoryInterface;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\DatabaseEntityInterface;
+use Ixocreate\Package\Database\Repository\EntityRepositoryMapping;
+use Ixocreate\Package\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\Package\Database\Repository\RepositoryInterface;
+use Ixocreate\Package\Entity\Entity\EntityInterface;
 
 final class EntityMapper implements MappingDriver
 {

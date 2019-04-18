@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\EntityManager\Factory;
+namespace Ixocreate\Package\Database\EntityManager\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
-use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
-use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\ServiceManager\SubManager\SubManagerFactoryInterface;
+use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Package\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface

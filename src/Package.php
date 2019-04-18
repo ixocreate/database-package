@@ -10,14 +10,14 @@ declare(strict_types=1);
 namespace Ixocreate\Database;
 
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\Application\Service\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\ConfiguratorRegistryInterface;
 use Ixocreate\Application\PackageInterface;
-use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
-use Ixocreate\Database\Bootstrap\RepositoryBootstrapItem;
-use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Application\Service\ServiceRegistryInterface;
+use Ixocreate\Database\Repository\RepositoryBootstrapItem;
 use Ixocreate\Database\Type\Strategy\FileStrategy;
 use Ixocreate\Database\Type\Strategy\RuntimeStrategy;
 use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 final class Package implements PackageInterface
 {
@@ -57,6 +57,7 @@ final class Package implements PackageInterface
 
     /**
      * @param ServiceManagerInterface $serviceManager
+     * @throws \Exception
      */
     public function boot(ServiceManagerInterface $serviceManager): void
     {

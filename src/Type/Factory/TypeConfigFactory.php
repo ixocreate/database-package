@@ -13,7 +13,7 @@ use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Type\DatabaseTypeInterface;
 use Ixocreate\Database\Type\TypeConfig;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {

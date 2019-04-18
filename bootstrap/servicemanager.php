@@ -12,7 +12,7 @@ use Ixocreate\Database\Migration\Factory\MigrationConfigFactory;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\Database\Type\Factory\TypeConfigFactory;
 use Ixocreate\Database\Type\TypeConfig;
-use Ixocreate\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Application\Service\ServiceManagerConfigurator;
 use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
 
 /** @var ServiceManagerConfigurator $serviceManager */

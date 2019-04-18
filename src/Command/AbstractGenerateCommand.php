@@ -12,7 +12,7 @@ namespace Ixocreate\Database\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use Ixocreate\Application\Console\CommandInterface;
 use Ixocreate\Database\Generator\GeneratorInterface;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;

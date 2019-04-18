@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Ixocreate\Entity\Package\Entity\EntityInterface;
+use Ixocreate\Entity\Package\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {

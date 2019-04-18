@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Package\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Application\Console\CommandInterface;;
+use Ixocreate\Application\Console\CommandInterface;
 use Ixocreate\Database\Package\Generator\GeneratorInterface;
 use Ixocreate\Entity\Package\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;

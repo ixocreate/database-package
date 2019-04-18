@@ -28,10 +28,10 @@ declare(strict_types=1);
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Ixocreate\Entity\DatabaseEntityInterface;
 use Ixocreate\Type\Package\TypeInterface;
-use Ixocreate\Entity\Package\Entity\Definition;
-use Ixocreate\Entity\Package\Entity\DefinitionCollection;
-use Ixocreate\Entity\Package\Entity\EntityInterface;
-use Ixocreate\Entity\Package\Entity\EntityTrait;
+use Ixocreate\Entity\Package\Definition;
+use Ixocreate\Entity\Package\DefinitionCollection;
+use Ixocreate\Entity\Package\EntityInterface;
+use Ixocreate\Entity\Package\EntityTrait;
 <uses>
 
 final class <className> implements EntityInterface, DatabaseEntityInterface

@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Package;
 
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\Package\PackageInterface;
-use Ixocreate\Application\ServiceRegistryInterface;
-use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Application\Service\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
 use Ixocreate\Database\Package\Bootstrap\RepositoryBootstrapItem;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Database\Package\Type\Strategy\FileStrategy;
 use Ixocreate\Database\Package\Type\Strategy\RuntimeStrategy;
 use Ixocreate\Database\Package\Type\TypeConfig;

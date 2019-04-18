@@ -17,7 +17,7 @@ use Ixocreate\Entity\DatabaseEntityInterface;
 use Ixocreate\Database\Package\Repository\EntityRepositoryMapping;
 use Ixocreate\Database\Package\Repository\Factory\RepositorySubManager;
 use Ixocreate\Database\Package\Repository\RepositoryInterface;
-use Ixocreate\Entity\Package\Entity\EntityInterface;
+use Ixocreate\Entity\Package\EntityInterface;
 
 final class EntityMapper implements MappingDriver
 {

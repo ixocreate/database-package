@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Ixocreate\Entity\Package\Entity\EntityInterface;
+use Ixocreate\Entity\Package\EntityInterface;
 
 interface RepositoryInterface extends ObjectRepository, Selectable
 {

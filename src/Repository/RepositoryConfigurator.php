@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Package\Repository;
 
 use Doctrine\Instantiator\Instantiator;
-use Ixocreate\Application\ConfiguratorInterface;
-use Ixocreate\Application\ServiceRegistryInterface;
+use Ixocreate\Application\Service\Configurator\ConfiguratorInterface;
+use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
 use Ixocreate\Database\Package\Repository\Factory\RepositorySubManager;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
-use Ixocreate\ServiceManager\SubManager\SubManagerConfigurator;
+use Ixocreate\Application\Service\SubManagerConfigurator;
 
 final class RepositoryConfigurator implements ConfiguratorInterface
 {

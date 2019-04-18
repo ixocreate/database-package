@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Package\Connection\Factory;
 
-use Ixocreate\Config\Config;
+use Ixocreate\Application\Config\Config;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Database\Package\Connection\ConnectionConfig;

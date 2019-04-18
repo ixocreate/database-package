@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Repository;
 
 use Doctrine\Instantiator\Instantiator;
-use Ixocreate\Application\ConfiguratorInterface;
+use Ixocreate\Application\Configurator\ConfiguratorInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Application\Service\SubManagerConfigurator;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;

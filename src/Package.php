@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace Ixocreate\Database;
 
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Database\Repository\RepositoryBootstrapItem;
 use Ixocreate\Database\Type\Strategy\FileStrategy;

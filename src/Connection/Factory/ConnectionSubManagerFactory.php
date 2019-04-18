@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Connection\Factory;
+namespace Ixocreate\Database\Package\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerFactoryInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
-use Ixocreate\Package\Database\Connection\ConnectionConfig;
+use Ixocreate\Database\Package\Connection\ConnectionConfig;
 use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 final class ConnectionSubManagerFactory implements SubManagerFactoryInterface

@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Migration\Factory;
+namespace Ixocreate\Database\Package\Migration\Factory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Package\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\Package\Connection\Factory\ConnectionSubManager;
 
 class MigrationConfigFactory implements FactoryInterface
 {

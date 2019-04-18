@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Type\Generator;
+namespace Ixocreate\Database\Package\Type\Generator;
 
 use Ixocreate\ServiceManager\NamedServiceInterface;
-use Ixocreate\Package\Database\Type\TypeConfig;
+use Ixocreate\Database\Package\Type\TypeConfig;
 
 final class FileWriter
 {

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Repository;
+namespace Ixocreate\Database\Package\Repository;
 
-use Ixocreate\Application\SerializableServiceInterface;
+use Ixocreate\Application\Service\SerializableServiceInterface;
 
 class EntityRepositoryMapping implements SerializableServiceInterface
 {

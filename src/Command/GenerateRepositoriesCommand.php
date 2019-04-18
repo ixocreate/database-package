@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Command;
+namespace Ixocreate\Database\Package\Command;
 
-use Ixocreate\Package\Database\Generator\RepositoryGenerator;
+use Ixocreate\Database\Package\Generator\RepositoryGenerator;
 
 /**
  * Class GenerateRepositoriesCommand
- * @package Ixocreate\Package\Database\Command
+ * @package Ixocreate\Database\Package\Command
  */
 class GenerateRepositoriesCommand extends AbstractGenerateCommand
 {

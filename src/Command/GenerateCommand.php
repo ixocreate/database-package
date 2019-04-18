@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Command;
+namespace Ixocreate\Database\Package\Command;
 
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 

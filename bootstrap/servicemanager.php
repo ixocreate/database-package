@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
-namespace Ixocreate\Package\Database;
+namespace Ixocreate\Database\Package;
 
-use Ixocreate\Package\Database\Connection\ConnectionConfig;
-use Ixocreate\Package\Database\Connection\Factory\ConnectionConfigFactory;
-use Ixocreate\Package\Database\Connection\Factory\ConnectionSubManager;
-use Ixocreate\Package\Database\Connection\Factory\ConnectionSubManagerFactory;
-use Ixocreate\Package\Database\EntityManager\Factory\EntityManagerSubManager;
-use Ixocreate\Package\Database\EntityManager\Factory\EntityManagerSubManagerFactory;
-use Ixocreate\Package\Database\Migration\Factory\MigrationConfigFactory;
-use Ixocreate\Package\Database\Repository\Factory\RepositorySubManager;
-use Ixocreate\Package\Database\Type\Factory\TypeConfigFactory;
-use Ixocreate\Package\Database\Type\TypeConfig;
+use Ixocreate\Database\Package\Connection\ConnectionConfig;
+use Ixocreate\Database\Package\Connection\Factory\ConnectionConfigFactory;
+use Ixocreate\Database\Package\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\Package\Connection\Factory\ConnectionSubManagerFactory;
+use Ixocreate\Database\Package\EntityManager\Factory\EntityManagerSubManager;
+use Ixocreate\Database\Package\EntityManager\Factory\EntityManagerSubManagerFactory;
+use Ixocreate\Database\Package\Migration\Factory\MigrationConfigFactory;
+use Ixocreate\Database\Package\Repository\Factory\RepositorySubManager;
+use Ixocreate\Database\Package\Type\Factory\TypeConfigFactory;
+use Ixocreate\Database\Package\Type\TypeConfig;
 use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
 

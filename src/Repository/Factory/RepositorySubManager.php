@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database\Repository\Factory;
+namespace Ixocreate\Database\Package\Repository\Factory;
 
 use Ixocreate\ServiceManager\SubManager\SubManager;
 

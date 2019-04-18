@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Database;
+namespace Ixocreate\Database\Package;
 
 use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\ServiceRegistryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Package\Database\BootstrapItem\RepositoryBootstrapItem;
-use Ixocreate\Package\Database\Type\Strategy\FileStrategy;
-use Ixocreate\Package\Database\Type\Strategy\RuntimeStrategy;
-use Ixocreate\Package\Database\Type\TypeConfig;
+use Ixocreate\Database\Package\Bootstrap\RepositoryBootstrapItem;
+use Ixocreate\Database\Package\Type\Strategy\FileStrategy;
+use Ixocreate\Database\Package\Type\Strategy\RuntimeStrategy;
+use Ixocreate\Database\Package\Type\TypeConfig;
 
 final class Package implements PackageInterface
 {

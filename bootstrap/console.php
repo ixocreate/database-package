@@ -6,7 +6,6 @@ use Ixocreate\Application\Console\ConsoleConfigurator;
 use Ixocreate\Database\Command\GenerateClassesCommand;
 use Ixocreate\Database\Command\GenerateCommand;
 use Ixocreate\Database\Command\GenerateEntitiesCommand;
-use Ixocreate\Database\Command\GenerateMetadataCommand;
 use Ixocreate\Database\Command\GenerateRepositoriesCommand;
 use Ixocreate\Database\Command\MigrateCommand;
 use Ixocreate\Database\Command\StatusCommand;

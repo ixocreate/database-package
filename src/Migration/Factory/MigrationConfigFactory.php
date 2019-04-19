@@ -11,9 +11,9 @@ namespace Ixocreate\Database\Migration\Factory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 
 class MigrationConfigFactory implements FactoryInterface
 {

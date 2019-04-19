@@ -10,14 +10,14 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Application\Console\CommandInterface;
-use Ixocreate\Database\Generator\GeneratorInterface;
-use Ixocreate\Type\TypeSubManager;
-use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use Doctrine\ORM\Tools\DisconnectedClassMetadataFactory;
+use Ixocreate\Application\Console\CommandInterface;
+use Ixocreate\Database\Generator\GeneratorInterface;
+use Ixocreate\Type\TypeSubManager;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

@@ -24,7 +24,7 @@ class MigrationConfigFactory implements FactoryInterface
 
         $migrationConfig = new Configuration($connection);
         $migrationConfig->setMigrationsDirectory('resources/migrations');
-        $migrationConfig->setMigrationsNamespace('IxocreateMigration');
+        $migrationConfig->setMigrationsNamespace('Ixocreate\Migration');
         $migrationConfig->setMigrationsTableName('database_migrations');
 
         $migrationConfig->setName('Ixocreate Database Migrations');

@@ -15,7 +15,7 @@
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.6",
         "doctrine/orm": "^2.6",
-        "ixocreate/application": "dev-consolidate"
+        "ixocreate/application": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^1.0",

@@ -1,7 +1,16 @@
 <?php
+/**
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
+ * @license MIT License
+ */
+
 declare(strict_types=1);
+
 namespace Ixocreate\Database;
 
+use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
+use Ixocreate\Application\Service\ServiceManagerConfigurator;
 use Ixocreate\Database\Connection\ConnectionConfig;
 use Ixocreate\Database\Connection\Factory\ConnectionConfigFactory;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
@@ -12,8 +21,6 @@ use Ixocreate\Database\Migration\Factory\MigrationConfigFactory;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\Database\Type\Factory\TypeConfigFactory;
 use Ixocreate\Database\Type\TypeConfig;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
-use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
 
 /** @var ServiceManagerConfigurator $serviceManager */
 $serviceManager->addFactory(ConnectionConfig::class, ConnectionConfigFactory::class);

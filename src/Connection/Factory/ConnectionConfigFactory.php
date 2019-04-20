@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Connection\Factory;
 
 use Ixocreate\Application\Config\Config;
+use Ixocreate\Database\Connection\ConnectionConfig;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\Connection\ConnectionConfig;
 
 final class ConnectionConfigFactory implements FactoryInterface
 {

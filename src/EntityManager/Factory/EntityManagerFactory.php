@@ -15,13 +15,13 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\ServiceManager\FactoryInterface;
-use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\Database\ORM\Mapping\EntityMapper;
 use Ixocreate\Database\Repository\EntityRepositoryMapping;
 use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 final class EntityManagerFactory implements FactoryInterface
 {

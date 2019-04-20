@@ -11,9 +11,9 @@ namespace Ixocreate\Database\Migration\Factory;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
-use Ixocreate\Contract\ServiceManager\FactoryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 class MigrationConfigFactory implements FactoryInterface
 {
@@ -24,7 +24,7 @@ class MigrationConfigFactory implements FactoryInterface
 
         $migrationConfig = new Configuration($connection);
         $migrationConfig->setMigrationsDirectory('resources/migrations');
-        $migrationConfig->setMigrationsNamespace('IxocreateMigration');
+        $migrationConfig->setMigrationsNamespace('Ixocreate\Migration');
         $migrationConfig->setMigrationsTableName('database_migrations');
 
         $migrationConfig->setName('Ixocreate Database Migrations');

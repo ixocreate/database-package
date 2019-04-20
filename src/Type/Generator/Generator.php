@@ -17,8 +17,8 @@ namespace Ixocreate\GeneratedDatabaseType;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Ixocreate\Entity\Type\Type;
-use Ixocreate\Contract\Type\TypeInterface;
-use Ixocreate\Contract\Type\DatabaseTypeInterface;
+use Ixocreate\Type\TypeInterface;
+use Ixocreate\Type\DatabaseTypeInterface;
 use %s as BaseType;
 
 final class %s extends BaseType

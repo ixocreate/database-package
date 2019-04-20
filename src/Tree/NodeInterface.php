@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Tree;
 
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\EntityInterface;
 
 interface NodeInterface extends EntityInterface
 {

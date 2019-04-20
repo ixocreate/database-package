@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Repository;
 
 use Doctrine\Instantiator\Instantiator;
-use Ixocreate\Contract\Application\ConfiguratorInterface;
-use Ixocreate\Contract\Application\ServiceRegistryInterface;
+use Ixocreate\Application\Configurator\ConfiguratorInterface;
+use Ixocreate\Application\Service\ServiceRegistryInterface;
+use Ixocreate\Application\Service\SubManagerConfigurator;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
-use Ixocreate\ServiceManager\SubManager\SubManagerConfigurator;
 
 final class RepositoryConfigurator implements ConfiguratorInterface
 {
@@ -28,7 +28,10 @@ final class RepositoryConfigurator implements ConfiguratorInterface
      */
     public function __construct()
     {
-        $this->subManagerConfigurator = new SubManagerConfigurator(RepositorySubManager::class, RepositoryInterface::class);
+        $this->subManagerConfigurator = new SubManagerConfigurator(
+            RepositorySubManager::class,
+            RepositoryInterface::class
+        );
     }
 
     /**

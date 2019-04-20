@@ -18,15 +18,16 @@ class GenerateCommand extends ProxyCommand
         $this->command = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
         $this->command->setMigrationConfiguration($migrationConfig);
         $this->command->setName(self::getCommandName());
+        $this->command->setAliases(['make:migration']);
 
         $class = new \ReflectionClass($this->command);
         $property = $class->getProperty('_template');
         $property->setAccessible(true);
         $property->setValue(
             \str_replace(
-            "/**\n * Auto-generated Migration: Please modify to your needs!\n */\n",
-            '',
-            $property->getValue()
+                "/**\n * Auto-generated Migration: Please modify to your needs!\n */\n",
+                '',
+                $property->getValue()
         )
         );
 

@@ -10,20 +10,18 @@ declare(strict_types=1);
 namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
+use Doctrine\Common\Cache\PhpFileCache;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
-use Doctrine\ORM\Repository\RepositoryFactory;
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\Contract\ServiceManager\FactoryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\Database\ORM\Mapping\EntityMapper;
 use Ixocreate\Database\Repository\EntityRepositoryMapping;
 use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 final class EntityManagerFactory implements FactoryInterface
 {
@@ -38,49 +36,38 @@ final class EntityManagerFactory implements FactoryInterface
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
-        $configuration = new Configuration();
-        $configuration->setMetadataDriverImpl($this->getMetaDriverImpl($container));
-        $configuration->setMetadataCacheImpl($this->getMetaCacheImpl($container));
-        $configuration->setRepositoryFactory($this->getRepositoryFactory($container));
-        $configuration->setProxyDir($container->get(ApplicationConfig::class)->getPersistCacheDirectory() . 'doctrine_proxy/');
-        $configuration->setProxyNamespace('DoctrineProxies');
-
-        //TODO change for production
-        $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_EVAL);
-
         return EntityManager::create(
             $container->get(ConnectionSubManager::class)->get($requestedName),
-            $configuration
+            $this->createConfiguration($container)
         );
     }
 
-    private function getMetaCacheImpl(ServiceManagerInterface $container) : Cache
+    private function createConfiguration(ServiceManagerInterface $container): Configuration
     {
-        return new ArrayCache();
-    }
+        /** @var ApplicationConfig $applicationConfig */
+        $applicationConfig = $container->get(ApplicationConfig::class);
 
-    /**
-     * @param ServiceManagerInterface $container
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     * @return MappingDriver
-     */
-    private function getMetaDriverImpl(ServiceManagerInterface $container) : MappingDriver
-    {
-        return new EntityMapper($container->get(RepositorySubManager::class), $container->get(EntityRepositoryMapping::class));
-    }
+        $configuration = new Configuration();
+        $configuration->setAutoGenerateProxyClasses(ProxyFactory::AUTOGENERATE_NEVER);
+        $configuration->setProxyDir(\sys_get_temp_dir());
+        $configuration->setProxyNamespace('Ixocreate\DoctrineProxy');
 
-    /**
-     * @param ServiceManagerInterface $container
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     * @return RepositoryFactory
-     */
-    private function getRepositoryFactory(ServiceManagerInterface $container) : RepositoryFactory
-    {
-        return new DoctrineRepositoryFactory(
-            $container->get(RepositorySubManager::class),
-            $container->get(EntityRepositoryMapping::class)
+        $configuration->setMetadataDriverImpl(
+            new EntityMapper($container->get(RepositorySubManager::class), $container->get(EntityRepositoryMapping::class))
         );
+
+        $configuration->setRepositoryFactory(
+            new DoctrineRepositoryFactory($container->get(RepositorySubManager::class), $container->get(EntityRepositoryMapping::class))
+        );
+
+        $configuration->setMetadataCacheImpl(new PhpFileCache(
+            $applicationConfig->getPersistCacheDirectory() . 'database/doctrine_metadata'
+        ));
+
+        if ($applicationConfig->isDevelopment()) {
+            $configuration->setMetadataCacheImpl(new ArrayCache());
+        }
+
+        return $configuration;
     }
 }

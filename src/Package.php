@@ -9,13 +9,15 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database;
 
-use Ixocreate\Contract\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Contract\Application\PackageInterface;
-use Ixocreate\Contract\Application\ServiceRegistryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Database\BootstrapItem\RepositoryBootstrapItem;
+use Ixocreate\Application\ApplicationConfig;
+use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\Package\PackageInterface;
+use Ixocreate\Application\Service\ServiceRegistryInterface;
+use Ixocreate\Database\Repository\RepositoryBootstrapItem;
+use Ixocreate\Database\Type\Strategy\FileStrategy;
 use Ixocreate\Database\Type\Strategy\RuntimeStrategy;
 use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 final class Package implements PackageInterface
 {
@@ -55,10 +57,19 @@ final class Package implements PackageInterface
 
     /**
      * @param ServiceManagerInterface $serviceManager
+     * @throws \Exception
      */
     public function boot(ServiceManagerInterface $serviceManager): void
     {
-        (new RuntimeStrategy())->generate($serviceManager->get(TypeConfig::class));
+        /** @var ApplicationConfig $applicationConfig */
+        $applicationConfig = $serviceManager->get(ApplicationConfig::class);
+        if ($applicationConfig->isDevelopment()) {
+            (new RuntimeStrategy())->generate($serviceManager->get(TypeConfig::class));
+
+            return;
+        }
+
+        (new FileStrategy())->load($applicationConfig->getPersistCacheDirectory());
     }
 
     /**

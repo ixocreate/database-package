@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Type\Factory;
 
-use Ixocreate\Contract\ServiceManager\FactoryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Contract\Type\DatabaseTypeInterface;
 use Ixocreate\Database\Type\TypeConfig;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\ServiceManager\FactoryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Type\DatabaseTypeInterface;
+use Ixocreate\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {

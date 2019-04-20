@@ -11,8 +11,9 @@ namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\EntityInterface;
 
 interface RepositoryInterface extends ObjectRepository, Selectable
 {
@@ -31,4 +32,6 @@ interface RepositoryInterface extends ObjectRepository, Selectable
     public function createSelectQueryBuilder($alias, $indexBy = null): QueryBuilder;
 
     public function createQueryBuilder(): QueryBuilder;
+
+    public function createQuery(string $dql): Query;
 }

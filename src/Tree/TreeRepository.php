@@ -11,7 +11,7 @@ namespace Ixocreate\Database\Tree;
 
 use Ixocreate\Database\Exception\InvalidArgumentException;
 use Ixocreate\Database\Repository\AbstractRepository;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\EntityInterface;
 
 abstract class TreeRepository extends AbstractRepository
 {

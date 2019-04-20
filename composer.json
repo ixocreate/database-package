@@ -1,6 +1,6 @@
 {
     "name": "ixocreate/database-package",
-    "description": "Database and Doctrine integration for IXOCREATE",
+    "description": "IXOCREATE Database Package",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -15,14 +15,13 @@
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.6",
         "doctrine/orm": "^2.6",
-        "ixocreate/contract": "=1.0.0-alpha2",
-        "ixocreate/entity": "=1.0.0-alpha2",
-        "ixocreate/servicemanager": "=1.0.0-alpha2",
-        "ixocreate/application": "=1.0.0-alpha2"
+        "ixocreate/application": "^0.1",
+        "ixocreate/entity-package": "^0.1"
     },
     "require-dev": {
-        "ixocreate/coding-standard": "^1.0.1",
-        "phpunit/phpunit": "^6.0.6"
+        "ixocreate/coding-standard": "^2.0",
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,8 +30,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "IxocreateMisc\\Database\\": "tests/misc/",
-            "IxocreateTest\\Database\\": "tests/src/"
+            "Ixocreate\\Misc\\Database\\": "tests/misc/",
+            "Ixocreate\\Test\\Database\\": "tests/src/"
         }
     },
     "scripts": {

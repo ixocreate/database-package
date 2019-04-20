@@ -13,8 +13,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\EntityInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {
@@ -51,6 +52,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findAll()
     {
+        /**
+         * TODO: return collection
+         */
         return $this->getRepository()->findAll();
     }
 
@@ -63,6 +67,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
+        /**
+         * TODO: return collection
+         */
         return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
@@ -94,6 +101,9 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function matching(Criteria $criteria)
     {
+        /**
+         * TODO: return collection (not doctrine collection?)
+         */
         return $this->getRepository()->matching($criteria);
     }
 
@@ -222,5 +232,14 @@ abstract class AbstractRepository implements RepositoryInterface
     public function createQueryBuilder(): QueryBuilder
     {
         return $this->entityManager->createQueryBuilder();
+    }
+
+    /**
+     * @param string $dql
+     * @return Query
+     */
+    public function createQuery(string $dql): Query
+    {
+        return $this->entityManager->createQuery($dql);
     }
 }

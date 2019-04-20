@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Type\Strategy;
 
 use Doctrine\DBAL\Types\Type;
-use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
 use Ixocreate\Database\Type\Generator\Generator;
 use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\ServiceManager\NamedServiceInterface;
 
 final class RuntimeStrategy
 {

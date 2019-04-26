@@ -65,7 +65,6 @@ final class Package implements PackageInterface
         $applicationConfig = $serviceManager->get(ApplicationConfig::class);
         if ($applicationConfig->isDevelopment()) {
             (new RuntimeStrategy())->generate($serviceManager->get(TypeConfig::class));
-
             return;
         }
 

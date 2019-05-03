@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Type\Factory;
 
 use Ixocreate\Database\Type\TypeConfig;
+use Ixocreate\Schema\Type\DatabaseTypeInterface;
+use Ixocreate\Schema\Type\TypeSubManager;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Type\DatabaseTypeInterface;
-use Ixocreate\Type\TypeSubManager;
 
 final class TypeConfigFactory implements FactoryInterface
 {
@@ -25,11 +25,11 @@ final class TypeConfigFactory implements FactoryInterface
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
-        /** @var TypeSubManager $typeSubmanager */
-        $typeSubmanager = $container->get(TypeSubManager::class);
+        /** @var TypeSubManager $typeSubManager */
+        $typeSubManager = $container->get(TypeSubManager::class);
 
         $types = [];
-        foreach ($typeSubmanager->getServices() as $service) {
+        foreach ($typeSubManager->getServices() as $service) {
             if (!\is_subclass_of($service, DatabaseTypeInterface::class, true)) {
                 continue;
             }

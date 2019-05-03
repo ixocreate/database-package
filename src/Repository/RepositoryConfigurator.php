@@ -62,6 +62,7 @@ final class RepositoryConfigurator implements ConfiguratorInterface
 
     /**
      * @param ServiceRegistryInterface $serviceRegistry
+     * @throws \Doctrine\Instantiator\Exception\ExceptionInterface
      * @return void
      */
     public function registerService(ServiceRegistryInterface $serviceRegistry): void

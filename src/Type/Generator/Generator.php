@@ -16,9 +16,9 @@ final class Generator
 namespace Ixocreate\GeneratedDatabaseType;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Ixocreate\Entity\Type\Type;
-use Ixocreate\Type\TypeInterface;
-use Ixocreate\Type\DatabaseTypeInterface;
+use Ixocreate\Schema\Type\Type;
+use Ixocreate\Schema\Type\TypeInterface;
+use Ixocreate\Schema\Type\DatabaseTypeInterface;
 use %s as BaseType;
 
 final class %s extends BaseType

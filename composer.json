@@ -8,15 +8,13 @@
             "name": "IXOCREATE"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^7.1",
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.6",
         "doctrine/orm": "^2.6",
-        "ixocreate/application": "^0.1",
-        "ixocreate/entity-package": "^0.1"
+        "ixocreate/application": "^0.2",
+        "ixocreate/entity-package": "^0.2"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
@@ -33,6 +31,9 @@
             "Ixocreate\\Misc\\Database\\": "tests/misc/",
             "Ixocreate\\Test\\Database\\": "tests/src/"
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "scripts": {
         "fix-cs": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config vendor/ixocreate/coding-standard/.php_cs"

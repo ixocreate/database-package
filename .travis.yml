@@ -15,7 +15,7 @@ install:
 
 script:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; else vendor/bin/phpunit; fi
-  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`; fi
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --diff --dry-run --using-cache=no; fi
 
 after_success:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/php-coveralls -v; fi
@@ -23,4 +23,7 @@ after_success:
 notifications:
   email: false
   slack:
-    secure: "Qgk1D83PTbg1KfGT7GfHQ0gAMwsJTRmgeCvTdwW6rRFMdAr6gJh5YoHSmUHerONwxWVKaR5xQOEz9Ujs8mEXqnzxAMnK5BEedngFb16kMsBj6jpJtSZIgs5vTqnRrS+C1e/6k4uByUS+cnPCXngh6Rkmi1BSAsVFezRGHSZGWsDYgdN5iV5SS3rW1HEFqQ9V9N1hXXYLVqz8myN/HlCyDwsTmYyyHtWFT6QNH5ctooXQbNeZUjxjdk0GytRmehFYRjxJ+DXERbBO1rWGnrLzv+7ja5DsgnMgFO+3OnSWcTpGPTf5xGji01L46uLoxeCGnZ6210epBDljSIjC89g6VOJfju06Ml+qpsFjp5xMq3XYpwlY2igdCg8YwKBgrDU50u63733cZeQTorUzhf9T4TOftHY3Ih/earVKivqqw2eHBwDsT4s4QcwnnMWVro51cIvHoTZf0A9V/G415cgZ6Rhjtk7yfT3ZQsS59X5Zeki9kXRFZclsxBg8bGGX5wUd6HRjT86qgaK/OCMCWiJqJ2Wd1ANURGCdwhpto6YJQAXtEtcCzB2ltCdnVCMzQhCUR0R0UBZaIVRNGFwRonvxLJZYbiz/zu16urJ6z9FIpwe0jEDI45FrcdL1ShoGc/CTra5DuyBVzJpj6wHt6HdU86kvGcYgS+eQfWJXXLmb/ZE="
+    on_success: change
+    on_failure: always
+    rooms:
+      secure: "n/qoy4OysUDDZn+8C5PgccQFCq2iUrktEtESu+kq7NK40Z4xQX5885qd42k9fjt1n6ZsGO6JLe1tHecfmDhcoa/IsXB2JEdwB8j1rupCl2ubVdJ9bGcz0hLn75K9RmqBPhA82pco2tzlfq5L5gT83R6YGfAIsxHgCOayLQikBITQJURXrZik6NvFsJfRROhCqerAVJ8KDj5p3fOkkXMJIY+jmCbCE2Qu0Cj6T+aO9QSYpQ4hGd202usWvNdWnH04e1OIM0bocF1c437dAYLr5lEY71idxN/0VGVxBzCr5gYxfbtkJL4cpQw7Bh27HAGAzy6St1yZzuoK83xidCetjltdBLLYZeSoh1KiUNLJNQMcWF5oJfqfmgZzfRMBhrJTpb6zjl5YJDG6xg9AonMs3++WHB37KTZsIuskfX/siBnVpN2qSazaKQxowIRIt0V+zBAvHGq2nFP/a13Z9/3szbzZ9hrVPLs3JilnWpfbFlaKs9tno+Ie97DOH9SM6QMtBE45veAyWntWgPNzSSqJyrvTdHVx6ChxM96lvxCe3sVJ173y1DmznC9O1oVldJR3L80wQwe1Oo3uIOn2xAiGRs5UbS8qUEmgWZPfn9xGoAkT3xmfS3n9t1WvwB9r6OM4QfQ7soPoQsAzeo59thC4K0wNf1zBZRhV3/84GqntOe0="

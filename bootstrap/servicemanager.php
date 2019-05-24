@@ -23,7 +23,6 @@ use Ixocreate\Database\Type\Factory\TypeConfigFactory;
 use Ixocreate\Database\Type\TypeConfig;
 
 /** @var ServiceManagerConfigurator $serviceManager */
-$serviceManager->addFactory(ConnectionConfig::class, ConnectionConfigFactory::class);
 $serviceManager->addFactory(MigrationConfiguration::class, MigrationConfigFactory::class);
 $serviceManager->addFactory(TypeConfig::class, TypeConfigFactory::class);
 $serviceManager->addSubManager(ConnectionSubManager::class, ConnectionSubManagerFactory::class);

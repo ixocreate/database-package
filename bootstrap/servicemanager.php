@@ -11,8 +11,6 @@ namespace Ixocreate\Database;
 
 use Doctrine\DBAL\Migrations\Configuration\Configuration as MigrationConfiguration;
 use Ixocreate\Application\Service\ServiceManagerConfigurator;
-use Ixocreate\Database\Connection\ConnectionConfig;
-use Ixocreate\Database\Connection\Factory\ConnectionConfigFactory;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManagerFactory;
 use Ixocreate\Database\EntityManager\Factory\EntityManagerSubManager;

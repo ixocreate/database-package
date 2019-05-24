@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
+ * @license MIT License
+ */
+
 declare(strict_types=1);
 
 namespace Ixocreate\Test\Database\Connection;
@@ -12,7 +18,7 @@ class ConnectionConfigTest extends TestCase
     public function testConnections()
     {
         $options = [
-            'name' => 'IXOCREATE'
+            'name' => 'IXOCREATE',
         ];
 
         $connectionConfig = new ConnectionConfig(['ixocreate' => $options]);
@@ -32,7 +38,7 @@ class ConnectionConfigTest extends TestCase
     public function testSerialize()
     {
         $options = [
-            'name' => 'IXOCREATE'
+            'name' => 'IXOCREATE',
         ];
 
         $connectionConfig = new ConnectionConfig(['ixocreate' => $options]);

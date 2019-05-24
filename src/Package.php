@@ -42,7 +42,7 @@ final class Package implements PackageInterface
     {
         return [
             RepositoryBootstrapItem::class,
-            DatabaseBootstrapItem::class
+            DatabaseBootstrapItem::class,
         ];
     }
 

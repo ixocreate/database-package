@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
+ * @license MIT License
+ */
+
 declare(strict_types=1);
 
 namespace Ixocreate\Database;
@@ -8,7 +14,6 @@ use Ixocreate\Application\Configurator\ConfiguratorInterface;
 
 final class DatabaseBootstrapItem implements BootstrapItemInterface
 {
-
     /**
      * @return mixed
      */

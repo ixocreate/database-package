@@ -29,7 +29,7 @@ class DatabaseConfiguratorTest extends TestCase
         });
 
         $options = [
-            'name' => 'IXOCREATE'
+            'name' => 'IXOCREATE',
         ];
         $optionMock = $this->createMock(ConnectionOptionInterface::class);
         $optionMock->method('toArray')->willReturn($options);

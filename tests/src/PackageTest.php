@@ -13,7 +13,6 @@ use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\Application\ApplicationConfigurator;
 use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
-use Ixocreate\Database\ConfigProvider;
 use Ixocreate\Database\DatabaseBootstrapItem;
 use Ixocreate\Database\Package;
 use Ixocreate\Database\Repository\RepositoryBootstrapItem;
@@ -56,7 +55,7 @@ class PackageTest extends TestCase
 
         $this->assertSame([
             RepositoryBootstrapItem::class,
-            DatabaseBootstrapItem::class
+            DatabaseBootstrapItem::class,
         ], $package->getBootstrapItems());
         $this->assertNull($package->getConfigDirectory());
         $this->assertNull($package->getConfigProvider());

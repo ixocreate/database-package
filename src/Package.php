@@ -42,6 +42,7 @@ final class Package implements PackageInterface
     {
         return [
             RepositoryBootstrapItem::class,
+            DatabaseBootstrapItem::class,
         ];
     }
 
@@ -50,9 +51,7 @@ final class Package implements PackageInterface
      */
     public function getConfigProvider(): ?array
     {
-        return [
-            ConfigProvider::class,
-        ];
+        return null;
     }
 
     /**

@@ -9,9 +9,10 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Connection;
 
+use Ixocreate\Application\Service\SerializableServiceInterface;
 use Ixocreate\Database\Exception\InvalidArgumentException;
 
-final class ConnectionConfig
+final class ConnectionConfig implements SerializableServiceInterface
 {
     /**
      * @var array
@@ -47,5 +48,21 @@ final class ConnectionConfig
         }
 
         return $this->config[$name];
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return \serialize($this->config);
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
+        $this->config = \unserialize($serialized);
     }
 }

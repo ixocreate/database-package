@@ -15,7 +15,7 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Proxy\ProxyFactory;
 use Ixocreate\Application\ApplicationConfig;
-use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Database\Connection\ConnectionManager;
 use Ixocreate\Database\ORM\Mapping\EntityMapper;
 use Ixocreate\Database\Repository\EntityRepositoryMapping;
 use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
@@ -37,7 +37,7 @@ final class EntityManagerFactory implements FactoryInterface
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
         return EntityManager::create(
-            $container->get(ConnectionSubManager::class)->get($requestedName),
+            $container->get(ConnectionManager::class)->get($requestedName),
             $this->createConfiguration($container)
         );
     }

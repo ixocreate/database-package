@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Connection\Factory;
+namespace Ixocreate\Database\Connection;
 
 use Ixocreate\ServiceManager\SubManager\SubManager;
 
-final class ConnectionSubManager extends SubManager
+final class ConnectionManager extends SubManager
 {
 }

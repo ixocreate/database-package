@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace Ixocreate\Database\EntityManager\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
-use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
+use Ixocreate\Application\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Database\Connection\ConnectionManager;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerFactoryInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
@@ -28,13 +28,12 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
      */
     public function __invoke(
         ServiceManagerInterface $container,
-        $requestedName,
+        string $requestedName,
         array $options = null
     ): SubManagerInterface {
         $connections = \array_keys(
-            $container->get(ConnectionSubManager::class)->getServiceManagerConfig()->getFactories()
+            $container->get(ConnectionManager::class)->getServiceManagerConfig()->getFactories()
         );
-
         $serviceManagerConfigurator = new ServiceManagerConfigurator();
 
         foreach ($connections as $connectionName) {
@@ -44,6 +43,7 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
         return new EntityManagerSubManager(
             $container,
             $serviceManagerConfigurator->getServiceManagerConfig(),
+            [],
             EntityManagerInterface::class
         );
     }

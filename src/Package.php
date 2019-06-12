@@ -11,6 +11,7 @@ namespace Ixocreate\Database;
 
 use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\Package\BootInterface;
 use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Database\Repository\RepositoryBootstrapItem;
@@ -19,22 +20,8 @@ use Ixocreate\Database\Type\Strategy\RuntimeStrategy;
 use Ixocreate\Database\Type\TypeConfig;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 
-final class Package implements PackageInterface
+final class Package implements PackageInterface, BootInterface
 {
-    /**
-     * @param ConfiguratorRegistryInterface $configuratorRegistry
-     */
-    public function configure(ConfiguratorRegistryInterface $configuratorRegistry): void
-    {
-    }
-
-    /**
-     * @param ServiceRegistryInterface $serviceRegistry
-     */
-    public function addServices(ServiceRegistryInterface $serviceRegistry): void
-    {
-    }
-
     /**
      * @return array|null
      */
@@ -44,14 +31,6 @@ final class Package implements PackageInterface
             RepositoryBootstrapItem::class,
             DatabaseBootstrapItem::class,
         ];
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getConfigProvider(): ?array
-    {
-        return null;
     }
 
     /**
@@ -76,14 +55,6 @@ final class Package implements PackageInterface
     public function getBootstrapDirectory(): ?string
     {
         return __DIR__ . '/../bootstrap';
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getConfigDirectory(): ?string
-    {
-        return null;
     }
 
     /**

@@ -12,7 +12,7 @@ namespace Ixocreate\Database\Repository;
 use Doctrine\Instantiator\Instantiator;
 use Ixocreate\Application\Configurator\ConfiguratorInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
-use Ixocreate\Application\Service\SubManagerConfigurator;
+use Ixocreate\Application\ServiceManager\SubManagerConfigurator;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 

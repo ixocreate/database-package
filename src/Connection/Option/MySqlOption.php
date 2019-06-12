@@ -47,6 +47,28 @@ final class MySqlOption implements ConnectionOptionInterface
     private $charset = null;
 
     /**
+     * MySqlOption constructor.
+     * @param string|null $user
+     * @param string|null $password
+     * @param string|null $host
+     * @param int|null $port
+     * @param string|null $dbname
+     * @param string|null $unixSocket
+     * @param string|null $charset
+     */
+    public function __construct(string $dbname , string $user = 'root', string $password = '', ?string $host = null, ?int $port = null,  ?string $unixSocket = null, string $charset = 'utf8mb4')
+    {
+        $this->dbname = $dbname;
+        $this->user = $user;
+        $this->password = $password;
+        $this->host = $host;
+        $this->port = $port;
+        $this->unixSocket = $unixSocket;
+        $this->charset = $charset;
+    }
+
+
+    /**
      * @param string $user
      * @return MySqlOption
      */

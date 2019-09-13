@@ -11,6 +11,7 @@ namespace Ixocreate\Database\Repository\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Repository\RepositoryFactory;
+use Ixocreate\Database\Exception\RepositoryException;
 use Ixocreate\Database\Repository\EntityRepositoryMapping;
 
 final class DoctrineRepositoryFactory implements RepositoryFactory
@@ -37,15 +38,15 @@ final class DoctrineRepositoryFactory implements RepositoryFactory
     }
 
     /**
-     * Gets the repository for an entity class.
-     *
-     * @param \Doctrine\ORM\EntityManagerInterface $entityManager the EntityManager instance
-     * @param string $entityName the name of the entity
-     *
-     * @return \Doctrine\Common\Persistence\ObjectRepository
+     * @inheritDoc
+     * @throws RepositoryException
      */
     public function getRepository(EntityManagerInterface $entityManager, $entityName)
     {
-        return $this->repositorySubManager->get($this->entityRepositoryMapping->getRepositoryByEntity($entityName));
+        $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($entityName);
+        if ($repositoryName === null) {
+            throw new RepositoryException('repository for ' . $entityName . ' not found');
+        }
+        return $this->repositorySubManager->get($repositoryName);
     }
 }

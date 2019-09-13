@@ -53,7 +53,7 @@ final class EntityManagerFactory implements FactoryInterface
         $configuration->setProxyNamespace('Ixocreate\DoctrineProxy');
 
         $configuration->setMetadataDriverImpl(
-            new EntityMapper($container->get(RepositorySubManager::class), $container->get(EntityRepositoryMapping::class))
+            new EntityMapper($container->get(EntityRepositoryMapping::class))
         );
 
         $configuration->setRepositoryFactory(

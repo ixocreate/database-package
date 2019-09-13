@@ -11,21 +11,13 @@ namespace Ixocreate\Database\ORM\Mapping;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
-use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Doctrine\ORM\Mapping\MappingException;
 use Ixocreate\Database\DatabaseEntityInterface;
 use Ixocreate\Database\Repository\EntityRepositoryMapping;
-use Ixocreate\Database\Repository\Factory\RepositorySubManager;
-use Ixocreate\Database\Repository\RepositoryInterface;
-use Ixocreate\Entity\EntityInterface;
 
 final class EntityMapper implements MappingDriver
 {
-    /**
-     * @var RepositorySubManager
-     */
-    private $repositorySubManager;
-
     /**
      * @var EntityRepositoryMapping
      */
@@ -33,35 +25,21 @@ final class EntityMapper implements MappingDriver
 
     /**
      * EntityMapper constructor.
-     * @param RepositorySubManager $repositorySubManager
      * @param EntityRepositoryMapping $entityRepositoryMapping
      */
-    public function __construct(RepositorySubManager $repositorySubManager, EntityRepositoryMapping $entityRepositoryMapping)
+    public function __construct(EntityRepositoryMapping $entityRepositoryMapping)
     {
-        $this->repositorySubManager = $repositorySubManager;
         $this->entityRepositoryMapping = $entityRepositoryMapping;
     }
 
     /**
-     * Loads the metadata for the specified class into the provided container.
-     *
-     * @param string $className
-     * @param ClassMetadata $metadata
-     *
-     * @return void
+     * @inheritDoc
+     * @throws MappingException
      */
     public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
-        if (!\in_array(DatabaseEntityInterface::class, \class_implements($className))) {
-            $repositoryName = $this->entityRepositoryMapping->getRepositoryByEntity($className);
-            $instantiator = new Instantiator();
-
-            /** @var RepositoryInterface $repository */
-            $repository = $instantiator->instantiate($repositoryName);
-            $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
-            $repository->loadMetadata($classMetaDataBuilder);
-
-            return;
+        if (!\is_subclass_of($className, DatabaseEntityInterface::class)) {
+            throw new MappingException('entity ' . $className .  ' does not implement ' . DatabaseEntityInterface::class);
         }
 
         $classMetaDataBuilder = new ClassMetadataBuilder($metadata);
@@ -88,21 +66,14 @@ final class EntityMapper implements MappingDriver
      */
     public function isTransient($className)
     {
-        if (!\class_exists($className)) {
-            return false;
-        }
-
-        $instances = \class_implements($className);
+        $instances = @\class_implements($className);
         if ($instances === false) {
             return false;
         }
 
-        if (!\in_array(EntityInterface::class, $instances)) {
+        if (!\in_array(DatabaseEntityInterface::class, $instances)) {
             return false;
         }
-//        if (!\in_array(DatabaseEntityInterface::class, $instances)) {
-//            return false;
-//        }
 
         return true;
     }

@@ -34,20 +34,20 @@ class EntityRepositoryMapping implements SerializableServiceInterface
         return \array_values($this->mapping);
     }
 
-    public function getRepositoryByEntity(string $entity) : string
+    public function getRepositoryByEntity(string $entity) : ?string
     {
         if (!\array_key_exists($entity, $this->mapping)) {
-            //TODO Exception
+            return null;
         }
 
         return $this->mapping[$entity];
     }
 
-    public function getEntityByRepository(string $repository) : string
+    public function getEntityByRepository(string $repository) : ?string
     {
         $search = \array_search($repository, $this->mapping, true);
         if ($search === false) {
-            //TODO Exception
+            return null;
         }
 
         return $this->mapping[$search];

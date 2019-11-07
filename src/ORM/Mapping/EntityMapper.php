@@ -39,7 +39,7 @@ final class EntityMapper implements MappingDriver
     public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
         if (!\is_subclass_of($className, DatabaseEntityInterface::class)) {
-            throw new MappingException('entity ' . $className .  ' does not implement ' . DatabaseEntityInterface::class);
+            throw new MappingException('entity ' . $className . ' does not implement ' . DatabaseEntityInterface::class);
         }
 
         $classMetaDataBuilder = new ClassMetadataBuilder($metadata);

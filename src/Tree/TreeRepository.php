@@ -21,6 +21,8 @@ abstract class TreeRepository extends AbstractRepository
 
     private $parentIdParameterName;
 
+    private $levelParameterName;
+
     public function leftParameterName()
     {
         if ($this->leftParameterName === null) {
@@ -29,6 +31,7 @@ abstract class TreeRepository extends AbstractRepository
             $this->leftParameterName = $instance->leftParameterName();
             $this->rightParameterName = $instance->rightParameterName();
             $this->parentIdParameterName = $instance->parentIdParameterName();
+            $this->leftParameterName = $instance->levelParameterName();
         }
         return $this->leftParameterName;
     }
@@ -41,6 +44,7 @@ abstract class TreeRepository extends AbstractRepository
             $this->leftParameterName = $instance->leftParameterName();
             $this->rightParameterName = $instance->rightParameterName();
             $this->parentIdParameterName = $instance->parentIdParameterName();
+            $this->leftParameterName = $instance->levelParameterName();
         }
         return $this->rightParameterName;
     }
@@ -53,8 +57,22 @@ abstract class TreeRepository extends AbstractRepository
             $this->leftParameterName = $instance->leftParameterName();
             $this->rightParameterName = $instance->rightParameterName();
             $this->parentIdParameterName = $instance->parentIdParameterName();
+            $this->leftParameterName = $instance->levelParameterName();
         }
         return $this->parentIdParameterName;
+    }
+
+    public function levelParameterName()
+    {
+        if ($this->levelParameterName === null) {
+            $reflection = new \ReflectionClass($this->getEntityName());
+            $instance = $reflection->newInstanceWithoutConstructor();
+            $this->leftParameterName = $instance->leftParameterName();
+            $this->rightParameterName = $instance->rightParameterName();
+            $this->parentIdParameterName = $instance->parentIdParameterName();
+            $this->leftParameterName = $instance->levelParameterName();
+        }
+        return $this->levelParameterName;
     }
 
     /**
@@ -73,7 +91,9 @@ abstract class TreeRepository extends AbstractRepository
         }
 
         $right = $left + 1;
-        return $this->insertNode($node, $left, $right, null);
+        $node = $this->insertNode($node, $left, $right, null, 0);
+        $this->getEntityManager()->clear($this->getEntityName());
+        return $node;
     }
 
     /**
@@ -87,7 +107,9 @@ abstract class TreeRepository extends AbstractRepository
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        return $this->insertNode($node, $left, $right, $sibling->parentId());
+        $node = $this->insertNode($node, $left, $right, $sibling->parentId(), $sibling->level());
+        $this->getEntityManager()->clear($this->getEntityName());
+        return $node;
     }
 
     /**
@@ -101,7 +123,7 @@ abstract class TreeRepository extends AbstractRepository
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $node = $this->insertNode($node, $left, $right, $sibling->parentId());
+        $node = $this->insertNode($node, $left, $right, $sibling->parentId(), $sibling->level());
         $this->getEntityManager()->clear($this->getEntityName());
         return $node;
     }
@@ -117,7 +139,7 @@ abstract class TreeRepository extends AbstractRepository
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $node = $this->insertNode($node, $left, $right, $parent->id());
+        $node = $this->insertNode($node, $left, $right, $parent->id(), $parent->level() + 1);
         $this->getEntityManager()->clear($this->getEntityName());
         return $node;
     }
@@ -133,7 +155,7 @@ abstract class TreeRepository extends AbstractRepository
         $right = $left + 1;
 
         $this->shiftNestedRange($node, $left, 0, 2);
-        $node = $this->insertNode($node, $left, $right, $parent->id());
+        $node = $this->insertNode($node, $left, $right, $parent->id(), $parent->level() + 1);
         $this->getEntityManager()->clear($this->getEntityName());
         return $node;
     }
@@ -207,14 +229,16 @@ abstract class TreeRepository extends AbstractRepository
      * @param int $left
      * @param int $right
      * @param $parent
+     * @param int $level
      * @return NodeInterface
      */
-    private function insertNode(NodeInterface $node, int $left, int $right, $parent): NodeInterface
+    private function insertNode(NodeInterface $node, int $left, int $right, $parent, int $level): NodeInterface
     {
         /** @var NodeInterface $node */
         $node = $node->with($node->leftParameterName(), $left);
         $node = $node->with($node->rightParameterName(), $right);
         $node = $node->with($node->parentIdParameterName(), $parent);
+        $node = $node->with($node->levelParameterName(), $level);
 
         return $this->save($node);
     }
@@ -236,6 +260,7 @@ abstract class TreeRepository extends AbstractRepository
         }
 
         $node = $node->with($node->parentIdParameterName(), $parent);
+        /** @var NodeInterface $node */
         $node = $this->save($node);
 
         $this->shiftNestedRange($node, $destinationLeft, 0, $size);
@@ -249,6 +274,29 @@ abstract class TreeRepository extends AbstractRepository
         $this->shiftNestedRange($node, $right + 1, 0, $size * -1);
 
         $this->getEntityManager()->clear($this->getEntityName());
+
+        $node = $this->find($node->{$node->idName()}());
+
+        $classMetadata = $this->getEntityManager()->getClassMetadata($this->getEntityName());
+        $tableName = $classMetadata->getTableName();
+        $sql = "UPDATE {$tableName} as s INNER JOIN
+(SELECT n.id,
+         n.nestedLeft,
+         COUNT(*)-1 AS level,
+         ROUND ((n.nestedRight - n.nestedLeft - 1) / 2) AS offspring
+    FROM {$tableName} AS n,
+         {$tableName} AS p
+   WHERE (n.nestedLeft BETWEEN p.nestedLeft AND p.nestedRight)
+     AND (n.nestedLeft BETWEEN {$node->left()} AND {$node->right()})
+GROUP BY n.id, n.nestedLeft
+ORDER BY n.nestedLeft) as sub ON (s.id = sub.id)
+SET s.level=sub.level";
+
+
+        $this->getEntityManager()->getConnection()->exec($sql);
+        $this->getEntityManager()->clear($this->getEntityName());
+
+        $node = $this->find($node->{$node->idName()}());
 
         return $node;
     }
@@ -336,7 +384,7 @@ abstract class TreeRepository extends AbstractRepository
             ->andWhere("c.$parentId = p.id")
             ->andWhere('i.id <> p.id')
             ->andWhere('i.id <> c.id')
-            ->andWhere("c.$left not between p.$left and p.$right OR 
+            ->andWhere("c.$left not between p.$left and p.$right OR
             (c.$left between i.$left and i.$right AND i.$left between p.$left and p.$right)");
 
         $result = $queryBuilder->getQuery()->execute();

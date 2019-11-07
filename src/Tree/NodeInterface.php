@@ -19,6 +19,8 @@ interface NodeInterface extends EntityInterface
 
     public function right(): ?int;
 
+    public function level(): ?int;
+
     public function parentId();
 
     public function idName(): string;
@@ -28,4 +30,6 @@ interface NodeInterface extends EntityInterface
     public function rightParameterName(): string;
 
     public function parentIdParameterName(): string;
+
+    public function levelParameterName(): string;
 }

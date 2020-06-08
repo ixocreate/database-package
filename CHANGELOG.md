@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/database-package/compare/0.2.2...develop)
+## [Unreleased](https://github.com/ixocreate/database-package/compare/0.2.3...develop)
+
+## [v0.2.3 (2020-06-08)](https://github.com/ixocreate/database-package/compare/0.2.2...0.2.3)
+### Changed
+- fix doctrine deprecation and namespace changes 
 
 ## [v0.2.2 (2019-11-07)](https://github.com/ixocreate/database-package/compare/0.2.1...0.2.2)
 ### Added

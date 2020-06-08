@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\ORM\Mapping;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\MappingException;
 use Ixocreate\Database\DatabaseEntityInterface;

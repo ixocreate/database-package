@@ -75,7 +75,7 @@ abstract class AbstractRepository implements RepositoryInterface
 
     /**
      * @param array $criteria
-     * @return \Doctrine\Common\Persistence\ObjectRepository|EntityRepository|mixed|null|object
+     * @return \Doctrine\Persistence\ObjectRepository|EntityRepository|mixed|null|object
      */
     public function findOneBy(array $criteria)
     {
@@ -142,14 +142,14 @@ abstract class AbstractRepository implements RepositoryInterface
     public function save(EntityInterface $entity) : EntityInterface
     {
         $entity = $this->persist($entity);
-        $this->entityManager->flush($entity);
+        $this->entityManager->getUnitOfWork()->commit($entity);
 
         return $entity;
     }
 
     public function flush(EntityInterface $entity): void
     {
-        $this->entityManager->flush($entity);
+        $this->entityManager->getUnitOfWork()->commit($entity);
     }
 
     /**
@@ -186,7 +186,7 @@ abstract class AbstractRepository implements RepositoryInterface
      */
     public function clear()
     {
-        return $this->getRepository()->clear();
+        $this->getRepository()->clear();
     }
 
     /**

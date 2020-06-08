@@ -211,9 +211,9 @@ abstract class TreeRepository extends AbstractRepository
         $queryBuilder = $this->createQueryBuilder();
         $queryBuilder->delete($this->getEntityName(), 'node')
             ->where("node." . $entity->leftParameterName() . ">= :left")
-            ->setParameter("left", $left)
+            ->setParameter('left', $left)
             ->andWhere("node." . $entity->rightParameterName() . " <= :right")
-            ->setParameter("right", $right);
+            ->setParameter('right', $right);
 
         $queryBuilder->getQuery()->execute();
 
@@ -313,13 +313,13 @@ SET s.level=sub.level";
             $queryBuilder = $this->createQueryBuilder();
             $queryBuilder->update($this->getEntityName(), "node")
                 ->set("node." . $field, "node." . $field . " + :delta")
-                ->setParameter("delta", $delta)
+                ->setParameter('delta', $delta)
                 ->where("node." . $field . " >= :first")
-                ->setParameter("first", $first);
+                ->setParameter('first', $first);
 
             if ($last > 0) {
                 $queryBuilder->andWhere("node." . $field . " <= :last")
-                    ->setParameter("last", $last);
+                    ->setParameter('last', $last);
             }
 
             $queryBuilder->getQuery()->execute();
@@ -392,15 +392,15 @@ SET s.level=sub.level";
     }
 
     /**
-     * @return $this
+     * @return int
      */
     protected function getMissingParentCount(): int
     {
         $parameterName = $this->parentIdParameterName();
 
         $sub = $this->createQueryBuilder();
-        $sub->select("t.id");
-        $sub->from($this->getEntityName(), "t");
+        $sub->select('t.id');
+        $sub->from($this->getEntityName(), 't');
 
         $queryBuilder = $this->createQueryBuilder();
         $queryBuilder
@@ -410,7 +410,7 @@ SET s.level=sub.level";
             ->andWhere($queryBuilder->expr()->not($queryBuilder->expr()->in('node.' . $parameterName, $sub->getDql())));
 
         $result = $queryBuilder->getQuery()->execute();
-        return (int) $result[0]['count'];
+        return (int)$result[0]['count'];
     }
 
     public function healthStatus(): array
@@ -420,8 +420,6 @@ SET s.level=sub.level";
         $result['duplicates'] = $this->getDuplicateCount();
         $result['wrongParent'] = $this->getWrongParentCount();
         $result['missingParent'] = $this->getMissingParentCount();
-
-        // var_dump($result);
 
         return $result;
     }

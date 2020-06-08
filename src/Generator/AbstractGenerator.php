@@ -106,8 +106,7 @@ abstract class AbstractGenerator implements GeneratorInterface
         if (\mb_strpos($fullClassName, '\\') === false) {
             return '';
         }
-        $namespace = \mb_substr($fullClassName, 0, \mb_strrpos($fullClassName, '\\'));
-        return $namespace;
+        return \mb_substr($fullClassName, 0, \mb_strrpos($fullClassName, '\\'));
     }
 
     /**

@@ -71,6 +71,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
 
     /**
      * EntityGenerator constructor.
+     * @param TypeSubManager $typeSubManager
      */
     public function __construct(TypeSubManager $typeSubManager)
     {
@@ -78,6 +79,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
     }
 
     /**
+     * @param $name string
      * @param $metadata ClassMetadataInfo
      * @return string
      */
@@ -124,30 +126,30 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
                 $phpType = $mapping['type'];
                 $entityType = '';
                 switch ($mapping['type']) {
-                    case \Doctrine\DBAL\Types\Type::TEXT:
-                    case \Doctrine\DBAL\Types\Type::STRING:
-                    case \Doctrine\DBAL\Types\Type::BLOB:
-                    case \Doctrine\DBAL\Types\Type::BINARY:
+                    case \Doctrine\DBAL\Types\Types::TEXT:
+                    case \Doctrine\DBAL\Types\Types::STRING:
+                    case \Doctrine\DBAL\Types\Types::BLOB:
+                    case \Doctrine\DBAL\Types\Types::BINARY:
                         $phpType = 'string';
                         $entityType = 'TypeInterface::TYPE_STRING';
                         break;
-                    case \Doctrine\DBAL\Types\Type::INTEGER:
-                    case \Doctrine\DBAL\Types\Type::BIGINT:
-                    case \Doctrine\DBAL\Types\Type::SMALLINT:
+                    case \Doctrine\DBAL\Types\Types::INTEGER:
+                    case \Doctrine\DBAL\Types\Types::BIGINT:
+                    case \Doctrine\DBAL\Types\Types::SMALLINT:
                         $phpType = 'int';
                         $entityType = 'TypeInterface::TYPE_INT';
                         break;
-                    case \Doctrine\DBAL\Types\Type::FLOAT:
+                    case \Doctrine\DBAL\Types\Types::FLOAT:
                         $phpType = 'float';
                         $entityType = 'TypeInterface::TYPE_FLOAT';
                         break;
-                    case \Doctrine\DBAL\Types\Type::BOOLEAN:
+                    case \Doctrine\DBAL\Types\Types::BOOLEAN:
                         $phpType = 'bool';
                         $entityType = 'TypeInterface::TYPE_BOOL';
                         break;
-                    case \Doctrine\DBAL\Types\Type::JSON_ARRAY:
-                    case \Doctrine\DBAL\Types\Type::JSON:
-                    case \Doctrine\DBAL\Types\Type::SIMPLE_ARRAY:
+                    case \Doctrine\DBAL\Types\Types::JSON_ARRAY:
+                    case \Doctrine\DBAL\Types\Types::JSON:
+                    case \Doctrine\DBAL\Types\Types::SIMPLE_ARRAY:
                         $phpType = 'array';
                         $entityType = 'TypeInterface::TYPE_ARRAY';
                         break;

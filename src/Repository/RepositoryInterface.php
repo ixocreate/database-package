@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Selectable;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Ixocreate\Entity\EntityInterface;

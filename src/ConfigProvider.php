@@ -32,7 +32,7 @@ final class ConfigProvider implements ConfigProviderInterface
      */
     public function configName(): string
     {
-        return "database";
+        return 'database';
     }
 
     /**

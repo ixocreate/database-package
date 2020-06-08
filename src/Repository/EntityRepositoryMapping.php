@@ -13,7 +13,7 @@ use Ixocreate\Application\Service\SerializableServiceInterface;
 
 class EntityRepositoryMapping implements SerializableServiceInterface
 {
-    private $mapping = [];
+    private $mapping;
 
     /**
      * EntityRepositoryMapping constructor.

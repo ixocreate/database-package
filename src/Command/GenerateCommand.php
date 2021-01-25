@@ -9,27 +9,15 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Command;
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\DependencyFactory;
 
 class GenerateCommand extends ProxyCommand
 {
-    public function __construct(Configuration $migrationConfig)
+    public function __construct(DependencyFactory $dependencyFactory)
     {
-        $this->command = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
-        $this->command->setMigrationConfiguration($migrationConfig);
+        $this->command = new \Doctrine\Migrations\Tools\Console\Command\GenerateCommand($dependencyFactory);
         $this->command->setName(self::getCommandName());
         $this->command->setAliases(['make:migration']);
-
-        $class = new \ReflectionClass($this->command);
-        $property = $class->getProperty('_template');
-        $property->setAccessible(true);
-        $property->setValue(
-            \str_replace(
-                "/**\n * Auto-generated Migration: Please modify to your needs!\n */\n",
-                '',
-                $property->getValue()
-            )
-        );
 
         parent::__construct(null);
     }

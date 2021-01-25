@@ -41,11 +41,11 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
 <properties>
 
 <getters>
-    
+
 <definition>
 
 <metadata>
- 
+
 }
 
 ';
@@ -108,7 +108,7 @@ final class <className> implements EntityInterface, DatabaseEntityInterface
     protected function getFields(ClassMetadataInfo $metadata)
     {
         $typesMap = DbalType::getTypesMap();
-        $namedServiceMap = $this->typeSubManager->getServiceManagerConfig()->getNamedServices();
+        $namedServiceMap = $this->typeSubManager->serviceManagerConfig()->getNamedServices();
 
         $typeMapping = function (array &$mapping) use ($typesMap, $namedServiceMap) {
             $typeClass = $typesMap[$mapping['type']];

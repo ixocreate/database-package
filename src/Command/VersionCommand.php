@@ -9,14 +9,13 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Command;
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\DependencyFactory;
 
 class VersionCommand extends ProxyCommand
 {
-    public function __construct(Configuration $migrationConfig)
+    public function __construct(DependencyFactory $dependencyFactory)
     {
-        $this->command = new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand();
-        $this->command->setMigrationConfiguration($migrationConfig);
+        $this->command = new \Doctrine\Migrations\Tools\Console\Command\VersionCommand($dependencyFactory);
         $this->command->setName(self::getCommandName());
 
         parent::__construct(null);

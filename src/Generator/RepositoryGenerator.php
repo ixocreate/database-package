@@ -28,19 +28,20 @@ use <entityFQCN>;
 
 final class <className> extends AbstractRepository
 {
-    
+
     /**
      * @return string
      */
     public function getEntityName(): string
     {
         return <entityClassName>::class;
-    }   
+    }
 }
 
 ';
 
     /**
+     * @param string $name
      * @param ClassMetadataInfo $metadata
      * @return string
      */

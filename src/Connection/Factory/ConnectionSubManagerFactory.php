@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Connection\Factory;
 
 use Doctrine\DBAL\Connection;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
+use Ixocreate\Application\ServiceManager\ServiceManagerConfigurator;
 use Ixocreate\Database\Connection\ConnectionConfig;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerFactoryInterface;
@@ -28,7 +28,7 @@ final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
      */
     public function __invoke(
         ServiceManagerInterface $container,
-        $requestedName,
+        string $requestedName,
         array $options = null
     ): SubManagerInterface {
         $serviceManagerConfigurator = new ServiceManagerConfigurator();
@@ -42,8 +42,7 @@ final class ConnectionSubManagerFactory implements SubManagerFactoryInterface
 
         return new ConnectionSubManager(
             $container,
-            $serviceManagerConfigurator->getServiceManagerConfig(),
-            \Doctrine\DBAL\Driver\Connection::class
+            $serviceManagerConfigurator->getServiceManagerConfig()
         );
     }
 }

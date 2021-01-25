@@ -11,17 +11,19 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.1",
+        "php": "^7.2 || ^8.0",
         "doctrine/dbal": "^2.6",
-        "doctrine/migrations": "^1.6",
-        "doctrine/orm": "^2.7.3",
-        "ixocreate/application": "^0.2",
-        "ixocreate/entity-package": "^0.2"
+        "doctrine/migrations": "^3.0",
+        "doctrine/orm": "^2.8.1",
+        "ixocreate/application": "dev-develop",
+        "ixocreate/entity-package": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
-        "ixocreate/test": "dev-develop"
+        "ixocreate/test": "^0.2"
     },
     "autoload": {
         "psr-4": {

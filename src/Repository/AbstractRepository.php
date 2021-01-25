@@ -182,14 +182,6 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     *
-     */
-    public function clear()
-    {
-        $this->getRepository()->clear();
-    }
-
-    /**
      * @param $queryName
      * @return \Doctrine\ORM\NativeQuery
      */

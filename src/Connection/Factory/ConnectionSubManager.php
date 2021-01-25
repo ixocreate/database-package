@@ -9,8 +9,12 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Connection\Factory;
 
-use Ixocreate\ServiceManager\SubManager\SubManager;
+use Ixocreate\ServiceManager\SubManager\AbstractSubManager;
 
-final class ConnectionSubManager extends SubManager
+final class ConnectionSubManager extends AbstractSubManager
 {
+    public static function validation(): ?string
+    {
+        return \Doctrine\DBAL\Driver\Connection::class;
+    }
 }

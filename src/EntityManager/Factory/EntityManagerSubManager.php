@@ -9,8 +9,13 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\EntityManager\Factory;
 
-use Ixocreate\ServiceManager\SubManager\SubManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Ixocreate\ServiceManager\SubManager\AbstractSubManager;
 
-final class EntityManagerSubManager extends SubManager
+final class EntityManagerSubManager extends AbstractSubManager
 {
+    public static function validation(): ?string
+    {
+        return EntityManagerInterface::class;
+    }
 }

@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Command;
 
+use Doctrine\Migrations\DependencyFactory;
 use Ixocreate\Application\Console\CommandInterface;
+use Ixocreate\Database\Migration\IxocreateConfigurationLoader;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -55,7 +57,7 @@ abstract class ProxyCommand extends Command implements CommandInterface
         return $this->command->getAliases();
     }
 
-    public function getSynopsis($short = false)
+    public function getSynopsis(bool $short = false)
     {
         $this->cleanOptions();
         return $this->command->getSynopsis($short);
@@ -86,7 +88,7 @@ abstract class ProxyCommand extends Command implements CommandInterface
         return $this->command->getNativeDefinition();
     }
 
-    public function getHelper($name)
+    public function getHelper(string $name)
     {
         return $this->command->getHelper($name);
     }

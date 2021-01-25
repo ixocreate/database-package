@@ -9,8 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\EntityManager\Factory;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
+use Ixocreate\Application\ServiceManager\ServiceManagerConfigurator;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerFactoryInterface;
@@ -28,7 +27,7 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
      */
     public function __invoke(
         ServiceManagerInterface $container,
-        $requestedName,
+        string $requestedName,
         array $options = null
     ): SubManagerInterface {
         $connections = \array_keys(
@@ -43,8 +42,7 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
 
         return new EntityManagerSubManager(
             $container,
-            $serviceManagerConfigurator->getServiceManagerConfig(),
-            EntityManagerInterface::class
+            $serviceManagerConfigurator->getServiceManagerConfig()
         );
     }
 }

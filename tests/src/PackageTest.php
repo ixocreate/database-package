@@ -11,8 +11,6 @@ namespace Ixocreate\Test\Database;
 
 use Ixocreate\Application\ApplicationConfig;
 use Ixocreate\Application\ApplicationConfigurator;
-use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
-use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Database\DatabaseBootstrapItem;
 use Ixocreate\Database\Package;
 use Ixocreate\Database\Repository\RepositoryBootstrapItem;
@@ -44,22 +42,17 @@ class PackageTest extends TestCase
      */
     public function testPackage()
     {
-        $configuratorRegistry = $this->getMockBuilder(ConfiguratorRegistryInterface::class)->getMock();
-        $serviceRegistry = $this->getMockBuilder(ServiceRegistryInterface::class)->getMock();
         $serviceManager = $this->mockServiceManager();
 
         $package = new Package();
-        $package->configure($configuratorRegistry);
-        $package->addServices($serviceRegistry);
         $package->boot($serviceManager);
 
         $this->assertSame([
             RepositoryBootstrapItem::class,
             DatabaseBootstrapItem::class,
         ], $package->getBootstrapItems());
-        $this->assertNull($package->getConfigDirectory());
-        $this->assertNull($package->getConfigProvider());
-        $this->assertNull($package->getDependencies());
+
+        $this->assertEmpty($package->getDependencies());
         $this->assertDirectoryExists($package->getBootstrapDirectory());
     }
 }

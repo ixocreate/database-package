@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use Doctrine\ORM\Tools\DisconnectedClassMetadataFactory;
 use Ixocreate\Application\Console\CommandInterface;
+use Ixocreate\Database\EntityManager\Factory\EntityManagerSubManager;
 use Ixocreate\Database\Generator\GeneratorInterface;
 use Ixocreate\Schema\Type\TypeSubManager;
 use Symfony\Component\Console\Command\Command;
@@ -36,6 +37,11 @@ FH;
     /**
      * @var EntityManagerInterface
      */
+    protected $entityManagerSubManager;
+
+    /**
+     * @var EntityManagerInterface
+     */
     protected $entityManager;
 
     /**
@@ -43,10 +49,10 @@ FH;
      */
     protected $typeSubManager;
 
-    public function __construct(EntityManagerInterface $master, TypeSubManager $typeSubManager)
+    public function __construct(EntityManagerSubManager $entityManagerSubManager, TypeSubManager $typeSubManager)
     {
         parent::__construct(static::getCommandName());
-        $this->entityManager = $master;
+        $this->entityManagerSubManager = $entityManagerSubManager;
         $this->typeSubManager = $typeSubManager;
     }
 
@@ -93,6 +99,12 @@ FH;
      */
     public function getEntityManager(): EntityManagerInterface
     {
+        if ($this->entityManager === null) {
+            if (!$this->entityManagerSubManager->has('master')) {
+                throw new \Exception('No "master" database connection configured');
+            }
+            $this->entityManager = $this->entityManagerSubManager->get('master');
+        }
         return $this->entityManager;
     }
 

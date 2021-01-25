@@ -29,7 +29,7 @@ final class TypeConfigFactory implements FactoryInterface
         $typeSubManager = $container->get(TypeSubManager::class);
 
         $types = [];
-        foreach ($typeSubManager->getServices() as $service) {
+        foreach ($typeSubManager->services() as $service) {
             if (!\is_subclass_of($service, DatabaseTypeInterface::class, true)) {
                 continue;
             }

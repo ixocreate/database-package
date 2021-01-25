@@ -52,7 +52,11 @@ class PackageTest extends TestCase
             DatabaseBootstrapItem::class,
         ], $package->getBootstrapItems());
 
-        $this->assertEmpty($package->getDependencies());
+        $this->assertSame([
+            \Ixocreate\Schema\Package::class,
+            \Ixocreate\Entity\Package::class,
+        ], $package->getDependencies());
+
         $this->assertDirectoryExists($package->getBootstrapDirectory());
     }
 }

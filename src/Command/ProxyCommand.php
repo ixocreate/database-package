@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\Command;
 
-use Doctrine\Migrations\DependencyFactory;
 use Ixocreate\Application\Console\CommandInterface;
-use Ixocreate\Database\Migration\IxocreateConfigurationLoader;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

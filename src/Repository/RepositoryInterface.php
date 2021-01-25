@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Ixocreate\Database\Repository;
 
 use Doctrine\Common\Collections\Selectable;
-use Doctrine\Persistence\ObjectRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ObjectRepository;
 use Ixocreate\Entity\EntityInterface;
 
 interface RepositoryInterface extends ObjectRepository, Selectable

@@ -31,7 +31,7 @@ final class EntityManagerSubManagerFactory implements SubManagerFactoryInterface
         array $options = null
     ): SubManagerInterface {
         $connections = \array_keys(
-            $container->get(ConnectionSubManager::class)->getServiceManagerConfig()->getFactories()
+            $container->get(ConnectionSubManager::class)->serviceManagerConfig()->getFactories()
         );
 
         $serviceManagerConfigurator = new ServiceManagerConfigurator();

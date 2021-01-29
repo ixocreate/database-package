@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Command;
+namespace Ixocreate\Database\Console;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
@@ -27,7 +27,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class AbstractGenerateCommand
- * @package Ixocreate\Database\Command
+ * @package Ixocreate\Database\Console
  */
 abstract class AbstractGenerateCommand extends Command implements CommandInterface
 {

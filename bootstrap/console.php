@@ -11,13 +11,13 @@ namespace Ixocreate\Database;
 
 /** @var ConsoleConfigurator $console */
 use Ixocreate\Application\Console\ConsoleConfigurator;
-use Ixocreate\Database\Command\GenerateClassesCommand;
-use Ixocreate\Database\Command\GenerateCommand;
-use Ixocreate\Database\Command\GenerateEntitiesCommand;
-use Ixocreate\Database\Command\GenerateRepositoriesCommand;
-use Ixocreate\Database\Command\MigrateCommand;
-use Ixocreate\Database\Command\StatusCommand;
-use Ixocreate\Database\Command\VersionCommand;
+use Ixocreate\Database\Console\GenerateClassesCommand;
+use Ixocreate\Database\Console\GenerateCommand;
+use Ixocreate\Database\Console\GenerateEntitiesCommand;
+use Ixocreate\Database\Console\GenerateRepositoriesCommand;
+use Ixocreate\Database\Console\MigrateCommand;
+use Ixocreate\Database\Console\StatusCommand;
+use Ixocreate\Database\Console\VersionCommand;
 
 $console->addCommand(GenerateCommand::class);
 $console->addCommand(MigrateCommand::class);

@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Command;
+namespace Ixocreate\Database\Console;
 
 use Ixocreate\Database\Generator\EntityGenerator;
 
 /**
  * Class GenerateRepositoriesCommand
- * @package Ixocreate\Database\Command
+ * @package Ixocreate\Database\Console
  */
 class GenerateEntitiesCommand extends AbstractGenerateCommand
 {

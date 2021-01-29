@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Database\Command;
+namespace Ixocreate\Database\Console;
 
 use Ixocreate\Application\Console\CommandInterface;
 use Symfony\Component\Console\Application;

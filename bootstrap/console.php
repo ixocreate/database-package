@@ -17,12 +17,14 @@ use Ixocreate\Database\Console\GenerateEntitiesCommand;
 use Ixocreate\Database\Console\GenerateRepositoriesCommand;
 use Ixocreate\Database\Console\MigrateCommand;
 use Ixocreate\Database\Console\StatusCommand;
+use Ixocreate\Database\Console\SyncMetadataCommand;
 use Ixocreate\Database\Console\VersionCommand;
 
 $console->addCommand(GenerateCommand::class);
 $console->addCommand(MigrateCommand::class);
 $console->addCommand(StatusCommand::class);
 $console->addCommand(VersionCommand::class);
+$console->addCommand(SyncMetadataCommand::class);
 $console->addCommand(GenerateEntitiesCommand::class);
 $console->addCommand(GenerateRepositoriesCommand::class);
 $console->addCommand(GenerateClassesCommand::class);

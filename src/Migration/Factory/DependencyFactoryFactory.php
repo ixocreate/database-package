@@ -13,6 +13,8 @@ use Doctrine\DBAL\Connection;
 use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
 use Doctrine\Migrations\Configuration\Migration\ConfigurationArray;
 use Doctrine\Migrations\DependencyFactory;
+use Doctrine\Migrations\Finder\MigrationFinder;
+use Doctrine\Migrations\Finder\RecursiveRegexFinder;
 use Ixocreate\Database\Connection\Factory\ConnectionSubManager;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
@@ -46,6 +48,11 @@ class DependencyFactoryFactory implements FactoryInterface
         $configurationLoader = new ConfigurationArray($config);
         $connectionLoader = new ExistingConnection($connection);
 
-        return DependencyFactory::fromConnection($configurationLoader, $connectionLoader);
+        $factory = DependencyFactory::fromConnection($configurationLoader, $connectionLoader);
+        $factory->setDefinition(MigrationFinder::class, function (): MigrationFinder {
+            return new RecursiveRegexFinder();
+        });
+
+        return $factory;
     }
 }

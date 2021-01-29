@@ -99,7 +99,7 @@ abstract class ProxyCommand extends Command implements CommandInterface
 
     public function run(InputInterface $input, OutputInterface $output)
     {
-//        $this->restoreOptions();
+        $this->restoreOptions();
 
         $this->command->setCode(function (InputInterface $input, OutputInterface $output) {
             return $this->execute($input, $output);
@@ -110,7 +110,7 @@ abstract class ProxyCommand extends Command implements CommandInterface
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->restoreOptions();
+//        $this->restoreOptions();
         $input->bind($this->command->getDefinition());
         $input->setOption('configuration', null);
         $input->setOption('db-configuration', null);
@@ -123,7 +123,6 @@ abstract class ProxyCommand extends Command implements CommandInterface
         $inputDefinition = $this->command->getDefinition();
         $options = $inputDefinition->getOptions();
         unset($options['configuration'], $options['db-configuration']);
-
 
         $inputDefinition->setOptions($options);
     }

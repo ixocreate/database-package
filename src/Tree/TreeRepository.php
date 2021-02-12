@@ -171,6 +171,14 @@ abstract class TreeRepository extends AbstractRepository
 
     /**
      * @param NodeInterface $node
+     */
+    public function moveAsFirstRoot(NodeInterface $node)
+    {
+        $this->updateNode($node, 1, null);
+    }
+
+    /**
+     * @param NodeInterface $node
      * @param NodeInterface $sibling
      */
     public function moveAsNextSibling(NodeInterface $node, NodeInterface $sibling)

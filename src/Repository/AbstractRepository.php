@@ -75,11 +75,12 @@ abstract class AbstractRepository implements RepositoryInterface
 
     /**
      * @param array $criteria
+     * @param array|null $orderBy
      * @return \Doctrine\Persistence\ObjectRepository|EntityRepository|mixed|null|object
      */
-    public function findOneBy(array $criteria)
+    public function findOneBy(array $criteria, array $orderBy = null)
     {
-        return $this->getRepository()->findOneBy($criteria);
+        return $this->getRepository()->findOneBy($criteria, $orderBy);
     }
 
     /**

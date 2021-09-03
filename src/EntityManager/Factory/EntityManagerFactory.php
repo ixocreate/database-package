@@ -22,6 +22,8 @@ use Ixocreate\Database\Repository\Factory\DoctrineRepositoryFactory;
 use Ixocreate\Database\Repository\Factory\RepositorySubManager;
 use Ixocreate\ServiceManager\FactoryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 final class EntityManagerFactory implements FactoryInterface
 {
@@ -29,10 +31,10 @@ final class EntityManagerFactory implements FactoryInterface
      * @param ServiceManagerInterface $container
      * @param $requestedName
      * @param array|null $options
-     * @throws \Psr\Container\ContainerExceptionInterface
+     * @return mixed
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Doctrine\ORM\ORMException
-     * @return mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
@@ -60,12 +62,14 @@ final class EntityManagerFactory implements FactoryInterface
             new DoctrineRepositoryFactory($container->get(RepositorySubManager::class), $container->get(EntityRepositoryMapping::class))
         );
 
-        $configuration->setMetadataCacheImpl(new PhpFileCache(
+        $configuration->setMetadataCache(new FilesystemAdapter(
+            '',
+            0,
             $applicationConfig->getPersistCacheDirectory() . 'database/doctrine_metadata'
         ));
 
         if ($applicationConfig->isDevelopment()) {
-            $configuration->setMetadataCacheImpl(new ArrayCache());
+            $configuration->setMetadataCache(new ArrayAdapter());
         }
 
         return $configuration;

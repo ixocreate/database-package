@@ -15,7 +15,7 @@
         "php": "^7.2 || ^8.0",
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^3.0",
-        "doctrine/orm": "^2.8.1",
+        "doctrine/orm": "^2.9.0",
         "ixocreate/application": "^0.3.0",
         "ixocreate/entity-package": "^0.3.0"
     },

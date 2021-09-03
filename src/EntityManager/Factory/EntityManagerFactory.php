@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Ixocreate\Database\EntityManager\Factory;
 
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\PhpFileCache;
 use Doctrine\Common\Proxy\AbstractProxyFactory;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
@@ -31,10 +29,10 @@ final class EntityManagerFactory implements FactoryInterface
      * @param ServiceManagerInterface $container
      * @param $requestedName
      * @param array|null $options
-     * @return mixed
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Psr\Container\ContainerExceptionInterface
+     * @return mixed
      */
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {

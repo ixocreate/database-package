@@ -171,7 +171,7 @@ FH;
 
         if (empty($metadatas)) {
             $ui->success('No Metadata Classes to process.');
-            return;
+            return 0;
         }
 
         foreach ($this->getGenerators() as $generator) {
@@ -189,5 +189,7 @@ FH;
                 }
             }
         }
+
+        return 0;
     }
 }
